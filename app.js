@@ -25,8 +25,12 @@ app.use(express.urlencoded({ extended: true }));
 //app.use(fileUpload({useTempFiles:true}));
 
 //ROUTES
-//app.use('/', require('./routes/auth.routes'));
-
+app.use('/', require('./routes/auth.routes'));
+app.use('/empleado', require('./routes/empleado.routes'));
+app.use((req, res, next) => {
+  console.log('Time:', Date.now())
+  next()
+})
 //MIDELWARES FOR VUE
 app.use(history());
 app.use('/uploads', express.static('uploads'))
