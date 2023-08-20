@@ -26,6 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
 //app.use('/', require('./routes/auth.routes'));
+app.use('/proveedor', require('./routes/proveedor.routes'));
+app.use('/almacen', require('./routes/almacen.routes'));
+app.use('/stand', require('./routes/stand.routes'));
+app.use('/seccion', require('./routes/seccion.routes'));
 
 //MIDELWARES FOR VUE
 app.use(history());
