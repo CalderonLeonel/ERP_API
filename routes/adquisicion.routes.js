@@ -1,5 +1,5 @@
 import express from 'express';
-import adquisicion from '../controllers/alm';
+import adquisicion from '../controllers/adq';
 
 const router = express.Router();
 
