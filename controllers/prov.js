@@ -47,4 +47,32 @@ proveedor.agregarProveedor = async(req,res) =>{
  
  };
 
+
+ proveedor.actualizarProveedor = async(req,res) =>{
+  const id = req.params.p1;
+  const nombre = req.params.p2;
+  const contacto1 = req.params.p3;
+  const contacto2= req.params.p4;
+  const correo = req.params.p5;
+  const est  = req.params.p6;
+  
+  
+   try {
+         await pool.query("select erp_produccion.erp_actualizar_proveedor($1,$2,$3,$4,$5,$6)",[id,nombre,contacto1,contacto2,correo,est]);
+                           
+             res.status(200).json({
+                 message:'SE GUARDARON LOS CAMBIOS :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
 module.exports = proveedor;
