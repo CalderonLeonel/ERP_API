@@ -73,4 +73,28 @@ stand.agregarStand = async (req, res) => {
  };
 
 
+ stand.eliminarStand = async(req,res) =>{
+  const id = req.params.p1;
+
+
+   try {
+         await pool.query("select erp_produccion.erp_eliminar_stand($1)",[id]);
+                           
+             res.status(200).json({
+                 message:'ESTADO CAMBIADO CORRECTAMENTE'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
+
 module.exports = stand;
