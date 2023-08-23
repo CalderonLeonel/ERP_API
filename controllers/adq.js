@@ -120,4 +120,32 @@ adquisicion.listarcotizacionitem = async (req, res) => {
   }
 };
 
+
+adquisicion.agregarcotizaciondeitem  = async(req,res) =>{
+  const id_cotizacion = req.params.p1;
+  const id_item = req.params.p2;
+  const precioYnitario= req.params.p3;
+  const est  = req.params.p5;
+  
+  
+   try {
+         await pool.query("select erp_produccion.erp_insertar_cotizacion_item($1,$2,$3,$4)",[id_cotizacion,id_item,precioYnitario,est]);
+                           
+             res.status(200).json({
+                 message:'CAMPO GUARDADO CORRECTAMENTE :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
+
 module.exports = adquisicion;
