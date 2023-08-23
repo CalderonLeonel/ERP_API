@@ -115,4 +115,31 @@ almacen.listarAlmacenamiento = async (req, res) => {
   }
 };
 
+
+
+almacen.agregarAlmacenamiento = async(req,res) =>{
+  const idItem = req.params.p1;
+  const idStand= req.params.p2;
+  const cantidad= req.params.p3;
+  
+  
+   try {
+         await pool.query("select erp_produccion.erp_insertar_almacenamiento($1,$2,$3)",[idItem,idStand,cantidad]);
+                           
+             res.status(200).json({
+                 message:'CAMPO GUARDADO CORRECTAMENTE :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
 module.exports = almacen;
