@@ -45,6 +45,31 @@ almacen.agregarAlmacen = async(req,res) =>{
  };
 
 
+
+ almacen.actualizarAlmacen = async(req,res) =>{
+  const id = req.params.p1;
+  const nombreAlmacen = req.params.p2;
+  const est= req.params.p3;
+  
+   try {
+         await pool.query("select erp_produccion.erp_actualizar_almacen($1,$2,$3)",[id,nombreAlmacen,est]);
+                           
+             res.status(200).json({
+                 message:'SE GUARDARON LOS CAMBIOS :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
 //Almacenamiento
 
 almacen.listarAlmacenamiento = async (req, res) => {
