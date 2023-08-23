@@ -21,6 +21,30 @@ almacen.listarAlmacenes = async (req, res) => {
 };
 
 
+almacen.agregarAlmacen = async(req,res) =>{
+  const nombreAlmacen = req.params.p1;
+  const est= req.params.p2;
+  
+  
+   try {
+         await pool.query("select erp_produccion.erp_insertar_almacen($1,$2)",[nombreAlmacen,est]);
+                           
+             res.status(200).json({
+                 message:'CAMPO GUARDADO CORRECTAMENTE :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
 //Almacenamiento
 
 almacen.listarAlmacenamiento = async (req, res) => {
