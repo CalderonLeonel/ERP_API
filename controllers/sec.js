@@ -29,7 +29,7 @@ seccion.agregarSeccion = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_seccion($1,$2,$3,$4,$5)",[nombre,idAlmacen,est]);
+         await pool.query("select erp_produccion.erp_insertar_seccion($1,$2,$3)",[nombre,idAlmacen,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
