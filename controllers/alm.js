@@ -167,4 +167,28 @@ almacen.agregarAlmacenamiento = async(req,res) =>{
  };
 
 
+ almacen.eliminarAlmacenamiento = async(req,res) =>{
+  const idItem = req.params.p1;
+  const idStand= req.params.p2;
+
+
+   try {
+         await pool.query("select erp_produccion.erp_eliminar_almacenamiento($1,$2)",[idItem,idStand]);
+                           
+             res.status(200).json({
+                 message:'ESTADO CAMBIADO CORRECTAMENTE'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
 module.exports = almacen;
