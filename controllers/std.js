@@ -51,7 +51,7 @@ stand.agregarStand = async (req, res) => {
   const id = req.params.p1;
   const nombre = req.params.p2;
   const idSeccion  = req.params.p3;
-  const est  = req.params.p3;
+  const est  = req.params.p4;
   
   
    try {
