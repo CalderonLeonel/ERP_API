@@ -74,6 +74,27 @@ inventario.actualizarTransaccion = async (req, res) => {
 };
 
 
+inventario.anularTransaccion = async (req, res) => {
+  const id = req.params.p1;
+
+  try {
+    await pool.query("select erp_produccion.erp_eliminar_transaccion_inventario($1)",[id]);
+                      
+        res.status(200).json({
+            message:'CAMPO GUARDADO CORRECTAMENTE :)'
+      
+        })           
+  } catch (error) {
+      res.status(500).json({
+          message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+          error
+      })
+  }
+
+
+};
+
+
 //Item
 
 inventario.listarItem = async (req, res) => {
