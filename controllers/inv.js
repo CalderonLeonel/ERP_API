@@ -23,6 +23,32 @@ inventario.listarTransacciones = async (req, res) => {
 };
 
 
+inventario.agregarTransaccion = async (req, res) => {
+
+  const idItem = req.params.p1;
+  const movimiento = req.params.p2;
+  const cantidad  = req.params.p3;
+  const costounitario  = req.params.p4;
+  const metodovaluacion  = req.params.p5;
+  const est  = req.params.p6;
+  try {
+    await pool.query("select erp_produccion.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6)",[idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+                      
+        res.status(200).json({
+            message:'CAMPO GUARDADO CORRECTAMENTE :)'
+      
+        })           
+  } catch (error) {
+      res.status(500).json({
+          message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+          error
+      })
+  }
+
+
+};
+
+
 //Item
 
 inventario.listarItem = async (req, res) => {
