@@ -144,6 +144,31 @@ inventario.agregarItem = async (req, res) => {
 };
 
 
+inventario.actualizarItem = async (req, res) => {
+  const id = req.params.p1;
+  const nombre = req.params.p1;
+  const descripcion = req.params.p2;
+  const medida  = req.params.p3;
+  const est  = req.params.p4;
+  const tipo  = req.params.p5;
+  try {
+    await pool.query("select erp_produccion.erp_actualizar_item($1,$2,$3,$4,$5,$6)",[id,nombre,descripcion,medida,est,tipo]);
+                      
+        res.status(200).json({
+            message:'CAMPO GUARDADO CORRECTAMENTE :)'
+      
+        })           
+  } catch (error) {
+      res.status(500).json({
+          message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+          error
+      })
+  }
+
+
+};
+
+
 //Tipo De Item
 
 inventario.listarTipoItem = async (req, res) => {
