@@ -211,7 +211,28 @@ inventario.listarTipoItem = async (req, res) => {
     }
   };
 
+  
 
+  inventario.agregarTipoItem = async (req, res) => {
+
+    const nombre = req.params.p1;
+    const est  = req.params.p2;
+    try {
+      await pool.query("select erp_produccion.erp_insertar_tipodeitem($1,$2)",[nombre,est]);
+                        
+          res.status(200).json({
+              message:'CAMPO GUARDADO CORRECTAMENTE :)'
+        
+          })           
+    } catch (error) {
+        res.status(500).json({
+            message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error
+        })
+    }
+  
+  
+  };
 
 
   inventario.eliminarTipoItem = async(req,res) =>{
