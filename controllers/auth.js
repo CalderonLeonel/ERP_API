@@ -1,16 +1,16 @@
 import pool from '../database/Keys'
 //const pool = require ('../database/Keys')
 const authentication ={};
-
+/*
 authentication.signUp = (req,res)=>{
     console.log(req.body);
     res.send('REGISTRADO AMIGO');
     };
-
+*/
 authentication.signIn = async(req,res) =>{
  const {user,password} = req.body;
   try {
-        const usuario = await(await pool.query("select * from erp.erp_auth($1,$2)",[user,password])).rows;
+        const usuario = await(await pool.query("select * from proyectoerp.erp_auth($1,$2)",[user,password])).rows;
         if (usuario.length>0){
             res.status(200).json({
              id_usuario:usuario[0].id_usuario,

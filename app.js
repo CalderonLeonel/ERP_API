@@ -26,7 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
 app.use('/', require('./routes/auth.routes'));
+app.use('/cargo', require('./routes/cargo.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
+app.use('/nivel', require('./routes/nivel.routes'));
+app.use('/usuario', require('./routes/usuario.routes'));
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
   next()

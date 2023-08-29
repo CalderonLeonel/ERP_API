@@ -1,7 +1,7 @@
 import pool from "../database/Keys";
-const productos = {};
+const usuarios = {};
 
-productos.listarProductos = async (req, res) => {
+usuarios.listusuario = async (req, res) => {
   try {
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
@@ -18,3 +18,5 @@ productos.listarProductos = async (req, res) => {
     });
   }
 };
+
+module.exports = usuarios;
