@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const tipos = {};
+const produccion = {};
 
-tipos.listartipos = async (req, res) => {
+produccion.listarproduccion = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listartipos()")
+      await pool.query("select * from proyectoerp.erp_listarproduccion()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ tipos.listartipos = async (req, res) => {
   }
 };
 
-tipos.listartiposinh = async (req, res) => {
+produccion.listarproduccioninh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listartiposinh()")
+      await pool.query("select * from proyectoerp.erp_listarproduccioninh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,16 +47,18 @@ tipos.listartiposinh = async (req, res) => {
   }
 };
 
-tipos.addtipo = async (req, res) => {
-  const nomtipo = req.params.p1;
-  const codtipo = req.params.p2;
-  const idlin = req.params.p3;
+produccion.addproduccion = async (req, res) => {
+
+    const idprodu = req.params.p1;
+    const nomprod = req.params.p2;
+    const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_addtipoproducto($1,$2,$3)", [
-      nomtipo,
-      codtipo,
-      idlin
+    await pool.query("select proyectoerp.erp_addproduccion($1,$2)", [
+      idprodu,  
+      nomprod,
+      codprod,
     ]);
+
     res.status(200).json({
       message: "REGISTRO INSERTADO CORRECTAMENTE",
     });
@@ -69,17 +71,15 @@ tipos.addtipo = async (req, res) => {
   }
 };
 
-tipos.updtipo = async (req, res) => {
-  const idtipo = req.params.p1;
-  const nomtipo = req.params.p2;
-  const codtipo = req.params.p3;
-  const idlin = req.params.p4;
+produccion.updproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
+  const nomprod = req.params.p2;
+  const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updtipo($1,$2,$3,$4)", [
-      idtipo,
-      nomtipo,
-      codtipo,
-      idlin
+    await pool.query("select proyectoerp.erp_updproduccion($1,$2,$3)", [
+      idprodu,
+      nomprod,
+      codprod
     ]);
 
     res.status(200).json({
@@ -94,10 +94,12 @@ tipos.updtipo = async (req, res) => {
   }
 };
 
-tipos.offtipo = async (req, res) => {
-  const idtipo = req.params.p1;
+produccion.offproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offtipo($1)", [idtipo]);
+    await pool.query("select proyectoerp.erp_offproduccion($1)", [
+      idprodu
+    ]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -111,10 +113,12 @@ tipos.offtipo = async (req, res) => {
   }
 };
 
-tipos.ontipo = async (req, res) => {
-  const idtipo = req.params.p1;
+produccion.onproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_ontipo($1)", [idtipo]);
+    await pool.query("select proyectoerp.erp_onproduccion($1)", [
+      idprodu
+    ]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -128,4 +132,5 @@ tipos.ontipo = async (req, res) => {
   }
 };
 
-module.exports = tipos;
+
+module.exports = produccion;
