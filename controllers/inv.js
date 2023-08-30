@@ -22,6 +22,44 @@ inventario.listarTransacciones = async (req, res) => {
   }
 };
 
+inventario.listarTransaccionesActivas = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_transaccion_inventario_activo()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+inventario.listarTransaccionesInactivas = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_transaccion_inventario_inactivo()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 
 inventario.agregarTransaccion = async (req, res) => {
 
@@ -117,6 +155,43 @@ inventario.listarItem = async (req, res) => {
 };
 
 
+inventario.listarItemActivo = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_item_activo()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+inventario.listarItemInactivo = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_item_inactivo()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
 
 
 inventario.agregarItem = async (req, res) => {
@@ -195,6 +270,44 @@ inventario.eliminarItem = async(req,res) =>{
 inventario.listarTipoItem = async (req, res) => {
     try {
       const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem()")).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+  inventario.listarTipoItemActivo = async (req, res) => {
+    try {
+      const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem_activo()")).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+  inventario.listarTipoItemInactivo = async (req, res) => {
+    try {
+      const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem_inactivo()")).rows;
       if (resultado.length > 0) {
         res.status(200).json({ resultado });
       } else {
