@@ -9,7 +9,7 @@ router.get('/listarinventarioinactivo',inventario.listarTransaccionesInactivas);
 
 router.get('/agregarinventario',inventario.agregarTransaccion);
 router.get('/actualizarinventario',inventario.actualizarTransaccion);
-router.get('/eliminarinventario',inventario.eliminarTransaccion);
+router.get('/eliminarinventario',inventario.anularTransaccion);
 
 
 

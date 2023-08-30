@@ -6,9 +6,9 @@ const router = express.Router();
 router.get('/listaralmacenes',almacen.listarAlmacenes);
 router.get('/listaralmacenesactivos',almacen.listarAlmacenesActivos);
 router.get('/listaralmacenesinactivos',almacen.listarAlmacenesInactivos);
-router.get('/agregaralmacenamien',almacen.agregarAlmacen);
-router.get('/editaralmacenamien',almacen.editarAlmacena);
-router.get('/eliminaralmacenamien',almacen.eliminarAlmacen);
+router.get('/agregaralmacen',almacen.agregarAlmacen);
+router.get('/editaralmacen',almacen.actualizarAlmacen);
+router.get('/eliminaralmacen',almacen.eliminarAlmacen);
 
 
 
