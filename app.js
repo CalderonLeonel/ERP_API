@@ -30,6 +30,12 @@ app.use('/cargo', require('./routes/cargo.routes'));
 app.use('/empleado', require('./routes/empleado.routes'));
 app.use('/nivel', require('./routes/nivel.routes'));
 app.use('/usuario', require('./routes/usuario.routes'));
+app.use('/producto', require('./routes/producto.routes'));
+app.use('/linea', require('./routes/linea.routes'));
+app.use('/formato', require('./routes/formato.routes'));
+app.use('/tipo', require('./routes/tipoProducto.routes'));
+app.use('/fabrica', require('./routes/fabrica.routes'));
+app.use('/produccion', require('./routes/produccion.routes'));
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
   next()
