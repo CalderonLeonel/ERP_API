@@ -93,7 +93,7 @@ inventario.actualizarTransaccion = async (req, res) => {
   const cantidad  = req.params.p4;
   const costounitario  = req.params.p5;
   const metodovaluacion  = req.params.p6;
-  const est  = req.params.p6;
+  const est  = req.params.p7;
   try {
     await pool.query("select erp_produccion.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
                       
@@ -221,11 +221,11 @@ inventario.agregarItem = async (req, res) => {
 
 inventario.actualizarItem = async (req, res) => {
   const id = req.params.p1;
-  const nombre = req.params.p1;
-  const descripcion = req.params.p2;
-  const medida  = req.params.p3;
-  const est  = req.params.p4;
-  const tipo  = req.params.p5;
+  const nombre = req.params.p2;
+  const descripcion = req.params.p3;
+  const medida  = req.params.p4;
+  const est  = req.params.p5;
+  const tipo  = req.params.p6;
   try {
     await pool.query("select erp_produccion.erp_actualizar_item($1,$2,$3,$4,$5,$6)",[id,nombre,descripcion,medida,est,tipo]);
                       

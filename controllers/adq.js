@@ -65,7 +65,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   const id_usuario = req.params.p1;
   const id_proveedor = req.params.p2;
   const nombreCotizacion= req.params.p3;
-  const est  = req.params.p5;
+  const est  = req.params.p4;
   
   
    try {
@@ -88,9 +88,9 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
 
  adquisicion.actualizarcotizacionadquisicion  = async(req,res) =>{
   const id = req.params.p1;
-  const id_usuario = req.params.p1;
-  const id_proveedor = req.params.p2;
-  const nombreCotizacion= req.params.p3;
+  const id_usuario = req.params.p2;
+  const id_proveedor = req.params.p3;
+  const nombreCotizacion= req.params.p4;
   const est  = req.params.p5;
   
   
@@ -201,7 +201,7 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   const id_cotizacion = req.params.p1;
   const id_item = req.params.p2;
   const precioUnitario= req.params.p3;
-  const est  = req.params.p5;
+  const est  = req.params.p4;
   
   
    try {
@@ -224,9 +224,9 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
 
  adquisicion.actualizarcotizacionitem  = async(req,res) =>{
   const id = req.params.p1;
-  const id_cotizacion = req.params.p1;
-  const id_item = req.params.p2;
-  const precioUnitario= req.params.p3;
+  const id_cotizacion = req.params.p2;
+  const id_item = req.params.p3;
+  const precioUnitario= req.params.p4;
   const est  = req.params.p5;
   
   
