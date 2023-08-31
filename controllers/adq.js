@@ -5,7 +5,7 @@ const adquisicion = {};
 
 adquisicion.listarcotizacionadquisicion = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizaciondeadquisicion()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -24,7 +24,7 @@ adquisicion.listarcotizacionadquisicion = async (req, res) => {
 
 adquisicion.listarCotizacionAdquisicionActiva = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizaciondeadquisicion_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -43,7 +43,7 @@ adquisicion.listarCotizacionAdquisicionActiva = async (req, res) => {
 
 adquisicion.listarCotizacionAdquisicionAnulada = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizaciondeadquisicion_anulada()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion_anulada()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -141,7 +141,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
 
 adquisicion.listarcotizacionitem = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacionitem()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -160,7 +160,7 @@ adquisicion.listarcotizacionitem = async (req, res) => {
 
 adquisicion.listarCotizacionItemActivo = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacionitem_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -179,7 +179,7 @@ adquisicion.listarCotizacionItemActivo = async (req, res) => {
 
 adquisicion.listarCotizacionItemAnulada = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacionitem_anulada()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item_anulada()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
