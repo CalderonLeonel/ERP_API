@@ -6,8 +6,8 @@ const router = express.Router();
 router.get('/listarproveedores',proveedor.listarproveedores);
 router.get('/listarproveedoresactivos',proveedor.listarProveedoresActivos);
 router.get('/listarproveedoresinactivos',proveedor.listarProveedoresInactivos);
-router.get('/insertar',proveedor.agregarProveedor);
-router.get('/editar',proveedor.actualizarProveedor);
-router.get('/anular',proveedor.eliminarProveedor);
+router.post('/insertar/:p1,:p2,:p3,:p4,:p5',proveedor.agregarProveedor);
+router.post('/editar/:p1,:p2,:p3,:p4,:p5,:p6',proveedor.actualizarProveedor);
+router.post('/anular/:p1,',proveedor.eliminarProveedor);
 
 module.exports = router;

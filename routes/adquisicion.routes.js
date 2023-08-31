@@ -7,17 +7,18 @@ router.get('/listarcotizaciondeadquisicion',adquisicion.listarcotizacionadquisic
 router.get('/listarcotizaciondeadquisicionactiva',adquisicion.listarCotizacionAdquisicionActiva);
 router.get('/listarcotizaciondeadquisicioninactiva',adquisicion.listarCotizacionAdquisicionAnulada);
 
-router.get('/agregarcotizacionadquisicion',adquisicion.agregarcotizacionadquisicion);
-router.get('/actualizarcotizacionadquisicion',adquisicion.actualizarcotizacionadquisicion);
-router.get('/eliminarcotizacionadquisicion',adquisicion.eliminarcotizacionadquisicion);
+router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4',adquisicion.agregarcotizacionadquisicion);
+router.post('/actualizarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5',adquisicion.actualizarcotizacionadquisicion);
+router.post('/eliminarcotizacionadquisicion/:p1',adquisicion.eliminarcotizacionadquisicion);
 
 
 
 router.get('/listarcotizacionitem',adquisicion.listarcotizacionitem);
 router.get('/listarcotizacionitemactiva',adquisicion.listarCotizacionItemActivo);
 router.get('/listarcotizacioniteminactiva',adquisicion.listarCotizacionItemAnulada);
-router.get('/agregarcotizacionitem',adquisicion.agregarcotizacionitem);
-router.get('/actualizarcotizacionitem',adquisicion.actualizarcotizacionitem);
-router.get('/eliminarcotizacionitem',adquisicion.eliminarcotizacionitem);
+
+router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4',adquisicion.agregarcotizacionitem);
+router.post('/actualizarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.actualizarcotizacionitem);
+router.post('/eliminarcotizacionitem/:p1',adquisicion.eliminarcotizacionitem);
 
 module.exports = router;

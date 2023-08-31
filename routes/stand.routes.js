@@ -6,9 +6,9 @@ const router = express.Router();
 router.get('/listarstands',stand.listarStands);
 router.get('/listarstandsactivos',stand.listarStandsActivos);
 router.get('/listarstandsinactivos',stand.listarStandsInactivos);
-router.get('/agregarstand',stand.agregarStand);
-router.get('/actualizarstand',stand.actualizarStand);
-router.get('/eliminarstand',stand.eliminarStand);
+router.post('/agregarstand/:p1,:p2,:p3',stand.agregarStand);
+router.post('/actualizarstand/:p1,:p2,:p3,:p4',stand.actualizarStand);
+router.post('/eliminarstand/:p1',stand.eliminarStand);
 
 
 module.exports = router;
