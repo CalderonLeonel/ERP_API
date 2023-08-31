@@ -25,13 +25,15 @@ app.use(express.urlencoded({ extended: true }));
 //app.use(fileUpload({useTempFiles:true}));
 
 //ROUTES
-//app.use('/', require('./routes/auth.routes'));
+app.use('/', require('./routes/auth.routes'));
 app.use('/producto', require('./routes/producto.routes'));
 app.use('/linea', require('./routes/linea.routes'));
 app.use('/formato', require('./routes/formato.routes'));
 app.use('/tipo', require('./routes/tipoProducto.routes'));
 app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
+
+
 
 
 
