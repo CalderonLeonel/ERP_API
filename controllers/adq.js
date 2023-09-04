@@ -5,7 +5,7 @@ const adquisicion = {};
 
 adquisicion.listarcotizacionadquisicion = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_adquisicion()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -24,7 +24,7 @@ adquisicion.listarcotizacionadquisicion = async (req, res) => {
 
 adquisicion.listarCotizacionAdquisicionActiva = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_adquisicion_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -43,7 +43,7 @@ adquisicion.listarCotizacionAdquisicionActiva = async (req, res) => {
 
 adquisicion.listarCotizacionAdquisicionAnulada = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_adquisicion_anulada()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_adquisicion_anulada()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -69,7 +69,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4)",[id_usuario,id_proveedor,nombreCotizacion,est]);
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4)",[id_usuario,id_proveedor,nombreCotizacion,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -96,7 +96,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id,id_usuario,id_proveedor,nombreCotizacion,est]);
+         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id,id_usuario,id_proveedor,nombreCotizacion,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -119,7 +119,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_cotizacion_adquisicion($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_cotizacion_adquisicion($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'
@@ -141,7 +141,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
 
 adquisicion.listarcotizacionitem = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_item()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -160,7 +160,7 @@ adquisicion.listarcotizacionitem = async (req, res) => {
 
 adquisicion.listarCotizacionItemActivo = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_item_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -179,7 +179,7 @@ adquisicion.listarCotizacionItemActivo = async (req, res) => {
 
 adquisicion.listarCotizacionItemAnulada = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_cotizacion_item_anulada()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_item_anulada()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -205,7 +205,7 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_cotizacion_item($1,$2,$3,$4)",[id_cotizacion,id_item,precioUnitario,est]);
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_item($1,$2,$3,$4)",[id_cotizacion,id_item,precioUnitario,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -233,7 +233,7 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_cotizacion_item(($1,$2,$3,$4,$5)",[id,id_cotizacion,id_item,precioUnitario,est]);
+         await pool.query("select proyectoerp.erp_actualizar_cotizacion_item(($1,$2,$3,$4,$5)",[id,id_cotizacion,id_item,precioUnitario,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -256,7 +256,7 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_cotizacion_item($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_cotizacion_item($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'

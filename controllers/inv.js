@@ -5,7 +5,7 @@ const inventario = {};
 //Transaccion_Inventario
 inventario.listarTransacciones = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_transaccion_inventario()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_transaccion_inventario()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -24,7 +24,7 @@ inventario.listarTransacciones = async (req, res) => {
 
 inventario.listarTransaccionesActivas = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_transaccion_inventario_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_transaccion_inventario_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -43,7 +43,7 @@ inventario.listarTransaccionesActivas = async (req, res) => {
 
 inventario.listarTransaccionesInactivas = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_transaccion_inventario_inactivo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_transaccion_inventario_inactivo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -70,7 +70,7 @@ inventario.agregarTransaccion = async (req, res) => {
   const metodovaluacion  = req.params.p5;
   const est  = req.params.p6;
   try {
-    await pool.query("select erp_produccion.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6)",[idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6)",[idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -95,7 +95,7 @@ inventario.actualizarTransaccion = async (req, res) => {
   const metodovaluacion  = req.params.p6;
   const est  = req.params.p7;
   try {
-    await pool.query("select erp_produccion.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -116,7 +116,7 @@ inventario.anularTransaccion = async (req, res) => {
   const id = req.params.p1;
 
   try {
-    await pool.query("select erp_produccion.erp_eliminar_transaccion_inventario($1)",[id]);
+    await pool.query("select proyectoerp.erp_eliminar_transaccion_inventario($1)",[id]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -137,7 +137,7 @@ inventario.anularTransaccion = async (req, res) => {
 
 inventario.listarItem = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_item()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_item()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -157,7 +157,7 @@ inventario.listarItem = async (req, res) => {
 
 inventario.listarItemActivo = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_item_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_item_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -176,7 +176,7 @@ inventario.listarItemActivo = async (req, res) => {
 
 inventario.listarItemInactivo = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_item_inactivo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_item_inactivo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -202,7 +202,7 @@ inventario.agregarItem = async (req, res) => {
   const est  = req.params.p4;
   const tipo  = req.params.p5;
   try {
-    await pool.query("select erp_produccion.erp_insertar_item($1,$2,$3,$4,$5)",[nombre,descripcion,medida,est,tipo]);
+    await pool.query("select proyectoerp.erp_insertar_item($1,$2,$3,$4,$5)",[nombre,descripcion,medida,est,tipo]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -227,7 +227,7 @@ inventario.actualizarItem = async (req, res) => {
   const est  = req.params.p5;
   const tipo  = req.params.p6;
   try {
-    await pool.query("select erp_produccion.erp_actualizar_item($1,$2,$3,$4,$5,$6)",[id,nombre,descripcion,medida,est,tipo]);
+    await pool.query("select proyectoerp.erp_actualizar_item($1,$2,$3,$4,$5,$6)",[id,nombre,descripcion,medida,est,tipo]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -248,7 +248,7 @@ inventario.eliminarItem = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_item($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_item($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'
@@ -269,7 +269,7 @@ inventario.eliminarItem = async(req,res) =>{
 
 inventario.listarTipoItem = async (req, res) => {
     try {
-      const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem()")).rows;
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_tipodeitem()")).rows;
       if (resultado.length > 0) {
         res.status(200).json({ resultado });
       } else {
@@ -288,7 +288,7 @@ inventario.listarTipoItem = async (req, res) => {
 
   inventario.listarTipoItemActivo = async (req, res) => {
     try {
-      const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem_activo()")).rows;
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_tipodeitem_activo()")).rows;
       if (resultado.length > 0) {
         res.status(200).json({ resultado });
       } else {
@@ -307,7 +307,7 @@ inventario.listarTipoItem = async (req, res) => {
 
   inventario.listarTipoItemInactivo = async (req, res) => {
     try {
-      const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_tipodeitem_inactivo()")).rows;
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_tipodeitem_inactivo()")).rows;
       if (resultado.length > 0) {
         res.status(200).json({ resultado });
       } else {
@@ -331,7 +331,7 @@ inventario.listarTipoItem = async (req, res) => {
     const nombre = req.params.p1;
     const est  = req.params.p2;
     try {
-      await pool.query("select erp_produccion.erp_insertar_tipodeitem($1,$2)",[nombre,est]);
+      await pool.query("select proyectoerp.erp_insertar_tipodeitem($1,$2)",[nombre,est]);
                         
           res.status(200).json({
               message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -354,7 +354,7 @@ inventario.listarTipoItem = async (req, res) => {
     const nombre = req.params.p2;
     const est  = req.params.p3;
     try {
-      await pool.query("select erp_produccion.erp_actualizar_tipodeitem($1,$2,$3)",[id,nombre,est]);
+      await pool.query("select proyectoerp.erp_actualizar_tipodeitem($1,$2,$3)",[id,nombre,est]);
                         
           res.status(200).json({
               message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -375,7 +375,7 @@ inventario.listarTipoItem = async (req, res) => {
   
   
      try {
-           await pool.query("select erp_produccion.erp_eliminar_tipodeitem($1)",[id]);
+           await pool.query("select proyectoerp.erp_eliminar_tipodeitem($1)",[id]);
                              
                res.status(200).json({
                    message:'ESTADO CAMBIADO CORRECTAMENTE'

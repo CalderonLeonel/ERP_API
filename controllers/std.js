@@ -3,7 +3,7 @@ const stand = {};
 
 stand.listarStands = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_stand()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_stand()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -22,7 +22,7 @@ stand.listarStands = async (req, res) => {
 
 stand.listarStandsActivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_stand_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_stand_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -41,7 +41,7 @@ stand.listarStandsActivos = async (req, res) => {
 
 stand.listarStandsInactivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_stand_inactivo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_stand_inactivo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -66,7 +66,7 @@ stand.agregarStand = async (req, res) => {
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_seccion($1,$2,$3)",[nombre,idSeccion,est]);
+         await pool.query("select proyectoerp.erp_insertar_seccion($1,$2,$3)",[nombre,idSeccion,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -93,7 +93,7 @@ stand.agregarStand = async (req, res) => {
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_stand($1,$2,$3,$4)",[id,nombre,idSeccion,est]);
+         await pool.query("select proyectoerp.erp_actualizar_stand($1,$2,$3,$4)",[id,nombre,idSeccion,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -116,7 +116,7 @@ stand.agregarStand = async (req, res) => {
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_stand($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_stand($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'

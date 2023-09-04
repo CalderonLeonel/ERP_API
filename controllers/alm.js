@@ -3,7 +3,7 @@ const almacen = {};
 
 almacen.listarAlmacenes = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_almacen()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacen()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -22,7 +22,7 @@ almacen.listarAlmacenes = async (req, res) => {
 
 almacen.listarAlmacenesActivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_almacen_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacen_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -41,7 +41,7 @@ almacen.listarAlmacenesActivos = async (req, res) => {
 
 almacen.listarAlmacenesInactivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_almacen_inactivo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacen_inactivo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -65,7 +65,7 @@ almacen.agregarAlmacen = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_almacen($1,$2)",[nombreAlmacen,est]);
+         await pool.query("select proyectoerp.erp_insertar_almacen($1,$2)",[nombreAlmacen,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -90,7 +90,7 @@ almacen.agregarAlmacen = async(req,res) =>{
   const est= req.params.p3;
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_almacen($1,$2,$3)",[id,nombreAlmacen,est]);
+         await pool.query("select proyectoerp.erp_actualizar_almacen($1,$2,$3)",[id,nombreAlmacen,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -113,7 +113,7 @@ almacen.agregarAlmacen = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_almacen($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_almacen($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'
@@ -136,7 +136,7 @@ almacen.agregarAlmacen = async(req,res) =>{
 
 almacen.listarAlmacenamiento = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_almacenamiento()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacenamiento()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -162,7 +162,7 @@ almacen.agregarAlmacenamiento = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_almacenamiento($1,$2,$3)",[idItem,idStand,cantidad]);
+         await pool.query("select proyectoerp.erp_insertar_almacenamiento($1,$2,$3)",[idItem,idStand,cantidad]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -187,7 +187,7 @@ almacen.agregarAlmacenamiento = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_almacenamiento($1,$2,$3)",[idItem,idStand,cantidad]);
+         await pool.query("select proyectoerp.erp_actualizar_almacenamiento($1,$2,$3)",[idItem,idStand,cantidad]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -211,7 +211,7 @@ almacen.agregarAlmacenamiento = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_almacenamiento($1,$2)",[idItem,idStand]);
+         await pool.query("select proyectoerp.erp_eliminar_almacenamiento($1,$2)",[idItem,idStand]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'

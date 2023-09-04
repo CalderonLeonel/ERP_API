@@ -3,7 +3,7 @@ const proveedor = {};
 
 proveedor.listarproveedores = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_proveedores()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_proveedores()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -22,7 +22,7 @@ proveedor.listarproveedores = async (req, res) => {
 
 proveedor.listarProveedoresActivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_proveedores_activos()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_proveedores_activos()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -41,7 +41,7 @@ proveedor.listarProveedoresActivos = async (req, res) => {
 
 proveedor.listarProveedoresInactivos = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_proveedores_inactivos()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_proveedores_inactivos()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -67,7 +67,7 @@ proveedor.agregarProveedor = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_proveedor($1,$2,$3,$4,$5)",[nombre,contacto1,contacto2,correo,est]);
+         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5)",[nombre,contacto1,contacto2,correo,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -95,7 +95,7 @@ proveedor.agregarProveedor = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_proveedor($1,$2,$3,$4,$5,$6)",[id,nombre,contacto1,contacto2,correo,est]);
+         await pool.query("select proyectoerp.erp_actualizar_proveedor($1,$2,$3,$4,$5,$6)",[id,nombre,contacto1,contacto2,correo,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -118,7 +118,7 @@ proveedor.agregarProveedor = async(req,res) =>{
 
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_proveedor($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_proveedor($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'

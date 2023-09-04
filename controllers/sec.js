@@ -3,7 +3,7 @@ const seccion = {};
 
 seccion.listarSecciones = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_seccion()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_seccion()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -22,7 +22,7 @@ seccion.listarSecciones = async (req, res) => {
 
 seccion.listarSeccionesActivas = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_seccion_activo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_seccion_activo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -42,7 +42,7 @@ seccion.listarSeccionesActivas = async (req, res) => {
 
 seccion.listarSeccionesInactivas = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM erp_produccion.erp_listar_seccion_inactivo()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_seccion_inactivo()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
@@ -69,7 +69,7 @@ seccion.agregarSeccion = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_insertar_seccion($1,$2,$3)",[nombre,idAlmacen,est]);
+         await pool.query("select proyectoerp.erp_insertar_seccion($1,$2,$3)",[nombre,idAlmacen,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -96,7 +96,7 @@ seccion.agregarSeccion = async(req,res) =>{
   
   
    try {
-         await pool.query("select erp_produccion.erp_actualizar_seccion($1,$2,$3,$4)",[id,nombre,idAlmacen,est]);
+         await pool.query("select proyectoerp.erp_actualizar_seccion($1,$2,$3,$4)",[id,nombre,idAlmacen,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -119,7 +119,7 @@ seccion.agregarSeccion = async(req,res) =>{
   const id = req.params.p1;
 
    try {
-         await pool.query("select erp_produccion.erp_eliminar_seccion($1)",[id]);
+         await pool.query("select proyectoerp.erp_eliminar_seccion($1)",[id]);
                            
              res.status(200).json({
                  message:'ESTADO CAMBIADO CORRECTAMENTE'
