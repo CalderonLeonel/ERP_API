@@ -66,7 +66,7 @@ stand.agregarStand = async (req, res) => {
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_seccion($1,$2,$3)",[nombre,idSeccion,est]);
+         await pool.query("select proyectoerp.erp_insertar_stand($1,$2,$3)",[nombre,idSeccion,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
