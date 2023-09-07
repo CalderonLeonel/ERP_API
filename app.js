@@ -32,6 +32,10 @@ app.use('/formato', require('./routes/formato.routes'));
 app.use('/tipo', require('./routes/tipoProducto.routes'));
 app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
+app.use('/venta', require('./routes/venta.routes'));
+app.use('/cliente', require('./routes/cliente.routes'));
+
+
 
 
 
