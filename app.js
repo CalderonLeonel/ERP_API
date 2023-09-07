@@ -38,6 +38,13 @@ app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
+//app.use('/', require('./routes/auth.routes'));
+app.use('/proveedor', require('./routes/proveedor.routes'));
+app.use('/almacen', require('./routes/almacen.routes'));
+app.use('/stand', require('./routes/stand.routes'));
+app.use('/seccion', require('./routes/seccion.routes'));
+app.use('/inventario', require('./routes/inventario.routes'));
+app.use('/adquisicion', require('./routes/adquisicion.routes'));
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())

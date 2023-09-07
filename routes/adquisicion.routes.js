@@ -1,0 +1,24 @@
+import express from 'express';
+import adquisicion from '../controllers/adq';
+
+const router = express.Router();
+
+router.get('/listarcotizaciondeadquisicion',adquisicion.listarcotizacionadquisicion);
+router.get('/listarcotizaciondeadquisicionactiva',adquisicion.listarCotizacionAdquisicionActiva);
+router.get('/listarcotizaciondeadquisicioninactiva',adquisicion.listarCotizacionAdquisicionAnulada);
+
+router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4',adquisicion.agregarcotizacionadquisicion);
+router.post('/actualizarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5',adquisicion.actualizarcotizacionadquisicion);
+router.post('/eliminarcotizacionadquisicion/:p1',adquisicion.eliminarcotizacionadquisicion);
+
+
+
+router.get('/listarcotizacionitem',adquisicion.listarcotizacionitem);
+router.get('/listarcotizacionitemactiva',adquisicion.listarCotizacionItemActivo);
+router.get('/listarcotizacioniteminactiva',adquisicion.listarCotizacionItemAnulada);
+
+router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4',adquisicion.agregarcotizacionitem);
+router.post('/actualizarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.actualizarcotizacionitem);
+router.post('/eliminarcotizacionitem/:p1',adquisicion.eliminarcotizacionitem);
+
+module.exports = router;
