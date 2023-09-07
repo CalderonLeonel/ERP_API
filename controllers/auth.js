@@ -1,12 +1,6 @@
 import pool from '../database/Keys'
-//const pool = require ('../database/Keys')
 const authentication ={};
-/*
-authentication.signUp = (req,res)=>{
-    console.log(req.body);
-    res.send('REGISTRADO AMIGO');
-    };
-*/
+
 authentication.signIn = async(req,res) =>{
  const {user,password} = req.body;
   try {

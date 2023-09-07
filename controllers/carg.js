@@ -1,9 +1,9 @@
 import pool from '../database/Keys'
 const cargos ={};
 
-cargos.listcargo = async(req,res) =>{
+cargos.listarcargo = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from erp.erp_listcargo()")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listarcargo()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
@@ -26,7 +26,7 @@ cargos.addcargo = async(req,res) =>{
     const carg = req.params.p1;
     const descrip = req.params.p2;
     try {
-        await pool.query("select proyectoerp.erp_addempleado($1,$2)",[carg,descrip]);
+        await pool.query("select proyectoerp.erp_addcargo($1,$2)",[carg,descrip]);
                              
                res.status(200).json({
                    message:'Se ha registrado el cargo con éxito.'

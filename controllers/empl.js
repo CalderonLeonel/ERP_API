@@ -29,9 +29,10 @@ empleados.addempleado = async(req,res) =>{
     const email = req.params.p4;
     const fechaNacimiento = req.params.p5;
     const ci = req.params.p6;
-    const idcargo = req.params.p7;
+    const telefono = req.params.p7;
+    const idcargo = req.params.p8;
     try {
-        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7)",[nombres,paterno,materno,email,fechaNacimiento,ci,idcargo]);
+        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8)",[nombres,paterno,materno,email,fechaNacimiento,ci,telefono,idcargo]);
                              
                res.status(200).json({
                    message:'Se ha registrado el empleado con éxito.'
@@ -55,9 +56,10 @@ empleados.editempleado = async(req,res) =>{
     const email = req.params.p5;
     const fechaNacimiento = req.params.p6;
     const ci = req.params.p7;
-    const idcargo = req.params.p8;
+    const telefono = req.params.p8;
+    const idcargo = req.params.p9;
     try {
-        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8)",[idempleado,nombres,paterno,materno,email,fechaNacimiento,ci,idcargo]);
+        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8,$9)",[idempleado,nombres,paterno,materno,email,fechaNacimiento,ci,telefono,idcargo]);
                              
                res.status(200).json({
                    message:'Se ha registrado el empleado con éxito.'
