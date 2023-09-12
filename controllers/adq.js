@@ -233,8 +233,7 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_cotizacion_item(($1,$2,$3,$4,$5)",[id,id_cotizacion,id_item,precioUnitario,est]);
-                           
+      await pool.query("SELECT proyectoerp.erp_actualizar_cotizacion_item($1, $2, $3, $4, $5)",[id, id_cotizacion, id_item, precioUnitario, est]);                
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
            
