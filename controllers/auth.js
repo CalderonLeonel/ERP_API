@@ -9,6 +9,7 @@ authentication.signin = async(req,res) =>{
             res.status(200).json({
              id_usuario:usuario[0].id_usuario,
              usuario:usuario[0].usuario,
+             accesos:usuario[0].accesos,
              id_cargo:usuario[0].id_cargo,
              estado:usuario[0].estado,
              nombres:usuario[0].nombres,

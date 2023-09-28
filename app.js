@@ -45,6 +45,7 @@ app.use('/stand', require('./routes/stand.routes'));
 app.use('/seccion', require('./routes/seccion.routes'));
 app.use('/inventario', require('./routes/inventario.routes'));
 app.use('/adquisicion', require('./routes/adquisicion.routes'));
+app.use('/acceso', require('./routes/acceso.routes'));
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
