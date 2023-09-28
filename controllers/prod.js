@@ -26,7 +26,7 @@ productos.listarproductos = async (req, res) => {
 productos.listarproductosinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarlineasinh()")
+      await pool.query("select * from proyectoerp.erp_listarproductosinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -73,12 +73,12 @@ productos.addproducto = async (req, res) => {
 };
 
 productos.updproducto = async (req, res) => {
-  const idlin = req.params.p1;
+  const idprod = req.params.p1;
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updlinea($1,$2,$3)", [
-      idlin,
+    await pool.query("select proyectoerp.erp_updproducto($1,$2,$3)", [
+      idprod,
       nomprod,
       codprod
     ]);
@@ -96,9 +96,9 @@ productos.updproducto = async (req, res) => {
 };
 
 productos.offproducto = async (req, res) => {
-  const idlin = req.params.p1;
+  const idprod = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offlinea($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_offproducto($1)", [idprod]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -113,9 +113,9 @@ productos.offproducto = async (req, res) => {
 };
 
 productos.onproducto = async (req, res) => {
-  const idlin = req.params.p1;
+  const idprod = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onlinea($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_onproducto($1)", [idprod]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
