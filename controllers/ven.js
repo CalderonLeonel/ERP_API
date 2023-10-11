@@ -47,19 +47,37 @@ ventas.listarventasinh = async (req, res) => {
   }
 };
 
-ventas.addventa = async (req, res) => {
+ventas.registrarventa = async (req, res) => {
+  const {
+    idProducto,
+    cantidad,
+    precioUnitario,
+    total,
+    codigoControl,
+    nit,
+    razonSocial,
+    idCliente,
+    idEmpleado,
+  } = req.body;
 
-    const idlin = req.params.p1;
-    const nomprod = req.params.p2;
-    const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_addventa($1,$2)", [
-      nomprod,
-      codprod,
-    ]);
+    await pool.query(
+      "select proyectoerp.erp_registrarventa($1,$2,$3,$4,$5,$6,$7,$8,$9)",
+      [
+        idProducto,
+        cantidad,
+        precioUnitario,
+        total,
+        codigoControl,
+        nit,
+        razonSocial,
+        idCliente,
+        idEmpleado,
+      ]
+    );
 
     res.status(200).json({
-      message: "REGISTRO INSERTADO CORRECTAMENTE",
+      message: "VENTA REALIZADA CORRECTAMENTE",
     });
   } catch (error) {
     res.status(500).json({
@@ -70,7 +88,7 @@ ventas.addventa = async (req, res) => {
   }
 };
 
-ventas.updventa = async (req, res) => {
+ventas.editarventa = async (req, res) => {
   const idlin = req.params.p1;
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
@@ -78,7 +96,7 @@ ventas.updventa = async (req, res) => {
     await pool.query("select proyectoerp.erp_updventa($1,$2,$3)", [
       idlin,
       nomprod,
-      codprod
+      codprod,
     ]);
 
     res.status(200).json({
@@ -96,9 +114,7 @@ ventas.updventa = async (req, res) => {
 ventas.offventa = async (req, res) => {
   const idlin = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offventa($1)", [
-      idlin
-    ]);
+    await pool.query("select proyectoerp.erp_offventa($1)", [idlin]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -115,9 +131,7 @@ ventas.offventa = async (req, res) => {
 ventas.onventa = async (req, res) => {
   const idlin = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onventa($1)", [
-      idlin
-    ]);
+    await pool.query("select proyectoerp.erp_onventa($1)", [idlin]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -130,6 +144,5 @@ ventas.onventa = async (req, res) => {
     });
   }
 };
-
 
 module.exports = ventas;
