@@ -75,7 +75,7 @@ tipos.updtipo = async (req, res) => {
   const codtipo = req.params.p3;
   const idlin = req.params.p4;
   try {
-    await pool.query("select * proyectoerp.erp_editartipo($1,$2,$3,$4)", [
+    await pool.query("select * from proyectoerp.erp_editartipo($1,$2,$3,$4)", [
       idtipo,
       nomtipo,
       codtipo,
