@@ -77,7 +77,7 @@ productos.updproducto = async (req, res) => {
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updproducto($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarproducto($1,$2,$3)", [
       idprod,
       nomprod,
       codprod

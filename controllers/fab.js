@@ -74,7 +74,7 @@ fabricas.updfabrica = async (req, res) => {
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updfabrica($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarfabrica($1,$2,$3)", [
       idfab,
       nomprod,
       codprod
