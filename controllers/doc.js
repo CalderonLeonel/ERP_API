@@ -49,6 +49,35 @@ documento.listardocumentos = async (req, res) => {
    };
 
 
+   documento.actualizarDocumento  = async(req,res) =>{
+    const id = req.params.p1;
+    const nombreDocumento = req.params.p2;
+    const archivo = req.params.p3;
+    const tipoArchivo= req.params.p4;
+    const tamanioArchivo  = req.params.p5;
+    const descripcion = req.params.p6;
+    const codigo= req.params.p7;
+    const est  = req.params.p8;
+    
+    
+    
+     try {
+           await pool.query("select proyectoerp.erp_actualizar_documento($1,$2,$3,$4,$5,$6,$7,$8)",[id,nombreDocumento,archivo,tipoArchivo,tamanioArchivo,descripcion,codigo,est]);
+                             
+               res.status(200).json({
+                   message:'SE GUARDARON LOS CAMBIOS :)'
+             
+               })
+           
+                      
+       } catch (error) {
+           res.status(500).json({
+               message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+               error
+           })
+       }
+   
+   };
 
 
   
