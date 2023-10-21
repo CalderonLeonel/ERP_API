@@ -32,6 +32,7 @@ app.use('/stand', require('./routes/stand.routes'));
 app.use('/seccion', require('./routes/seccion.routes'));
 app.use('/inventario', require('./routes/inventario.routes'));
 app.use('/adquisicion', require('./routes/adquisicion.routes'));
+app.use('/documento', require('./routes/documento.routes'));
 
 //MIDELWARES FOR VUE
 app.use(history());
