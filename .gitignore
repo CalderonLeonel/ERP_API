@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 #Archivos
-imagenes/*
-archivos/*
+archivos/imagenes/*
+archivos/documentos/*
