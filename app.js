@@ -17,6 +17,8 @@ import sharp from 'sharp';
 
 const app = express();
 
+global.__basedir = __dirname;
+
 /*const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });*/
 
