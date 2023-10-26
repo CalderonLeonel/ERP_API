@@ -128,11 +128,14 @@ documento.listardocumentos = async (req, res) => {
       files.forEach((file) => {
         fileInfos.push({
           name: file,
-          url:  "/archivos/documentos/"+file,
+          //url:  "/archivos/documentos/"+file,
+          url:  "documento/descargar/"+file,
         });
       });
   
-      res.status(200).send(fileInfos);
+      const resultado = {'resultado':fileInfos};
+      
+      res.status(200).send(resultado);
     });
   };
   
