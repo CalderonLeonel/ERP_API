@@ -99,7 +99,7 @@ documento.listardocumentos = async (req, res) => {
    };
 
    documento.download = (req, res) => {
-    const fileName = req.params.name;
+    const fileName = req.params.p1;
     const directoryPath = __basedir + "/archivos/documentos/";
   
     res.download(directoryPath + fileName, fileName, (err) => {
