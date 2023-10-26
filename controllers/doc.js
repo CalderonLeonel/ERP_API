@@ -23,11 +23,12 @@ documento.listardocumentos = async (req, res) => {
   };
 
   documento.agregarDocumento  = async(req,res) =>{
-    const nombreDocumento = req.body.nombreDocumento;
-    const archivo = req.body.archivo; 
-    const descripcion = req.body.descripcion;
-    const codigo = req.body.codigo;
-    const est = req.body.est;
+    console.log(req.params);
+    const nombreDocumento = req.params.p1;
+    const archivo = req.params.p2;
+    const descripcion = req.params.p3;
+    const codigo = req.params.p4;
+    const est = req.params.p5;
     
      try {
            await pool.query("select proyectoerp.erp_insertar_documento($1,$2,$3,$4,$5)",[nombreDocumento,archivo,descripcion,codigo,est]);
@@ -49,12 +50,12 @@ documento.listardocumentos = async (req, res) => {
 
 
    documento.actualizarDocumento = async(req,res) =>{
-    const id = req.params.id;
-    const nombreDocumento = req.body.nombreDocumento;
-    const archivo = req.body.archivo; 
-    const descripcion = req.body.descripcion;
-    const codigo = req.body.codigo;
-    const est = req.body.est;
+    const id = req.params.p1;
+    const nombreDocumento = req.params.p2;
+    const archivo = req.params.p3;
+    const descripcion = req.params.p4;
+    const codigo = req.params.p5;
+    const est = req.params.p6;
     
     
     
