@@ -1,4 +1,5 @@
 import pool from "../database/Keys";
+const fs = require('fs');
 const documento = {};
 
 
@@ -127,7 +128,7 @@ documento.listardocumentos = async (req, res) => {
       files.forEach((file) => {
         fileInfos.push({
           name: file,
-          url: baseUrl + file,
+          url:  "/archivos/documentos/"+file,
         });
       });
   
