@@ -97,7 +97,7 @@ app.use(history());
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), () => {
-  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
+  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port')+' '+__dirname);
 })
 
 
