@@ -34,6 +34,8 @@ app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
+app.use('/ciudad', require('./routes/ciudad.routes'));
+app.use('/departamento', require('./routes/departamento.routes'));
 
 
 
