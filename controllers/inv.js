@@ -66,11 +66,10 @@ inventario.agregarTransaccion = async (req, res) => {
   const idItem = req.params.p1;
   const movimiento = req.params.p2;
   const cantidad  = req.params.p3;
-  const costounitario  = req.params.p4;
-  const metodovaluacion  = req.params.p5;
-  const est  = req.params.p6;
+  const metodovaluacion  = req.params.p4;
+  const est  = req.params.p5;
   try {
-    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6)",[idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5)",[idItem,movimiento,cantidad,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -91,11 +90,10 @@ inventario.actualizarTransaccion = async (req, res) => {
   const idItem = req.params.p2;
   const movimiento = req.params.p3;
   const cantidad  = req.params.p4;
-  const costounitario  = req.params.p5;
-  const metodovaluacion  = req.params.p6;
-  const est  = req.params.p7;
+  const metodovaluacion  = req.params.p5;
+  const est  = req.params.p6;
   try {
-    await pool.query("select proyectoerp.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
