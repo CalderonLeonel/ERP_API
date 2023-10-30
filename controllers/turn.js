@@ -1,15 +1,15 @@
 import pool from '../database/Keys'
-const cargos ={};
+const turnos ={};
 
-cargos.listarcargos = async(req,res) =>{
+turnos.listarturnos = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_listarcargos")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listarturnos()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
         else {
             res.status(200).json({
-                message:"No existe ningun cargo.",
+                message:"No existe ningun turno.",
                 NotFount:true,
             });
         }
@@ -22,15 +22,13 @@ cargos.listarcargos = async(req,res) =>{
     }
 };
 
-cargos.addcargo = async(req,res) =>{
-    const carg = req.params.p1;
-    const descrip = req.params.p2;
-    const salar = req.params.p3;
+turnos.addturno = async(req,res) =>{
+    const turn = req.params.p1;
     try {
-        await pool.query("select proyectoerp.erp_addcargo($1,$2,$3)",[carg,descrip,salar]);
+        await pool.query("select proyectoerp.erp_addturno($1)",[turn]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el cargo con éxito.'
+                   message:'Se ha registrado el turno con éxito.'
              
                })
            
@@ -43,13 +41,11 @@ cargos.addcargo = async(req,res) =>{
    
    };
 
-cargos.editcargo = async(req,res) =>{
-    const idcarg = req.params.p1;
-    const carg = req.params.p2;
-    const descrip = req.params.p3;
-    const salar = req.params.p4;
+turnos.editturno = async(req,res) =>{
+    const idturn = req.params.p1;
+    const turn = req.params.p2;
     try {
-        await pool.query("select proyectoerp.erp_editcargo($1,$2,$3,$4)",[idcarg,carg,descrip,salar]);
+        await pool.query("select proyectoerp.erp_editturno($1,$2)",[idturn,turn]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
@@ -62,10 +58,10 @@ cargos.editcargo = async(req,res) =>{
     }
 };
 
-cargos.deletecargo = async(req,res) =>{
-    const idcargo = req.params.p1;
+turnos.deleteturno = async(req,res) =>{
+    const idturn = req.params.p1;
     try {
-        await pool.query("select proyectoerp.erp_deletecargo($p1)",[idcargo]);
+        await pool.query("select proyectoerp.erp_deleteturno($p1)",[idturn]);
         res.status(200).json({
             message:'SE GUARDARON LOS CAMBIOS!!!'
         })
@@ -78,16 +74,16 @@ cargos.deletecargo = async(req,res) =>{
     }
 };
 
-cargos.getcargo = async(req,res) =>{
-    const idcargo = req.params.p1;
+turnos.getturno = async(req,res) =>{
+    const idturn = req.params.p1;
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_getcargo($p1)",[idcargo])).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_getturno($p1)",[idturn])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
         else {
             res.status(200).json({
-                message:"El cargo no existe.",
+                message:"El turno no existe.",
                 NotFount:true,
             });
         }
@@ -100,4 +96,4 @@ cargos.getcargo = async(req,res) =>{
     }
 };
 
-module.exports = cargos;
+module.exports = turnos;

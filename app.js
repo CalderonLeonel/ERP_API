@@ -39,6 +39,8 @@ app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/acceso', require('./routes/acceso.routes'));
+app.use('/turno', require('./routes/turno.routes'));
+
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
