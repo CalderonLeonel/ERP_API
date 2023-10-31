@@ -100,4 +100,38 @@ cargos.getcargo = async(req,res) =>{
     }
 };
 
+cargos.offcargo = async (req, res) => {
+    const idcli = req.params.p1;
+    try {
+      await pool.query("select proyectoerp.erp_offcargo($1)", [idcli]);
+  
+      res.status(200).json({
+        message: "REGISTRO MODIFICADO CORRECTAMENTE",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message:
+          "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+  cargos.oncargo = async (req, res) => {
+    const idcarg = req.params.p1;
+    try {
+      await pool.query("select proyectoerp.erp_oncargo($1)", [idcarg]);
+  
+      res.status(200).json({
+        message: "REGISTRO MODIFICADO CORRECTAMENTE",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message:
+          "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
 module.exports = cargos;
