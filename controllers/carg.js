@@ -3,7 +3,7 @@ const cargos ={};
 
 cargos.listarcargos = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_listarcargos")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listarcargos()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
