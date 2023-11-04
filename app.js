@@ -36,9 +36,20 @@ const storage =  multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === "file") { 
       cb(null, './archivos/documentos');
-    } else { 
+    }
+    else if(file.fieldname === "inventory"){
+      cb(null, './archivos/inventory');
+    }
+    else if(file.fieldname === "adquisition"){
+      cb(null, './archivos/adquisition');
+    }
+    else if(file.fieldname === "employee"){
+      cb(null, './archivos/employee');
+    }
+    else { 
       cb(null, './archivos/imagenes');
     }
+    
   },
   filename: (req, file, cb) => {
     const ext = file.originalname.split('.')
