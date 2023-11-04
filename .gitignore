@@ -132,3 +132,6 @@ dist
 #Archivos
 archivos/imagenes/*
 archivos/documentos/*
+archivos/adquisition/*
+archivos/employee/*
+archivos/inventory/*
