@@ -115,6 +115,7 @@ documento.listardocumentos = async (req, res) => {
 
 
   documento.getListFiles = (req, res) => {
+    console.log(__basedir);
     const directoryPath = __basedir + "/archivos/documentos/";
   
     fs.readdir(directoryPath, function (err, files) {

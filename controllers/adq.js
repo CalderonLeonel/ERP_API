@@ -1,6 +1,8 @@
 import pool from "../database/Keys";
 const adquisicion = {};
 
+
+
 //cotizacionAdquisicion
 
 adquisicion.listarcotizacionadquisicion = async (req, res) => {
@@ -65,11 +67,14 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   const id_usuario = req.params.p1;
   const id_proveedor = req.params.p2;
   const nombreCotizacion= req.params.p3;
-  const est  = req.params.p4;
+  const fechaVencimiento= req.params.p4;
+  const [year, month, day] = fechaVencimiento.split('-');
+  const fechaVen = `${year}/${month}/${day}`;
+  const est  = req.params.p5;
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4)",[id_usuario,id_proveedor,nombreCotizacion,est]);
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id_usuario,id_proveedor,nombreCotizacion,fechaVen,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -91,12 +96,15 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   const id_usuario = req.params.p2;
   const id_proveedor = req.params.p3;
   const nombreCotizacion= req.params.p4;
-  const est  = req.params.p5;
+  const fechaVencimiento= req.params.p5;
+  const [year, month, day] = fechaVencimiento.split('-');
+  const fechaVen = `${year}/${month}/${day}`;
+  const est  = req.params.p6;
   
   
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id,id_usuario,id_proveedor,nombreCotizacion,est]);
+         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5,$6)",[id,id_usuario,id_proveedor,nombreCotizacion,fechaVen,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -201,11 +209,12 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   const id_cotizacion = req.params.p1;
   const id_item = req.params.p2;
   const precioUnitario= req.params.p3;
-  const est  = req.params.p4;
+  const cantidad  = req.params.p4;
+  const est  = req.params.p5;
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_cotizacion_item($1,$2,$3,$4)",[id_cotizacion,id_item,precioUnitario,est]);
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_item($1,$2,$3,$4,$5)",[id_cotizacion,id_item,precioUnitario,cantidad,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -227,14 +236,14 @@ adquisicion.agregarcotizacionitem  = async(req,res) =>{
   const id_cotizacion = req.params.p2;
   const id_item = req.params.p3;
   const precioUnitario= req.params.p4;
-  const est  = req.params.p5;
+  const cantidad  = req.params.p5;
+  const est  = req.params.p6;
   
   
   
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_cotizacion_item(($1,$2,$3,$4,$5)",[id,id_cotizacion,id_item,precioUnitario,est]);
-                           
+      await pool.query("SELECT proyectoerp.erp_actualizar_cotizacion_item($1, $2, $3, $4, $5, $6)",[id, id_cotizacion, id_item, precioUnitario, cantidad, est]);                
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
            
