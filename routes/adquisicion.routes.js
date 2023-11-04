@@ -17,8 +17,8 @@ router.get('/listarcotizacionitem',adquisicion.listarcotizacionitem);
 router.get('/listarcotizacionitemactiva',adquisicion.listarCotizacionItemActivo);
 router.get('/listarcotizacioniteminactiva',adquisicion.listarCotizacionItemAnulada);
 
-router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4',adquisicion.agregarcotizacionitem);
-router.post('/actualizarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.actualizarcotizacionitem);
+router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionitem);
+router.post('/actualizarcotizacionitem/:p1,:p2,:p3,:p4,:p5,:p6',adquisicion.actualizarcotizacionitem);
 router.post('/eliminarcotizacionitem/:p1',adquisicion.eliminarcotizacionitem);
 
 module.exports = router;
