@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/listarcotizaciondeadquisicion',adquisicion.listarcotizacionadquisicion);
 router.get('/listarcotizaciondeadquisicionactiva',adquisicion.listarCotizacionAdquisicionActiva);
+router.get('/listarcotizaciondeadquisicionpendiente',adquisicion.listarCotizacionAdquisicionPendiente);
 router.get('/listarcotizaciondeadquisicioninactiva',adquisicion.listarCotizacionAdquisicionAnulada);
 
 router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionadquisicion);
@@ -16,6 +17,8 @@ router.post('/eliminarcotizacionadquisicion/:p1',adquisicion.eliminarcotizaciona
 router.get('/listarcotizacionitem',adquisicion.listarcotizacionitem);
 router.get('/listarcotizacionitemactiva',adquisicion.listarCotizacionItemActivo);
 router.get('/listarcotizacioniteminactiva',adquisicion.listarCotizacionItemAnulada);
+
+router.get('/listardetallecotizacion/:p1',adquisicion.listarDetalleCotizacion);
 
 router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionitem);
 router.post('/actualizarcotizacionitem/:p1,:p2,:p3,:p4,:p5,:p6',adquisicion.actualizarcotizacionitem);
