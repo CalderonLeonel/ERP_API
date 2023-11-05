@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/listarcotizaciondeadquisicion',adquisicion.listarcotizacionadquisicion);
 router.get('/listarcotizaciondeadquisicionactiva',adquisicion.listarCotizacionAdquisicionActiva);
+router.get('/listarcotizaciondeadquisicionpendiente',adquisicion.listarCotizacionAdquisicionPendiente);
 router.get('/listarcotizaciondeadquisicioninactiva',adquisicion.listarCotizacionAdquisicionAnulada);
 
 router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionadquisicion);
