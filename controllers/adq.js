@@ -43,6 +43,25 @@ adquisicion.listarCotizacionAdquisicionActiva = async (req, res) => {
   }
 };
 
+adquisicion.listarCotizacionAdquisicionPendiente = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_adquisicion_pendiente()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 adquisicion.listarCotizacionAdquisicionAnulada = async (req, res) => {
   try {
     const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_adquisicion_anulada()")).rows;
@@ -188,6 +207,27 @@ adquisicion.listarCotizacionItemActivo = async (req, res) => {
 adquisicion.listarCotizacionItemAnulada = async (req, res) => {
   try {
     const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_cotizacion_item_anulada()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+
+adquisicion.listarDetalleCotizacion = async (req, res) => {
+  const id_cotizacion = req.params.p1;
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_detalle_cotizacion($1)",[id_cotizacion])).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
