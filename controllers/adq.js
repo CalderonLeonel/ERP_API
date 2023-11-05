@@ -224,6 +224,27 @@ adquisicion.listarCotizacionItemAnulada = async (req, res) => {
 };
 
 
+adquisicion.listarDetalleCotizacion = async (req, res) => {
+  const id_cotizacion = req.params.p1;
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_detalle_cotizacion($1)",[id_cotizacion])).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+
 adquisicion.agregarcotizacionitem  = async(req,res) =>{
   const id_cotizacion = req.params.p1;
   const id_item = req.params.p2;
