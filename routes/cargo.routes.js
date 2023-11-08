@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/listarcargos', cargos.listarcargos);
 router.post('/addcargo/:p1,:p2,:p3', cargos.addcargo);
-router.post('/editcargo/:p1,:p2,:p3', cargos.editcargo);
+router.post('/editcargo/:p1,:p2,:p3,:p4', cargos.editcargo);
 router.post('/deletecargo/:p1', cargos.deletecargo);
 router.get('/getcargo/:p1', cargos.getcargo);
 router.post('/offcargo/:p1', cargos.offcargo);
