@@ -101,9 +101,9 @@ cargos.getcargo = async(req,res) =>{
 };
 
 cargos.offcargo = async (req, res) => {
-    const idcli = req.params.p1;
+    const idcarg = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_offcargo($1)", [idcli]);
+      await pool.query("select proyectoerp.erp_offcargo($1)", [idcarg]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
