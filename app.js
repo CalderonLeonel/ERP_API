@@ -42,6 +42,7 @@ app.use('/acceso', require('./routes/acceso.routes'));
 app.use('/turno', require('./routes/turno.routes'));
 app.use('/unidad', require('./routes/unidad.routes'));
 app.use('/area', require('./routes/area.routes'));
+app.use('/departamento', require('./routes/departamento.routes'));
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
