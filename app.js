@@ -94,6 +94,9 @@ app.use('/inventario', require('./routes/inventario.routes'));
 app.use('/adquisicion', require('./routes/adquisicion.routes'));
 app.use('/acceso', require('./routes/acceso.routes'));
 app.use('/documento', require('./routes/documento.routes'));
+app.use('/turno', require('./routes/turno.routes'));
+app.use('/unidad', require('./routes/unidad.routes'));
+app.use('/area', require('./routes/area.routes'));
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
