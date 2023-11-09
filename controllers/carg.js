@@ -43,13 +43,13 @@ cargos.addcargo = async(req,res) =>{
    
    };
 
-cargos.editcargo = async(req,res) =>{
+cargos.editarcargo = async(req,res) =>{
     const idcarg = req.params.p1;
     const carg = req.params.p2;
     const descrip = req.params.p3;
     const salar = req.params.p4;
     try {
-        await pool.query("select proyectoerp.erp_editcargo($1,$2,$3,$4)",[idcarg,carg,descrip,salar]);
+        await pool.query("select proyectoerp.erp_editarcargo($1,$2,$3,$4)",[idcarg,carg,descrip,salar]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
