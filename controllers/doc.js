@@ -140,7 +140,63 @@ documento.listardocumentos = async (req, res) => {
       res.status(200).send(resultado);
     });
   };
+
+
   
+  documento.getListFilesInv = (req, res) => {
+    console.log(__basedir);
+    const directoryPath = __basedir + "/archivos/inventory/";
+  
+    fs.readdir(directoryPath, function (err, files) {
+      if (err) {
+        res.status(500).send({
+          message: "Unable to scan files!",
+        });
+      }
+  
+      let fileInfos = [];
+  
+      files.forEach((file) => {
+        fileInfos.push({
+          name: file,
+          //url:  "/archivos/documentos/"+file,
+          url:  "documento/descargar/"+file,
+        });
+      });
+  
+      const resultado = {'resultado':fileInfos};
+      
+      res.status(200).send(resultado);
+    });
+  };
+  
+
+  documento.getListFilesAdq = (req, res) => {
+    console.log(__basedir);
+    const directoryPath = __basedir + "/archivos/adquisition/";
+  
+    fs.readdir(directoryPath, function (err, files) {
+      if (err) {
+        res.status(500).send({
+          message: "Unable to scan files!",
+        });
+      }
+  
+      let fileInfos = [];
+  
+      files.forEach((file) => {
+        fileInfos.push({
+          name: file,
+          //url:  "/archivos/documentos/"+file,
+          url:  "documento/descargar/"+file,
+        });
+      });
+  
+      const resultado = {'resultado':fileInfos};
+      
+      res.status(200).send(resultado);
+    });
+  };
 
 
   
