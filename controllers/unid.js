@@ -41,11 +41,11 @@ unidades.addunidad = async(req,res) =>{
    
    };
 
-unidades.editunidad = async(req,res) =>{
+unidades.editarunidad = async(req,res) =>{
     const idunid = req.params.p1;
     const unid = req.params.p2;
     try {
-        await pool.query("select proyectoerp.erp_editunidad($1,$2)",[idunid,unid]);
+        await pool.query("select proyectoerp.erp_editarunidad($1,$2)",[idunid,unid]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
