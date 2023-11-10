@@ -1,7 +1,7 @@
 import pool from '../database/Keys'
 const empleados ={};
 
-empleados.listempleado = async(req,res) =>{
+empleados.listarempleados = async(req,res) =>{
     try {
         const resultado = await(await pool.query("select * from proyectoerp.erp_listarempleados()")).rows;
         if (resultado.length>0){

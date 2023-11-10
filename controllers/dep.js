@@ -23,12 +23,12 @@ departamentos.listardepartamentos = async(req,res) =>{
 };
 
 departamentos.adddepartamento = async(req,res) =>{
-    const dep = req.params.p1;
-    const idunid= req.params.p3;
-    const idarea = req.params.p2;
+    const nom = req.params.p1;
+    const idunid= req.params.p2;
+    const idarea = req.params.p3;
     
     try {
-        await pool.query("select proyectoerp.erp_adddepartamento($1,$2,$3)",[dep,idunid,idarea]);
+        await pool.query("select proyectoerp.erp_adddepartamento($1,$2,$3)",[nom,idunid,idarea]);
                              
                res.status(200).json({
                    message:'Se ha registrado el departamento con éxito.'
@@ -46,9 +46,9 @@ departamentos.adddepartamento = async(req,res) =>{
 
 departamentos.editardepartamento = async(req,res) =>{
     const iddep = req.params.p1;
-    const dep = req.params.p2;
+    const nom = req.params.p2;
     try {
-        await pool.query("select proyectoerp.erp_editardepartamento($1,$2)",[iddep,dep]);
+        await pool.query("select proyectoerp.erp_editardepartamento($1,$2)",[iddep,nom]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
