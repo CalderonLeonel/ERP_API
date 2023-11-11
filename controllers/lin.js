@@ -49,9 +49,8 @@ lineas.listarlineasinh = async (req, res) => {
 
 lineas.addlinea = async (req, res) => {
 
-    const idlin = req.params.p1;
-    const nomprod = req.params.p2;
-    const codprod = req.params.p3;
+    const nomprod = req.params.p1;
+    const codprod = req.params.p2;
   try {
     await pool.query("select proyectoerp.erp_addlinea($1,$2)", [
       nomprod,
@@ -75,7 +74,7 @@ lineas.updlinea = async (req, res) => {
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updlinea($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarlinea($1,$2,$3)", [
       idlin,
       nomprod,
       codprod

@@ -48,15 +48,17 @@ produccion.listarproduccioninh = async (req, res) => {
 };
 
 produccion.addproduccion = async (req, res) => {
+  const codprod = req.params.p1;
+  const idfab = req.params.p2;
+  const idprod = req.params.p3;
+  const cant = req.params.p4;
 
-    const idprodu = req.params.p1;
-    const nomprod = req.params.p2;
-    const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_addproduccion($1,$2)", [
-      idprodu,  
-      nomprod,
+    await pool.query("select proyectoerp.erp_addproduccion($1,$2,$3,$4)", [
       codprod,
+      idfab,
+      idprod,
+      cant,
     ]);
 
     res.status(200).json({
@@ -73,13 +75,18 @@ produccion.addproduccion = async (req, res) => {
 
 produccion.updproduccion = async (req, res) => {
   const idprodu = req.params.p1;
-  const nomprod = req.params.p2;
-  const codprod = req.params.p3;
+  const codprod = req.params.p2;
+  const cant = req.params.p3;
+  const idfab = req.params.p4;
+  const idprod = req.params.p5;
+
   try {
-    await pool.query("select proyectoerp.erp_updproduccion($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarproduccion($1,$2,$3,$4,$5)", [
       idprodu,
-      nomprod,
-      codprod
+      codprod,
+      cant,
+      idfab,
+      idprod,
     ]);
 
     res.status(200).json({
@@ -97,9 +104,7 @@ produccion.updproduccion = async (req, res) => {
 produccion.offproduccion = async (req, res) => {
   const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offproduccion($1)", [
-      idprodu
-    ]);
+    await pool.query("select proyectoerp.erp_offproduccion($1)", [idprodu]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -113,15 +118,13 @@ produccion.offproduccion = async (req, res) => {
   }
 };
 
-produccion.onproduccion = async (req, res) => {
+produccion.terminarproduccion = async (req, res) => {
   const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onproduccion($1)", [
-      idprodu
-    ]);
+    await pool.query("select proyectoerp.erp_terminarproduccion($1)", [idprodu]);
 
     res.status(200).json({
-      message: "REGISTRO MODIFICADO CORRECTAMENTE",
+      message: "PRODUCCION TERMINADA CORRECTAMENTE",
     });
   } catch (error) {
     res.status(500).json({
@@ -132,5 +135,8 @@ produccion.onproduccion = async (req, res) => {
   }
 };
 
+produccion.realizarmovimiento = async (req, res) => {
+
+};
 
 module.exports = produccion;
