@@ -391,5 +391,26 @@ inventario.listarTipoItem = async (req, res) => {
    };
 
 
+   inventario.listardetallestand = async (req, res) => {
+    const id_stand = req.params.p1;
+    try {
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_detalle_stand($1)",[id_stand])).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+
 
 module.exports = inventario;
