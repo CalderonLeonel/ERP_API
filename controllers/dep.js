@@ -47,8 +47,10 @@ departamentos.adddepartamento = async(req,res) =>{
 departamentos.editardepartamento = async(req,res) =>{
     const iddep = req.params.p1;
     const nom = req.params.p2;
+    const idunid = req.params.p3;
+    const idarea = req.params.p4;
     try {
-        await pool.query("select proyectoerp.erp_editardepartamento($1,$2)",[iddep,nom]);
+        await pool.query("select proyectoerp.erp_editardepartamento($1,$2,$3,$4)",[iddep,nom,idunid,idarea]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
