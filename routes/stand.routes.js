@@ -11,4 +11,6 @@ router.post('/actualizarstand/:p1,:p2,:p3,:p4',stand.actualizarStand);
 router.post('/eliminarstand/:p1',stand.eliminarStand);
 
 
+router.get('/listarstandseccion/:p1',stand.listardetalleseccion);
+
 module.exports = router;
