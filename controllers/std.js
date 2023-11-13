@@ -135,4 +135,25 @@ stand.agregarStand = async (req, res) => {
 
 
 
+stand.listardetalleseccion = async (req, res) => {
+  const id_seccion = req.params.p1;
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_detalle_seccion($1)",[id_seccion])).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+
 module.exports = stand;
