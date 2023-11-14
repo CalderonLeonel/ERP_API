@@ -34,4 +34,7 @@ router.post('/eliminartipodeitem/:p1',inventario.eliminarTipoItem);
 
 router.get('/listarstanditem/:p1',inventario.listardetallestand);
 
+
+router.get('/listarexistencias/',inventario.listarExistencias);
+
 module.exports = router;
