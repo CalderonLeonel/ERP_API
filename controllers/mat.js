@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
 const materias = {};
 
-materias.listarmaterias = async (req, res) => {
+materias.listarmateriasp = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarmaterias()")
+      await pool.query("select * from proyectoerp.erp_listarmateriasp()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,7 +24,7 @@ materias.listarmaterias = async (req, res) => {
   }
 };
 
-materias.listarmateriasinh = async (req, res) => {
+materias.listarmateriaspinh = async (req, res) => {
   try {
     const resultado = await (
       await pool.query("select * from proyectoerp.erp_listarmateriasinh()")
@@ -48,13 +48,19 @@ materias.listarmateriasinh = async (req, res) => {
 };
 
 materias.addmateria = async (req, res) => {
+  const nommat = req.params.p1;
+  const des = req.params.p2;
+  const cant = req.params.p3;
+  const med = req.params.p4;
+  const idprov = req.params.p5;
 
-    const nomprod = req.params.p1;
-    const codprod = req.params.p2;
   try {
-    await pool.query("select proyectoerp.erp_addmateria($1,$2)", [
-      nomprod,
-      codprod,
+    await pool.query("select proyectoerp.erp_addmateriaprima($1,$2,$3,$4,$5)", [
+      nommat,
+      des,
+      cant,
+      med,
+      idprov
     ]);
 
     res.status(200).json({
@@ -70,14 +76,20 @@ materias.addmateria = async (req, res) => {
 };
 
 materias.updmateria = async (req, res) => {
-  const idlin = req.params.p1;
-  const nomprod = req.params.p2;
-  const codprod = req.params.p3;
+    const idmat = req.params.p1
+    const nommat = req.params.p2;
+    const des = req.params.p3;
+    const cant = req.params.p4;
+    const med = req.params.p5;
+    const idprov = req.params.p6;
   try {
-    await pool.query("select proyectoerp.erp_updmateria($1,$2,$3)", [
-      idlin,
-      nomprod,
-      codprod
+    await pool.query("select proyectoerp.erp_updmateria($1,$2,$3,$4,$5,$6)", [
+        idmat,
+        nommat,
+        des,
+        cant,
+        med,
+        idprov
     ]);
 
     res.status(200).json({
@@ -95,9 +107,7 @@ materias.updmateria = async (req, res) => {
 materias.offmateria = async (req, res) => {
   const idlin = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offmateria($1)", [
-      idlin
-    ]);
+    await pool.query("select proyectoerp.erp_offmateria($1)", [idlin]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -114,9 +124,7 @@ materias.offmateria = async (req, res) => {
 materias.onmateria = async (req, res) => {
   const idlin = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onmateria($1)", [
-      idlin
-    ]);
+    await pool.query("select proyectoerp.erp_onmateria($1)", [idlin]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -129,6 +137,5 @@ materias.onmateria = async (req, res) => {
     });
   }
 };
-
 
 module.exports = materias;

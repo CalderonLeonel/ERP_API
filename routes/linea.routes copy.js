@@ -1,14 +1,14 @@
 import express from "express";
-import materias from '../controllers/mat';
+import lineas from '../controllers/lin';
 
 const router = express.Router();
 
-router.get('/listarmaterias', materias.listarmaterias);
-router.get('/listarmateriasinh', materias.listarmateriasinh);
-router.post('/addmateria/:p1,:p2', materias.addmateria);
-router.post('/updmateria/:p1,:p2,:p3', materias.updmateria);
-router.post('/offmateria/:p1', materias.offmateria);
-router.post('/onmateria/:p1', materias.onmateria);
+router.get('/listarlineas', lineas.listarlineas);
+router.get('/listarlineasinh', lineas.listarlineasinh);
+router.post('/addlinea/:p1,:p2', lineas.addlinea);
+router.post('/updlinea/:p1,:p2,:p3', lineas.updlinea);
+router.post('/offlinea/:p1', lineas.offlinea);
+router.post('/onlinea/:p1', lineas.onlinea);
 
 
 

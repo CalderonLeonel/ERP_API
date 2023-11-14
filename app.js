@@ -36,6 +36,8 @@ app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/ciudad', require('./routes/ciudad.routes'));
 app.use('/departamento', require('./routes/departamento.routes'));
+app.use('/materia', require('./routes/materiaprima.routes'));
+
 
 
 
