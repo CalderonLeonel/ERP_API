@@ -32,4 +32,9 @@ router.post('/actualizartipodeitem/:p1,:p2,:p3',inventario.actualizarTipoItem);
 router.post('/eliminartipodeitem/:p1',inventario.eliminarTipoItem);
 
 
+router.get('/listarstanditem/:p1',inventario.listardetallestand);
+
+
+router.get('/listarexistencias/',inventario.listarExistencias);
+
 module.exports = router;
