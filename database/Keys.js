@@ -1,10 +1,10 @@
 import {Pool} from 'pg';
 
 const pool = new Pool({
-    host : '127.0.0.1',
+    host : '34.42.159.150',
     port : '5432',
     user : 'postgres',
-    password : 'root',
+    password : "u-DM'%v-92TYq&m.",
     database :'erp_produccion'
 });
 
