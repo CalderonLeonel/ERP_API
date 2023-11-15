@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const formatos = {};
+const produccion = {};
 
-formatos.listarformatos = async (req, res) => {
+produccion.listarproduccion = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatos()")
+      await pool.query("select * from proyectoerp.erp_listarproduccion()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ formatos.listarformatos = async (req, res) => {
   }
 };
 
-formatos.listarformatosinh = async (req, res) => {
+produccion.listarproduccioninh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatosinh()")
+      await pool.query("select * from proyectoerp.erp_listarproduccioninh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,15 +47,18 @@ formatos.listarformatosinh = async (req, res) => {
   }
 };
 
-formatos.addformato = async (req, res) => {
+produccion.addproduccion = async (req, res) => {
+  const codprod = req.params.p1;
+  const idfab = req.params.p2;
+  const idprod = req.params.p3;
+  const cant = req.params.p4;
 
-    const nomforma = req.params.p1;
-    const codforma = req.params.p2;
-    
   try {
-    await pool.query("select proyectoerp.erp_addformato($1,$2)", [
-      nomforma,
-      codforma,
+    await pool.query("select proyectoerp.erp_addproduccion($1,$2,$3,$4)", [
+      codprod,
+      idfab,
+      idprod,
+      cant,
     ]);
 
     res.status(200).json({
@@ -70,15 +73,20 @@ formatos.addformato = async (req, res) => {
   }
 };
 
-formatos.updformato = async (req, res) => {
-  const idforma = req.params.p1;
-  const nomforma = req.params.p2;
-  const codforma = req.params.p3;
+produccion.updproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
+  const codprod = req.params.p2;
+  const cant = req.params.p3;
+  const idfab = req.params.p4;
+  const idprod = req.params.p5;
+
   try {
-    await pool.query("select proyectoerp.erp_editarformato($1,$2,$3)", [
-      idforma,
-      nomforma,
-      codforma
+    await pool.query("select proyectoerp.erp_editarproduccion($1,$2,$3,$4,$5)", [
+      idprodu,
+      codprod,
+      cant,
+      idfab,
+      idprod,
     ]);
 
     res.status(200).json({
@@ -93,12 +101,10 @@ formatos.updformato = async (req, res) => {
   }
 };
 
-formatos.offformato = async (req, res) => {
-  const idforma = req.params.p1;
+produccion.offproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_offproduccion($1)", [idprodu]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -112,15 +118,13 @@ formatos.offformato = async (req, res) => {
   }
 };
 
-formatos.onformato = async (req, res) => {
-  const idforma = req.params.p1;
+produccion.terminarproduccion = async (req, res) => {
+  const idprodu = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_terminarproduccion($1)", [idprodu]);
 
     res.status(200).json({
-      message: "REGISTRO MODIFICADO CORRECTAMENTE",
+      message: "PRODUCCION TERMINADA CORRECTAMENTE",
     });
   } catch (error) {
     res.status(500).json({
@@ -131,5 +135,8 @@ formatos.onformato = async (req, res) => {
   }
 };
 
+produccion.realizarmovimiento = async (req, res) => {
 
-module.exports = formatos;
+};
+
+module.exports = produccion;
