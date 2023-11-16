@@ -80,17 +80,18 @@ fabricas.updfabrica = async (req, res) => {
   const nomfab = req.params.p2;
   const codfab = req.params.p3;
   const dirfab = req.params.p4;
-  const idciu = req.params.p5;
-  const iddep = req.params.p6;
+  const iddep = req.params.p5;
+  const idciu = req.params.p6;
+
 
   try {
-    await pool.query("select proyectoerp.erp_updfabrica($1,$2,$3,$4,$5,$6)", [
+    await pool.query("select proyectoerp.erp_editarfabrica($1,$2,$3,$4,$5,$6)", [
       idfab,
       nomfab,
       codfab,
       dirfab,
-      idciu,
-      iddep
+      iddep,
+      idciu
     ]);
 
     res.status(200).json({
