@@ -66,11 +66,10 @@ inventario.agregarTransaccion = async (req, res) => {
   const idItem = req.params.p1;
   const movimiento = req.params.p2;
   const cantidad  = req.params.p3;
-  const costounitario  = req.params.p4;
-  const metodovaluacion  = req.params.p5;
-  const est  = req.params.p6;
+  const metodovaluacion  = req.params.p4;
+  const est  = req.params.p5;
   try {
-    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6)",[idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5)",[idItem,movimiento,cantidad,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -91,11 +90,10 @@ inventario.actualizarTransaccion = async (req, res) => {
   const idItem = req.params.p2;
   const movimiento = req.params.p3;
   const cantidad  = req.params.p4;
-  const costounitario  = req.params.p5;
-  const metodovaluacion  = req.params.p6;
-  const est  = req.params.p7;
+  const metodovaluacion  = req.params.p5;
+  const est  = req.params.p6;
   try {
-    await pool.query("select proyectoerp.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,costounitario,metodovaluacion,est]);
+    await pool.query("select proyectoerp.erp_actualizar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7)",[id,idItem,movimiento,cantidad,metodovaluacion,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -391,6 +389,48 @@ inventario.listarTipoItem = async (req, res) => {
        }
    
    };
+
+
+   inventario.listardetallestand = async (req, res) => {
+    const id_stand = req.params.p1;
+    try {
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_detalle_stand($1)",[id_stand])).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+
+
+  inventario.listarExistencias = async (req, res) => {
+    try {
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_obtener_existencias()")).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
 
 
 
