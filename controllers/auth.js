@@ -10,8 +10,7 @@ authentication.signin = async(req,res) =>{
              id_usuario:usuario[0].id_usuario,
              usuario:usuario[0].usuario,
              accesos:usuario[0].accesos,
-             id_cargo:usuario[0].id_cargo,
-             estado:usuario[0].estado,
+             tipo:usuario[0].tipo,
              nombres:usuario[0].nombres,
              paterno:usuario[0].paterno,
              materno:usuario[0].materno
