@@ -46,7 +46,7 @@ const storage =  multer.diskStorage({
     else if(file.fieldname === "employee"){
       cb(null, './archivos/employee');
     }
-    else { 
+    else if(file.fieldname == "image"){
       cb(null, './archivos/imagenes');
     }
     
@@ -112,7 +112,7 @@ app.use(history());
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), () => {
-  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port')+' '+__dirname);
+  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
 })
 
 
