@@ -1,11 +1,11 @@
 import pool from "../database/Keys";
-const conta = {};
+const contabilidad = {};
 
 //#region Cuentas Contables
-conta.listarcuentas = async (req, res) => {
+contabilidad.listarcuentas = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarcuentas()")
+      await pool.query("select * from proyectoerp.erp_listarcuentascontables()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -25,7 +25,7 @@ conta.listarcuentas = async (req, res) => {
   }
 };
 
-conta.listarcuentasinh = async (req, res) => {
+contabilidad.listarcuentasinh = async (req, res) => {
   try {
     const resultado = await (
       await pool.query("select * from proyectoerp.erp_listarcuentasinh()")
@@ -48,18 +48,20 @@ conta.listarcuentasinh = async (req, res) => {
   }
 };
 
-conta.addcuenta = async (req, res) => {
+contabilidad.addcuenta = async (req, res) => {
   const numcu = req.params.p1;
   const nom = req.params.p2;
-  const descr = req.params.p3;
+  const des = req.params.p3;
   const tipoc = req.params.p4;
+  const sald = req.params.p5;
 
   try {
-    await pool.query("select proyectoerp.erp_addcuenta($1,$2,$3,$4)", [
+    await pool.query("select proyectoerp.erp_addcuentacontable($1,$2,$3,$4,$5)", [
       numcu,
       nom,
-      descr,
+      des,
       tipoc,
+      sald
     ]);
 
     res.status(200).json({
@@ -74,7 +76,7 @@ conta.addcuenta = async (req, res) => {
   }
 };
 
-conta.updcuenta = async (req, res) => {
+contabilidad.updcuenta = async (req, res) => {
   const idcue = req.params.p1;
   const numcu = req.params.p2;
   const nom = req.params.p3;
@@ -102,7 +104,7 @@ conta.updcuenta = async (req, res) => {
   }
 };
 
-conta.offcuenta = async (req, res) => {
+contabilidad.offcuenta = async (req, res) => {
   const idcue = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_offcuenta($1)", [idcue]);
@@ -119,7 +121,7 @@ conta.offcuenta = async (req, res) => {
   }
 };
 
-conta.oncuenta = async (req, res) => {
+contabilidad.oncuenta = async (req, res) => {
   const idcue = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_oncuenta($1)", [idcue]);
@@ -136,7 +138,7 @@ conta.oncuenta = async (req, res) => {
   }
 };
 
-conta.aumentarsaldo = async (req, res) => {
+contabilidad.aumentarsaldo = async (req, res) => {
   const idcue = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_aumentarsaldo($1)", [idcue]);
@@ -153,7 +155,7 @@ conta.aumentarsaldo = async (req, res) => {
   }
 };
 
-conta.reducirsaldo = async (req, res) => {
+contabilidad.reducirsaldo = async (req, res) => {
   const idcue = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_reducirsaldo($1)", [idcue]);
@@ -171,4 +173,4 @@ conta.reducirsaldo = async (req, res) => {
 };
 //#endregion
 
-module.exports = conta;
+module.exports = contabilidad;

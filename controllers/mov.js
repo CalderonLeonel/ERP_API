@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const ventas = {};
+const movimientos = {};
 
-ventas.listarventas = async (req, res) => {
+movimientos.listarmovimientos = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarventas()")
+      await pool.query("select * from proyectoerp.erp_listarmovimientos()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ ventas.listarventas = async (req, res) => {
   }
 };
 
-ventas.listarventasinh = async (req, res) => {
+movimientos.listarmovimientosinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarventasinh()")
+      await pool.query("select * from proyectoerp.erp_listarmovimientosinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,61 +47,48 @@ ventas.listarventasinh = async (req, res) => {
   }
 };
 
-ventas.registrarventa = async (req, res) => {
-  const ventas = Array.isArray(req.body) ? req.body : [];  // Esperas recibir un array de ventas
+movimientos.addmovimiento = async (req, res) => {
+  const codmov = req.params.p1;
+  const idprod = req.params.p2;
+  const idfab = req.params.p3;
+  const idalm = req.params.p4;
+  const cant = req.params.p5;
+
 
   try {
-    // Itera sobre cada venta y ejecuta la consulta para registrarla en la base de datos
-    for (const venta of ventas) {
-      const {
-        idProducto,
-        cantidad,
-        precioUnitario,
-        total,
-        codigoControl,
-        nit,
-        razonSocial,
-        idCliente,
-        idEmpleado,
-      } = venta;
-
-      await pool.query(
-        "select proyectoerp.erp_registrarventas($1,$2,$3,$4,$5,$6,$7,$8,$9)",
-        [
-          idProducto,
-          cantidad,
-          precioUnitario,
-          total,
-          codigoControl,
-          nit,
-          razonSocial,
-          idCliente,
-          idEmpleado,
-        ]
-      );
-    }
+    await pool.query(
+      "select proyectoerp.erp_addmovimiento($1,$2,$3,$4,$5)",
+      [codmov, idprod, idfab, idalm, cant]
+    );
 
     res.status(200).json({
-      message: "VENTAS REALIZADAS CORRECTAMENTE",
+      message: "REGISTRO INSERTADO CORRECTAMENTE",
     });
   } catch (error) {
     res.status(500).json({
       message:
-        "ERROR INESPERADO. REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
-      error: error.message,
+        "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+      error,
     });
   }
 };
 
-ventas.editarventa = async (req, res) => {
-  const idlin = req.params.p1;
-  const nomprod = req.params.p2;
-  const codprod = req.params.p3;
+movimientos.updmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
+  const codmov = req.params.p2;
+  const idprod = req.params.p3;
+  const idfab = req.params.p4;
+  const idalm = req.params.p5;
+  const cant = req.params.p6;
+
   try {
-    await pool.query("select proyectoerp.erp_updventa($1,$2,$3)", [
-      idlin,
-      nomprod,
-      codprod,
+    await pool.query("select proyectoerp.erp_editarmovimiento($1,$2,$3,$4,$5,$6,$7,$8)", [
+      idmov,
+      codmov,
+      idprod,
+      idfab,
+      idalm,
+      cant
     ]);
 
     res.status(200).json({
@@ -116,10 +103,10 @@ ventas.editarventa = async (req, res) => {
   }
 };
 
-ventas.offventa = async (req, res) => {
-  const idlin = req.params.p1;
+movimientos.offmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offventa($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_offmovimiento($1)", [idmov]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -133,10 +120,10 @@ ventas.offventa = async (req, res) => {
   }
 };
 
-ventas.onventa = async (req, res) => {
-  const idlin = req.params.p1;
+movimientos.onmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onventa($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_onmovimiento($1)", [idmov]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -150,4 +137,4 @@ ventas.onventa = async (req, res) => {
   }
 };
 
-module.exports = ventas;
+module.exports = movimientos;

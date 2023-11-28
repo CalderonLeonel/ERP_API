@@ -37,6 +37,8 @@ app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/ciudad', require('./routes/ciudad.routes'));
 app.use('/departamento', require('./routes/departamento.routes'));
 app.use('/materia', require('./routes/materiaprima.routes'));
+app.use('/movimiento', require('./routes/movimiento.routes'));
+app.use('/contabilidad', require('./routes/contabilidad.routes'));
 
 
 
