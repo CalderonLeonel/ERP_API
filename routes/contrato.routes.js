@@ -1,5 +1,5 @@
 import express from "express";
-import contratos from '../controllers/cont';
+import contratos from '../controllers/contr';
 
 const router = express.Router();
 
