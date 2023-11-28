@@ -74,7 +74,7 @@ lineas.updlinea = async (req, res) => {
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updlinea($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarlinea($1,$2,$3)", [
       idlin,
       nomprod,
       codprod

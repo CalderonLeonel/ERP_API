@@ -1,15 +1,15 @@
 import pool from '../database/Keys'
-const departamentos ={};
+const areas ={};
 
-departamentos.listardepartamentos = async(req,res) =>{
+areas.listarareas = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_listardepartamentos()")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listarareas()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
         else {
             res.status(200).json({
-                message:"No existe ningun departamento.",
+                message:"No existe ningun area.",
                 NotFount:true,
             });
         }
@@ -22,16 +22,13 @@ departamentos.listardepartamentos = async(req,res) =>{
     }
 };
 
-departamentos.adddepartamento = async(req,res) =>{
+areas.addarea = async(req,res) =>{
     const nom = req.params.p1;
-    const idunid= req.params.p2;
-    const idarea = req.params.p3;
-    
     try {
-        await pool.query("select proyectoerp.erp_adddepartamento($1,$2,$3)",[nom,idunid,idarea]);
+        await pool.query("select proyectoerp.erp_addarea($1)",[nom]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el departamento con éxito.'
+                   message:'Se ha registrado el area con éxito.'
              
                })
            
@@ -44,13 +41,11 @@ departamentos.adddepartamento = async(req,res) =>{
    
    };
 
-departamentos.editardepartamento = async(req,res) =>{
-    const iddep = req.params.p1;
+areas.editararea = async(req,res) =>{
+    const idarea = req.params.p1;
     const nom = req.params.p2;
-    const idunid = req.params.p3;
-    const idarea = req.params.p4;
     try {
-        await pool.query("select proyectoerp.erp_editardepartamento($1,$2,$3,$4)",[iddep,nom,idunid,idarea]);
+        await pool.query("select proyectoerp.erp_editararea($1,$2)",[idarea,nom]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
@@ -63,10 +58,10 @@ departamentos.editardepartamento = async(req,res) =>{
     }
 };
 
-departamentos.offdepartamento = async (req, res) => {
-    const iddep = req.params.p1;
+areas.offarea = async (req, res) => {
+    const idarea = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_offdepartamento($1)", [iddep]);
+      await pool.query("select proyectoerp.erp_offarea($1)", [idarea]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -80,10 +75,10 @@ departamentos.offdepartamento = async (req, res) => {
     }
   };
 
-  departamentos.ondepartamento = async (req, res) => {
-    const iddep = req.params.p1;
+  areas.onarea = async (req, res) => {
+    const idarea = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_ondepartamento($1)", [iddep]);
+      await pool.query("select proyectoerp.erp_onarea($1)", [idarea]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -97,4 +92,4 @@ departamentos.offdepartamento = async (req, res) => {
     }
   };
 
-module.exports = departamentos;
+module.exports = areas;

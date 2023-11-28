@@ -104,7 +104,7 @@ produccion.updproduccion = async (req, res) => {
   const idprod = req.params.p5;
 
   try {
-    await pool.query("select proyectoerp.erp_updproduccion($1,$2,$3,$4,$5)", [
+    await pool.query("select proyectoerp.erp_editarproduccion($1,$2,$3,$4,$5)", [
       idprodu,
       codprod,
       cant,

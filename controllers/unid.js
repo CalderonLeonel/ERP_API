@@ -1,15 +1,15 @@
 import pool from '../database/Keys'
-const departamentos ={};
+const unidades ={};
 
-departamentos.listardepartamentos = async(req,res) =>{
+unidades.listarunidades = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_listardepartamentos()")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listarunidades()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
         else {
             res.status(200).json({
-                message:"No existe ningun departamento.",
+                message:"No existe ningun unidad.",
                 NotFount:true,
             });
         }
@@ -22,16 +22,13 @@ departamentos.listardepartamentos = async(req,res) =>{
     }
 };
 
-departamentos.adddepartamento = async(req,res) =>{
-    const nom = req.params.p1;
-    const idunid= req.params.p2;
-    const idarea = req.params.p3;
-    
+unidades.addunidad = async(req,res) =>{
+    const unid = req.params.p1;
     try {
-        await pool.query("select proyectoerp.erp_adddepartamento($1,$2,$3)",[nom,idunid,idarea]);
+        await pool.query("select proyectoerp.erp_addunidad($1)",[unid]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el departamento con éxito.'
+                   message:'Se ha registrado el unidad con éxito.'
              
                })
            
@@ -44,13 +41,11 @@ departamentos.adddepartamento = async(req,res) =>{
    
    };
 
-departamentos.editardepartamento = async(req,res) =>{
-    const iddep = req.params.p1;
-    const nom = req.params.p2;
-    const idunid = req.params.p3;
-    const idarea = req.params.p4;
+unidades.editarunidad = async(req,res) =>{
+    const idunid = req.params.p1;
+    const unid = req.params.p2;
     try {
-        await pool.query("select proyectoerp.erp_editardepartamento($1,$2,$3,$4)",[iddep,nom,idunid,idarea]);
+        await pool.query("select proyectoerp.erp_editarunidad($1,$2)",[idunid,unid]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
@@ -63,10 +58,10 @@ departamentos.editardepartamento = async(req,res) =>{
     }
 };
 
-departamentos.offdepartamento = async (req, res) => {
-    const iddep = req.params.p1;
+unidades.offunidad = async (req, res) => {
+    const idunid = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_offdepartamento($1)", [iddep]);
+      await pool.query("select proyectoerp.erp_offunidad($1)", [idunid]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -80,10 +75,10 @@ departamentos.offdepartamento = async (req, res) => {
     }
   };
 
-  departamentos.ondepartamento = async (req, res) => {
-    const iddep = req.params.p1;
+  unidades.onunidad = async (req, res) => {
+    const idunid = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_ondepartamento($1)", [iddep]);
+      await pool.query("select proyectoerp.erp_onunidad($1)", [idunid]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -97,4 +92,4 @@ departamentos.offdepartamento = async (req, res) => {
     }
   };
 
-module.exports = departamentos;
+module.exports = unidades;

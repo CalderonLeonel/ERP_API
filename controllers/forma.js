@@ -75,7 +75,7 @@ formatos.updformato = async (req, res) => {
   const nomforma = req.params.p2;
   const codforma = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updformato($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarformato($1,$2,$3)", [
       idforma,
       nomforma,
       codforma

@@ -98,7 +98,7 @@ ventas.editarventa = async (req, res) => {
   const nomprod = req.params.p2;
   const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_updventa($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarventa($1,$2,$3)", [
       idlin,
       nomprod,
       codprod,
