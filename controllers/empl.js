@@ -1,5 +1,5 @@
 import pool from '../database/Keys'
-const empleados ={};
+const empleados = {};
 
 empleados.listarempleados = async(req,res) =>{
     try {
@@ -55,10 +55,9 @@ empleados.addempleado = async(req,res) =>{
     const iddep = req.params.p9;
     try {
         await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8,$9)",[nom,pat,mat,emal,nacDte,ci,tel,idcarg,iddep]);
-                             
-               res.status(200).json({
-                   message:'Se ha registrado el empleado con éxito.'
-             
+
+                res.status(200).json({
+                    message:'Se ha registrado el empleado con éxito.'
                })
            
     } catch (error) {

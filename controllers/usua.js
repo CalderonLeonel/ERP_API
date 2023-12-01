@@ -1,5 +1,24 @@
 import pool from "../database/Keys";
+import transporter from '../email/email'
 const usuarios = {};
+
+async function enviarEmail(email, nomEmpl, user, pass) {
+  try {
+      await transporter.sendMail({
+          from: '"Drymix SRL" <drymixnoresponder@example.com>', // sender address
+          to: email, // list of receivers
+          subject: "! Bienvenido a Drymix Bolivia ! "+nomEmpl+". Tu registro como empleado a sido exitoso ✔",
+          text: "¡ Drymix te da la bienvenida ! Usa tus credenciales para entrar a tu cuenta de Drymix.",
+          html: "<span>Estos son tus datos de inicio de sesión generados automaticamente.</span>" +
+                  "<b>No pierdas ni brindes esta información a nadie, tu cuenta es tu huella digital en el sistema.</b>" +
+                      "<li>Usuario: "+user+"</li>"+
+                      "<li>Contraseña: "+pass+"</li>", 
+      });
+      console.log("LOG: Email Enviado")
+  } catch (error) {
+      console.log(error);
+  }
+}
 
 usuarios.listarusuarios = async (req, res) => {
   try {
@@ -29,14 +48,19 @@ usuarios.addusuario = async(req,res) =>{
   const nom = req.params.p2;
   const pass = req.params.p3;
   const tip = req.params.p4;
-  const acc = req.params.p5;
+  const acc = req.body;
+  const emal = req.params.p6;
+  const nomEmpl = req.params.p7;
   try {
+      //Enviar Correo Electronico con Credenciales
+      //await enviarEmail("leonel.calderon.rivas@gmail.com","LEONEL MARCELO","crl423423","34234");
+      await enviarEmail(emal,nomEmpl,nom,pass);
       await pool.query("select proyectoerp.erp_addusuario($1,$2,$3,$4,$5)",[idusu,nom,pass,tip,acc]);
                            
              res.status(200).json({
                  message:'Se ha registrado el usuario con éxito.'
            
-             })
+             }) 
          
   } catch (error) {
          res.status(500).json({
