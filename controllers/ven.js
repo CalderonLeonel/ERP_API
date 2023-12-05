@@ -24,6 +24,32 @@ ventas.listarventas = async (req, res) => {
   }
 };
 
+ventas.listardetalle = async (req, res) => {
+  const idven = req.params.p1;
+  try {
+    const resultado = await (
+      await pool.query("select * from proyectoerp.erp_listardetalleventa($1)", [
+        idven,
+      ])
+    ).rows;
+
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 ventas.listarventasinh = async (req, res) => {
   try {
     const resultado = await (
@@ -48,7 +74,7 @@ ventas.listarventasinh = async (req, res) => {
 };
 
 ventas.registrarventa = async (req, res) => {
-  const ventas = Array.isArray(req.body) ? req.body : [];  // Esperas recibir un array de ventas
+  const ventas = Array.isArray(req.body) ? req.body : []; // Esperas recibir un array de ventas
 
   try {
     // Itera sobre cada venta y ejecuta la consulta para registrarla en la base de datos

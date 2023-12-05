@@ -4,6 +4,7 @@ import ventas from '../controllers/ven';
 const router = express.Router();
 
 router.get('/listarventas', ventas.listarventas);
+router.get('/listardetalle/:p1', ventas.listardetalle);
 router.get('/listarventasinh', ventas.listarventasinh);
 router.post('/registrarventa', ventas.registrarventa);
 router.post('/editarventa/:p1,:p2,:p3', ventas.editarventa);
