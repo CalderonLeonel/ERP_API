@@ -7,7 +7,6 @@ vacaciones.listarvacaciones = async(req,res) =>{
         const resultado = await(await pool.query("select * from proyectoerp.erp_listarvacaciones($1)",[idempl])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
-            console.log(resultado);
         }
         else {
             res.status(200).json({
@@ -27,12 +26,12 @@ vacaciones.listarvacaciones = async(req,res) =>{
 vacaciones.addvacacion = async(req,res) =>{
     const fecIni = req.params.p1;
     const fecFin = req.params.p2;
-    const idempl = req.params.p4;
+    const idempl = req.params.p3;
     try {
         await pool.query("select proyectoerp.erp_addvacacion($1,$2,$3)",[fecIni,fecFin,idempl]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el vacacion con éxito.'
+                   message:'Se ha registrado la vacación con éxito.'
              
                })
            
@@ -50,9 +49,8 @@ vacaciones.editarvacacion = async(req,res) =>{
     const idvaca = req.params.p1;
     const fecIni = req.params.p2;
     const fecFin = req.params.p3;
-    const fec = req.params.p4;
     try {
-        await pool.query("select proyectoerp.erp_editarvacacion($1,$2,$3,$4)",[idvaca,fecIni,fecFin,fec]);
+        await pool.query("select proyectoerp.erp_editarvacacion($1,$2,$3)",[idvaca,fecIni,fecFin]);
             res.status(200).json({
                 message:'SE GUARDARON LOS CAMBIOS!!!'
             })
