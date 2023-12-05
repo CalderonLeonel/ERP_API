@@ -48,13 +48,19 @@ fabricas.listarfabricasinh = async (req, res) => {
 };
 
 fabricas.addfabrica = async (req, res) => {
+  const nomfab = req.params.p1;
+  const codfab = req.params.p2;
+  const dirfab = req.params.p3;
+  const idciu = req.params.p4;
+  const iddep = req.params.p5;
 
-    const nomprod = req.params.p2;
-    const codprod = req.params.p3;
   try {
-    await pool.query("select proyectoerp.erp_addfabrica($1,$2)", [
-      nomprod,
-      codprod,
+    await pool.query("select proyectoerp.erp_addfabrica($1,$2,$3,$4,$5)", [
+      nomfab,
+      codfab,
+      dirfab,
+      idciu,
+      iddep
     ]);
 
     res.status(200).json({
@@ -71,13 +77,21 @@ fabricas.addfabrica = async (req, res) => {
 
 fabricas.updfabrica = async (req, res) => {
   const idfab = req.params.p1;
-  const nomprod = req.params.p2;
-  const codprod = req.params.p3;
+  const nomfab = req.params.p2;
+  const codfab = req.params.p3;
+  const dirfab = req.params.p4;
+  const iddep = req.params.p5;
+  const idciu = req.params.p6;
+
+
   try {
-    await pool.query("select proyectoerp.erp_editarfabrica($1,$2,$3)", [
+    await pool.query("select proyectoerp.erp_editarfabrica($1,$2,$3,$4,$5,$6)", [
       idfab,
-      nomprod,
-      codprod
+      nomfab,
+      codfab,
+      dirfab,
+      iddep,
+      idciu
     ]);
 
     res.status(200).json({
@@ -95,9 +109,7 @@ fabricas.updfabrica = async (req, res) => {
 fabricas.offfabrica = async (req, res) => {
   const idfab = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offfabrica($1)", [
-      idfab
-    ]);
+    await pool.query("select proyectoerp.erp_offfabrica($1)", [idfab]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -114,9 +126,7 @@ fabricas.offfabrica = async (req, res) => {
 fabricas.onfabrica = async (req, res) => {
   const idfab = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onfabrica($1)", [
-      idfab
-    ]);
+    await pool.query("select proyectoerp.erp_onfabrica($1)", [idfab]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -129,6 +139,5 @@ fabricas.onfabrica = async (req, res) => {
     });
   }
 };
-
 
 module.exports = fabricas;

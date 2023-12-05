@@ -158,4 +158,85 @@ empleados.offempleado = async (req, res) => {
     }
   };
 
+
+
+  //alertas
+    empleados.listaralertas = async(req,res) =>{
+        try {
+            const resultado = await(await pool.query("select * from proyectoerp.erp_listar_alerta()")).rows;
+            if (resultado.length>0){
+                res.status(200).json({resultado});
+            }
+            else {
+                res.status(200).json({
+                    message:"No hay alertas registradas",
+                    NotFount:true,
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
+                message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+                error
+            })
+            console.log("ERROR: "+error.message);
+        }
+    };
+
+    empleados.crearalertas = async(req,res) =>{
+        const { titulo, descripcion, img } = req.body;
+        try {
+            await pool.query("select proyectoerp.erp_addalerta($1,$2,$3)",[titulo,descripcion,img]);
+                                 
+                   res.status(200).json({
+                       message:'Se ha registrado la alerta con éxito.'
+                 
+                   })
+               
+        } catch (error) {
+               res.status(500).json({
+                   message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+                   error
+               })
+               console.log("ERROR: "+error.message);
+           }
+    };
+
+    empleados.editaralertas = async(req,res) =>{
+        const idalerta = req.params.p1;
+        const titulo = req.params.p2;
+        const descripcion = req.params.p3;
+        try {
+            await pool.query("select proyectoerp.erp_editalerta($1,$2,$3,$4)",[idalerta,titulo,descripcion]);
+                                 
+                   res.status(200).json({
+                       message:'Se ha registrado la alerta con éxito.'
+                 
+                   })
+               
+        } catch (error) {
+               res.status(500).json({
+                   message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+                   error
+               })
+               console.log("ERROR: "+error.message);
+           }
+    };
+
+    empleados.offalerta = async (req, res) => {
+        const idalerta = req.params.p1;
+        try {
+          await pool.query("select proyectoerp.erp_offalerta($1)", [idalerta]);
+      
+          res.status(200).json({
+            message: "REGISTRO MODIFICADO CORRECTAMENTE",
+          });
+        } catch (error) {
+          res.status(500).json({
+            message:
+              "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+            error,
+          });
+        }
+      };
+
 module.exports = empleados;
