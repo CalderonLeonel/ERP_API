@@ -82,7 +82,7 @@ turnos.addturno = async(req,res) =>{
    
    };
 
-turnos.editturno = async(req,res) =>{
+turnos.editarturno = async(req,res) =>{
     const idturn = req.params.p1;
     const turn = req.params.p2;
     try {

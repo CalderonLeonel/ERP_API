@@ -64,7 +64,7 @@ sectores.addsector = async(req,res) =>{
 sectores.editarsector = async(req,res) =>{
     const idsect = req.params.p1;
     const nom = req.params.p2;
-    const iddep = req.params.p1;
+    const iddep = req.params.p3;
     try {
         await pool.query("select proyectoerp.erp_editarsector($1,$2,$3)",[idsect,nom,iddep]);
             res.status(200).json({
