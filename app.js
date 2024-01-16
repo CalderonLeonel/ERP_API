@@ -110,6 +110,7 @@ app.use('/observacion', require('./routes/observacion.routes'));
 app.use('/vacacion', require('./routes/vacacion.routes'));
 
 
+
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
   next()

@@ -280,19 +280,19 @@ contabilidad.listarasientoscontablesinh = async (req, res) => {
 };
 
 contabilidad.addasiento = async (req, res) => {
-  const numcu = req.params.p1;
-  const nom = req.params.p2;
-  const des = req.params.p3;
-  const tipoc = req.params.p4;
-  const sald = req.params.p5;
+  const numref = req.params.p1;
+  const des = req.params.p2;
+  const idcuen = req.params.p3;
+  const mondeb = req.params.p4;
+  const moncre = req.params.p5;
 
   try {
     await pool.query("select proyectoerp.erp_addasiento($1,$2,$3,$4,$5)", [
-      numcu,
-      nom,
+      numref,
       des,
-      tipoc,
-      sald,
+      idcuen,
+      mondeb,
+      moncre
     ]);
 
     res.status(200).json({
