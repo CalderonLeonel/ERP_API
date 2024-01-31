@@ -137,8 +137,13 @@ contabilidad.oncuenta = async (req, res) => {
 
 contabilidad.aumentarsaldo = async (req, res) => {
   const idcue = req.params.p1;
+  const mont = req.params.p2;
+
   try {
-    await pool.query("select proyectoerp.erp_aumentarsaldo($1)", [idcue]);
+    await pool.query(
+      "select proyectoerp.erp_aumentarsaldocuentacontable($1,$2)",
+      [idcue, mont]
+    );
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -154,8 +159,13 @@ contabilidad.aumentarsaldo = async (req, res) => {
 
 contabilidad.reducirsaldo = async (req, res) => {
   const idcue = req.params.p1;
+  const mont = req.params.p2;
+
   try {
-    await pool.query("select proyectoerp.erp_reducirsaldo($1)", [idcue]);
+    await pool.query("select proyectoerp.erp_reducirsaldo($1,$2)", [
+      idcue,
+      mont,
+    ]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -287,12 +297,12 @@ contabilidad.addasiento = async (req, res) => {
   const moncre = req.params.p5;
 
   try {
-    await pool.query("select proyectoerp.erp_addasiento($1,$2,$3,$4,$5)", [
+    await pool.query("select proyectoerp.erp_addasientocontable($1,$2,$3,$4,$5)", [
       numref,
       des,
       idcuen,
       mondeb,
-      moncre
+      moncre,
     ]);
 
     res.status(200).json({
