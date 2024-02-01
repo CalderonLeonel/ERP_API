@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/listarventas', ventas.listarventas);
 router.get('/listarventasinh', ventas.listarventasinh);
-router.post('/addventa/:p1,:p2', ventas.addventa);
-router.post('/updventa/:p1,:p2,:p3', ventas.updventa);
+router.post('/registrarventa', ventas.registrarventa);
+router.post('/editarventa/:p1,:p2,:p3', ventas.editarventa);
 router.post('/offventa/:p1', ventas.offventa);
 router.post('/onventa/:p1', ventas.onventa);
 

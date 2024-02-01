@@ -46,7 +46,7 @@ const storage =  multer.diskStorage({
     else if(file.fieldname === "employee"){
       cb(null, './archivos/employee');
     }
-    else { 
+    else if(file.fieldname == "image"){
       cb(null, './archivos/imagenes');
     }
     
@@ -85,6 +85,11 @@ app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
+app.use('/ciudad', require('./routes/ciudad.routes'));
+app.use('/materia', require('./routes/materiaprima.routes'));
+app.use('/movimiento', require('./routes/movimiento.routes'));
+app.use('/contabilidad', require('./routes/contabilidad.routes'));
+
 //app.use('/', require('./routes/auth.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/almacen', require('./routes/almacen.routes'));
@@ -119,7 +124,7 @@ app.use(history());
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), () => {
-  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port')+' '+__dirname);
+  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
 })
 
 

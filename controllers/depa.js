@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const ventas = {};
+const departamentos = {};
 
-ventas.listarventas = async (req, res) => {
+departamentos.listardepartamentos = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarventas()")
+      await pool.query("select * from proyectoerp.erp_listardepartamentos()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ ventas.listarventas = async (req, res) => {
   }
 };
 
-ventas.listarventasinh = async (req, res) => {
+departamentos.listardepartamentosinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarventasinh()")
+      await pool.query("select * from proyectoerp.erp_listardepartamentosinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,61 +47,48 @@ ventas.listarventasinh = async (req, res) => {
   }
 };
 
-ventas.registrarventa = async (req, res) => {
-  const ventas = Array.isArray(req.body) ? req.body : [];  // Esperas recibir un array de ventas
+departamentos.adddepartamento = async (req, res) => {
+  const nomdepa = req.params.p1;
+  const sald = req.params.p2;
+
 
   try {
-    // Itera sobre cada venta y ejecuta la consulta para registrarla en la base de datos
-    for (const venta of ventas) {
-      const {
-        idProducto,
-        cantidad,
-        precioUnitario,
-        total,
-        codigoControl,
-        nit,
-        razonSocial,
-        idCliente,
-        idEmpleado,
-      } = venta;
-
-      await pool.query(
-        "select proyectoerp.erp_registrarventas($1,$2,$3,$4,$5,$6,$7,$8,$9)",
-        [
-          idProducto,
-          cantidad,
-          precioUnitario,
-          total,
-          codigoControl,
-          nit,
-          razonSocial,
-          idCliente,
-          idEmpleado,
-        ]
-      );
-    }
+    await pool.query(
+      "select proyectoerp.erp_adddepartamento($1,$2)",
+      [nomcli, pat]
+    );
 
     res.status(200).json({
-      message: "VENTAS REALIZADAS CORRECTAMENTE",
+      message: "REGISTRO INSERTADO CORRECTAMENTE",
     });
   } catch (error) {
     res.status(500).json({
       message:
-        "ERROR INESPERADO. REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
-      error: error.message,
+        "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+      error,
     });
   }
 };
 
-ventas.editarventa = async (req, res) => {
-  const idlin = req.params.p1;
-  const nomprod = req.params.p2;
-  const codprod = req.params.p3;
+departamentos.upddepartamento = async (req, res) => {
+  const idcli = req.params.p1;
+  const nomcli = req.params.p2;
+  const pat = req.params.p3;
+  const mat = req.params.p4;
+  const nit = req.params.p5;
+  const corr = req.params.p6;
+  const cel = req.params.p7;
+  const tel = req.params.p8;
   try {
-    await pool.query("select proyectoerp.erp_editarventa($1,$2,$3)", [
-      idlin,
-      nomprod,
-      codprod,
+    await pool.query("select proyectoerp.erp_editardepartamento($1,$2,$3,$4,$5,$6,$7,$8)", [
+      idcli,
+      nomcli,
+      pat,
+      mat,
+      nit,
+      corr,
+      cel,
+      tel
     ]);
 
     res.status(200).json({
@@ -116,10 +103,10 @@ ventas.editarventa = async (req, res) => {
   }
 };
 
-ventas.offventa = async (req, res) => {
-  const idlin = req.params.p1;
+departamentos.offdepartamento = async (req, res) => {
+  const idcli = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offventa($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_offdepartamento($1)", [idcli]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -133,10 +120,10 @@ ventas.offventa = async (req, res) => {
   }
 };
 
-ventas.onventa = async (req, res) => {
-  const idlin = req.params.p1;
+departamentos.ondepartamento = async (req, res) => {
+  const idcli = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onventa($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_ondepartamento($1)", [idcli]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -150,4 +137,4 @@ ventas.onventa = async (req, res) => {
   }
 };
 
-module.exports = ventas;
+module.exports = departamentos;
