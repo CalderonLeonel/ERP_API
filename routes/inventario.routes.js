@@ -7,7 +7,8 @@ router.get('/listarinventario',inventario.listarTransacciones);
 router.get('/listarinventarioactivo',inventario.listarTransaccionesActivas);
 router.get('/listarinventarioinactivo',inventario.listarTransaccionesInactivas);
 
-router.post('/agregarinventario/:p1,:p2,:p3,:p4,:p5',inventario.agregarTransaccion);
+router.post('/agregarinventarioentrada/:p1,:p2,:p3,:p4,:p5',inventario.agregarTransaccion);
+router.post('/agregarinventariosalida/:p1,:p2,:p3,:p4,:p5',inventario.agregarTransaccionSalida);
 router.post('/actualizarinventario/:p1,:p2,:p3,:p4,:p5,:p6',inventario.actualizarTransaccion);
 router.post('/eliminarinventario/:p1',inventario.anularTransaccion);
 
@@ -31,5 +32,10 @@ router.post('/agregartipodeitem/:p1,:p2',inventario.agregarTipoItem);
 router.post('/actualizartipodeitem/:p1,:p2,:p3',inventario.actualizarTipoItem);
 router.post('/eliminartipodeitem/:p1',inventario.eliminarTipoItem);
 
+
+router.get('/listarstanditem/:p1',inventario.listardetallestand);
+
+
+router.get('/listarexistencias/',inventario.listarExistencias);
 
 module.exports = router;

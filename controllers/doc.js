@@ -100,9 +100,42 @@ documento.listardocumentos = async (req, res) => {
    
    };
 
+   
+documento.getLastDoc = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_ultimo_documento()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
    documento.download = (req, res) => {
     const fileName = req.params.p1;
     const directoryPath = __basedir + "/archivos/documentos/";
+  
+    res.download(directoryPath + fileName, fileName, (err) => {
+      if (err) {
+        res.status(500).send({
+          message: "Could not download the file. " + err,
+        });
+      }
+    });
+  };
+
+  documento.downloadImage = (req, res) => {
+    const fileName = req.params.p1;
+    const directoryPath = __basedir + "/archivos/imagenes/";
   
     res.download(directoryPath + fileName, fileName, (err) => {
       if (err) {

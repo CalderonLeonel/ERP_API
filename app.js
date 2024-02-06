@@ -46,7 +46,7 @@ const storage =  multer.diskStorage({
     else if(file.fieldname === "employee"){
       cb(null, './archivos/employee');
     }
-    else { 
+    else if(file.fieldname == "image"){
       cb(null, './archivos/imagenes');
     }
     
@@ -85,6 +85,11 @@ app.use('/fabrica', require('./routes/fabrica.routes'));
 app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
+app.use('/ciudad', require('./routes/ciudad.routes'));
+app.use('/materia', require('./routes/materiaprima.routes'));
+app.use('/movimiento', require('./routes/movimiento.routes'));
+app.use('/contabilidad', require('./routes/contabilidad.routes'));
+
 //app.use('/', require('./routes/auth.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
 app.use('/almacen', require('./routes/almacen.routes'));
@@ -94,6 +99,16 @@ app.use('/inventario', require('./routes/inventario.routes'));
 app.use('/adquisicion', require('./routes/adquisicion.routes'));
 app.use('/acceso', require('./routes/acceso.routes'));
 app.use('/documento', require('./routes/documento.routes'));
+app.use('/turno', require('./routes/turno.routes'));
+app.use('/unidad', require('./routes/unidad.routes'));
+app.use('/area', require('./routes/area.routes'));
+app.use('/departamento', require('./routes/departamento.routes'));
+app.use('/sector', require('./routes/sector.routes'));
+app.use('/solicitud', require('./routes/solicitud.routes'));
+app.use('/contrato', require('./routes/contrato.routes'));
+app.use('/observacion', require('./routes/observacion.routes'));
+app.use('/vacacion', require('./routes/vacacion.routes'));
+
 
 app.use((req, res, next) => {
   console.log('Time:', Date.now())
@@ -108,7 +123,7 @@ app.use(history());
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), () => {
-  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port')+' '+__dirname);
+  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
 })
 
 
