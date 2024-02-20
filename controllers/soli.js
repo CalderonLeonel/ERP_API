@@ -61,10 +61,10 @@ solicitudes.editarsolicitud = async(req,res) =>{
     }
 };
 
-solicitudes.offsolicitud = async (req, res) => {
+solicitudes.denysolicitud = async (req, res) => {
     const idsoli = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_offsolicitud($1)", [idsoli]);
+      await pool.query("select proyectoerp.erp_denysolicitud($1)", [idsoli]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -78,10 +78,10 @@ solicitudes.offsolicitud = async (req, res) => {
     }
   };
 
-  solicitudes.onsolicitud = async (req, res) => {
+  solicitudes.acceptsolicitud = async (req, res) => {
     const idsoli = req.params.p1;
     try {
-      await pool.query("select proyectoerp.erp_onsolicitud($1)", [idsoli]);
+      await pool.query("select proyectoerp.erp_acceptsolicitud($1)", [idsoli]);
   
       res.status(200).json({
         message: "REGISTRO MODIFICADO CORRECTAMENTE",
