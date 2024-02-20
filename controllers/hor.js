@@ -72,7 +72,7 @@ horarios.deletehorario = async(req,res) =>{
     try {
         await pool.query("select proyectoerp.erp_deletehorario($1)",[idhor]);
         res.status(200).json({
-            message:'SE GUARDARON LOS CAMBIOS!!!'
+            message:'Se ha eliminado el horario con éxito'
         })
     } catch (error) {
         res.status(500).json({
