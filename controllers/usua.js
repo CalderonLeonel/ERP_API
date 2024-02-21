@@ -48,9 +48,9 @@ usuarios.addusuario = async(req,res) =>{
   const nom = req.params.p2;
   const pass = req.params.p3;
   const tip = req.params.p4;
+  const emal = req.params.p5;
+  const nomEmpl = req.params.p6;
   const acc = req.body;
-  const emal = req.params.p6;
-  const nomEmpl = req.params.p7;
   try {
       //Enviar Correo Electronico con Credenciales
       //await enviarEmail("leonel.calderon.rivas@gmail.com","LEONEL MARCELO","crl423423","34234");

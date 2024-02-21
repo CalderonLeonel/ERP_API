@@ -41,11 +41,30 @@ sectores.addsector = async(req,res) =>{
        }
    
    };
+   sectores.asignarturnoasector = async(req,res) =>{
+    const idturn = req.params.p1;
+    const idsect = req.params.p2
+    try {
+        await pool.query("select proyectoerp.erp_asignarturnoasector($1,$2)",[idturn,idsect]);
+                             
+               res.status(200).json({
+                   message:'Se ha registrado el turno al sector con éxito.'
+             
+               })
+           
+    } catch (error) {
+           res.status(500).json({
+               message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+               error
+           })
+       }
+   
+   };
 
 sectores.editarsector = async(req,res) =>{
     const idsect = req.params.p1;
     const nom = req.params.p2;
-    const iddep = req.params.p1;
+    const iddep = req.params.p3;
     try {
         await pool.query("select proyectoerp.erp_editarsector($1,$2,$3)",[idsect,nom,iddep]);
             res.status(200).json({

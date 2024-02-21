@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/listarsolicitudes', solicitudes.listarsolicitudes);
 router.post('/addsolicitud/:p1,:p2,:p3', solicitudes.addsolicitud);
 router.post('/editarsolicitud/:p1,:p2,:p3', solicitudes.editarsolicitud);
-router.post('/offsolicitud/:p1', solicitudes.offsolicitud);
-router.post('/onsolicitud/:p1', solicitudes.onsolicitud)
+router.post('/denysolicitud/:p1', solicitudes.denysolicitud);
+router.post('/acceptsolicitud/:p1', solicitudes.acceptsolicitud)
 
 
 module.exports = router;

@@ -111,6 +111,7 @@ app.use('/solicitud', require('./routes/solicitud.routes'));
 app.use('/contrato', require('./routes/contrato.routes'));
 app.use('/observacion', require('./routes/observacion.routes'));
 app.use('/vacacion', require('./routes/vacacion.routes'));
+app.use('/horario', require('./routes/horario.routes'));
 
 
 
