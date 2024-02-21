@@ -49,13 +49,30 @@ transportes.listartransportesinh = async (req, res) => {
 
 transportes.addchofer = async (req, res) => {
   const nomchof = req.params.p1;
-  const codtipo = req.params.p2;
-  const idlin = req.params.p3;
+  const pat = req.params.p2;
+  const mat = req.params.p3;
+  const numdoc = req.params.p4;
+  const dir = req.params.p5;
+  const nac = req.params.p6;
+  const tel = req.params.p7;
+  const fech = req.params.p8
+  const gen = req.params.p9;
+  const idpai = req.params.p10;
+  const idciu = req.params.p11;
+
   try {
-    await pool.query("select proyectoerp.erp_addtipoproducto($1,$2,$3)", [
-      nomtipo,
-      codtipo,
-      idlin,
+    await pool.query("select proyectoerp.erp_addchofer($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)", [
+      nomchof,
+      pat,
+      mat,
+      numdoc,
+      dir,
+      nac,
+      tel,
+      fech,
+      gen,
+      idpai,
+      idciu
     ]);
     res.status(200).json({
       message: "REGISTRO INSERTADO CORRECTAMENTE",

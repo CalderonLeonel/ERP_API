@@ -86,9 +86,12 @@ app.use('/produccion', require('./routes/produccion.routes'));
 app.use('/venta', require('./routes/venta.routes'));
 app.use('/cliente', require('./routes/cliente.routes'));
 app.use('/ciudad', require('./routes/ciudad.routes'));
+app.use('/pais', require('./routes/pais.routes'));
 app.use('/materia', require('./routes/materiaprima.routes'));
 app.use('/movimiento', require('./routes/movimiento.routes'));
 app.use('/contabilidad', require('./routes/contabilidad.routes'));
+app.use('/transporte', require('./routes/transporte.routes'));
+
 
 //app.use('/', require('./routes/auth.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
