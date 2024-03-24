@@ -47,14 +47,16 @@ empleados.addempleado = async(req,res) =>{
     const nom = req.params.p1;
     const pat = req.params.p2;
     const mat = req.params.p3;
-    const emal = req.params.p4;
-    const nacDte = req.params.p5;
-    const ci = req.params.p6;
-    const tel = req.params.p7;
-    const idcarg = req.params.p8;
-    const iddep = req.params.p9;
+    const ism = req.params.p4;
+    const est = req.params.p5;
+    const emal = req.params.p6;
+    const nacDte = req.params.p7;
+    const ci = req.params.p8;
+    const tel = req.params.p9;
+    const idcarg = req.params.p10;
+    const iddep = req.params.p11;
     try {
-        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8,$9)",[nom,pat,mat,emal,nacDte,ci,tel,idcarg,iddep]);
+        await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[nom,pat,mat,ism,est,emal,nacDte,ci,tel,idcarg,iddep]);
 
                 res.status(200).json({
                     message:'Se ha registrado el empleado con éxito.'
@@ -70,22 +72,53 @@ empleados.addempleado = async(req,res) =>{
    
    };
 
+   empleados.editarempleado = async (req, res) => {
+    const idempl = req.body.p1;
+    const nom = req.body.p2;
+    const pat = req.body.p3;
+    const mat = req.body.p4;
+    const ism = req.body.p5;
+    const est = req.body.p6;
+    const emal = req.body.p7;
+    const nacDte = req.body.p8;
+    const ci = req.body.p9;
+    const tel = req.body.p10;
+    const idcarg = req.body.p11;
+    const iddep = req.body.p12;
+
+    try {
+        await pool.query("select proyectoerp.erp_editarempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)", [idempl, nom, pat, mat, ism, est, emal, nacDte, ci, tel, idcarg, iddep]);
+
+        res.status(200).json({
+            message: 'Se ha editado el empleado con éxito.'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error: error.message
+        });
+        console.log("ERROR: " + error.message);
+    }
+};
+/*
 empleados.editarempleado = async(req,res) =>{
     const idempl = req.params.p1;
     const nom = req.params.p2;
     const pat = req.params.p3;
     const mat = req.params.p4;
-    const emal = req.params.p5;
-    const nacDte = req.params.p6;
-    const ci = req.params.p7;
-    const tel = req.params.p8;
-    const idcarg = req.params.p9;
-    const iddep = req.params.p10;
+    const ism = req.params.p5;
+    const est = req.params.p6;
+    const emal = req.params.p7;
+    const nacDte = req.params.p8;
+    const ci = req.params.p9;
+    const tel = req.params.p10;
+    const idcarg = req.params.p11;
+    const iddep = req.params.p12;
     try {
-        await pool.query("select proyectoerp.erp_editarempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[idempl,nom,pat,mat,emal,nacDte,ci,tel,idcarg,iddep]);
+        await pool.query("select proyectoerp.erp_editarempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)",[idempl,nom,pat,mat,ism,est,emal,nacDte,ci,tel,idcarg,iddep]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el empleado con éxito.'
+                   message:'Se ha editado el empleado con éxito.'
              
                })
            
@@ -98,7 +131,7 @@ empleados.editarempleado = async(req,res) =>{
        }
    
    };
-
+*/
 
 
 empleados.getempleado = async(req,res) =>{
