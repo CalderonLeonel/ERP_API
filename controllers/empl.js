@@ -104,7 +104,7 @@ empleados.editarempleado = async(req,res) =>{
 empleados.getempleado = async(req,res) =>{
     const idempl = req.params.p1;
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_getempleado($p1)",[idempl])).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_getempleado($1)",[idempl])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
