@@ -20,6 +20,26 @@ almacen.listarAlmacenes = async (req, res) => {
   }
 };
 
+
+almacen.listarAlmacenesConStock = async (req, res) => {
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacen_con_stock()")).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 almacen.listarAlmacenesActivos = async (req, res) => {
   try {
     const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacen_activo()")).rows;
@@ -61,11 +81,12 @@ almacen.listarAlmacenesInactivos = async (req, res) => {
 
 almacen.agregarAlmacen = async(req,res) =>{
   const nombreAlmacen = req.params.p1;
-  const est= req.params.p2;
+  const descripcion= req.params.p2;
+  const est= req.params.p3;
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_almacen($1,$2)",[nombreAlmacen,est]);
+         await pool.query("select proyectoerp.erp_insertar_almacen($1,$2,$3)",[nombreAlmacen,descripcion,est]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -87,10 +108,11 @@ almacen.agregarAlmacen = async(req,res) =>{
  almacen.actualizarAlmacen = async(req,res) =>{
   const id = req.params.p1;
   const nombreAlmacen = req.params.p2;
-  const est= req.params.p3;
+  const descripcion= req.params.p3;
+  const est= req.params.p4;
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_almacen($1,$2,$3)",[id,nombreAlmacen,est]);
+         await pool.query("select proyectoerp.erp_actualizar_almacen($1,$2,$3,$4)",[id,nombreAlmacen,descripcion,est]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'

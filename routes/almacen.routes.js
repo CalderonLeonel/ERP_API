@@ -4,10 +4,11 @@ import almacen from '../controllers/alm';
 const router = express.Router();
 
 router.get('/listaralmacenes',almacen.listarAlmacenes);
+router.get('/listaralmacenstock',almacen.listarAlmacenesConStock);
 router.get('/listaralmacenesactivos',almacen.listarAlmacenesActivos);
 router.get('/listaralmacenesinactivos',almacen.listarAlmacenesInactivos);
-router.post('/agregaralmacen/:p1,:p2',almacen.agregarAlmacen);
-router.post('/editaralmacen/:p1,:p2,:p3',almacen.actualizarAlmacen);
+router.post('/agregaralmacen/:p1,:p2,:p3',almacen.agregarAlmacen);
+router.post('/editaralmacen/:p1,:p2,:p3,:p4',almacen.actualizarAlmacen);
 router.post('/eliminaralmacen/:p1',almacen.eliminarAlmacen);
 
 
