@@ -147,13 +147,13 @@ ventas.addventacarrito = async (req, res) => {
 
     res.status(200).json({
       message:
-        "Productos del carrito insertados correctamente en la tabla venta_producto",
+        "VENTA REALIZADA CON EXITO",
     });
   } catch (error) {
     await pool.query("ROLLBACK");
     res.status(500).json({
       message:
-        "Error al insertar productos del carrito en la tabla venta_producto",
+        "ERROR AL REALIZAR LA VENTA, PONGASE EN CONTACTO CON SISTEMAS",
       error,
     });
   }

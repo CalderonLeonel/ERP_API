@@ -106,11 +106,11 @@ productos.addproducto = async (req, res) => {
     ]);
 
     res.status(200).json({
-      message: "SE GUARDARON LOS CAMBIOS!!!",
+      message: "REGISTRO INSERTADO CORRECTAMENTE!!!",
     });
   } catch (error) {
     res.status(500).json({
-      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      message: "ERROR INESPERADO COMUNIQUESE CON SISTEMAS, GRACIAS !!!",
       error,
     });
   }
