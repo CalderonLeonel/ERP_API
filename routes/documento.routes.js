@@ -13,5 +13,6 @@ router.get('/listararchivos/',documento.getListFiles);
 router.get('/listararchivosadq/',documento.getListFilesAdq);
 router.get('/listararchivosinv/',documento.getListFilesInv);
 router.get('/obtenerUltimo/',documento.getLastDoc);
+router.get('/listarempleadosdespedidos/',documento.getFiredEmployees);
 
 module.exports = router;
