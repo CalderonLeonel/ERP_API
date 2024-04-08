@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/listaralmacenes',almacen.listarAlmacenes);
 router.get('/listaralmacenstock',almacen.listarAlmacenesConStock);
+router.get('/listaralmacenConProd',almacen.listarAlmacenesConProductos);
 router.get('/listaralmacenesactivos',almacen.listarAlmacenesActivos);
 router.get('/listaralmacenesinactivos',almacen.listarAlmacenesInactivos);
 router.post('/agregaralmacen/:p1,:p2,:p3',almacen.agregarAlmacen);
