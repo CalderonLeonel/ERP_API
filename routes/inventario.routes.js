@@ -15,6 +15,7 @@ router.post('/eliminarinventario/:p1', inventario.anularTransaccion);
 
 router.get('/listarstockalmacen', inventario.listarStockAlmacen);
 router.get('/listarstock/:p1', inventario.listarStock);
+router.get('/listarProductos/:p1', inventario.listarProductos);
 
 
 router.get('/listaritem', inventario.listarItem);
