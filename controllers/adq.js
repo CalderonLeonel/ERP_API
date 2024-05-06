@@ -244,6 +244,27 @@ adquisicion.listarDetalleCotizacion = async (req, res) => {
   }
 };
 
+adquisicion.getLastPrice = async (req, res) => {
+  const id_cotizacion = req.params.p1;
+  const id_item = req.params.p2;
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_get_item_price($1,$2)",[id_cotizacion, id_item])).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 
 adquisicion.agregarcotizacionitem  = async(req,res) =>{
   const id_cotizacion = req.params.p1;

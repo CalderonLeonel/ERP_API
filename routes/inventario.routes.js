@@ -44,4 +44,7 @@ router.get('/listarstanditem/:p1', inventario.listardetallestand);
 
 router.get('/listarexistencias/', inventario.listarExistencias);
 
+router.get('/listarsaldoalmacenitem/', inventario.listarSaldoAlmacenItem);
+router.get('/listarsaldoitem/:p1', inventario.listarSaldoItem);
+
 module.exports = router;
