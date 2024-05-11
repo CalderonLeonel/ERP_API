@@ -140,6 +140,37 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
  
  };
 
+ adquisicion.actualizarcotizacionadquisicionarchivo  = async(req,res) =>{
+  const id = req.params.p1;
+  const id_usuario = req.params.p2;
+  const id_proveedor = req.params.p3;
+  const nombreCotizacion= req.params.p4;
+  const fechaVencimiento= req.params.p5;
+  const [year, month, day] = fechaVencimiento.split('-');
+  const fechaVen = `${year}/${month}/${day}`;
+  const est  = req.params.p6;
+  const archivo  = req.params.p7;
+  
+  
+  
+   try {
+         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5,$6,$7)",[id,id_usuario,id_proveedor,nombreCotizacion,fechaVen,est,archivo]);
+                           
+             res.status(200).json({
+                 message:'SE GUARDARON LOS CAMBIOS :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
  
  adquisicion.eliminarcotizacionadquisicion = async(req,res) =>{
   const id = req.params.p1;
