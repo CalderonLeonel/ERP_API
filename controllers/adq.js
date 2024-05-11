@@ -90,10 +90,11 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   const [year, month, day] = fechaVencimiento.split('-');
   const fechaVen = `${year}/${month}/${day}`;
   const est  = req.params.p5;
+  const archivo  = req.params.p6;
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id_usuario,id_proveedor,nombreCotizacion,fechaVen,est]);
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4,$5,$6)",[id_usuario,id_proveedor,nombreCotizacion,fechaVen,est,archivo]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'

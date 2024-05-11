@@ -64,11 +64,11 @@ proveedor.agregarProveedor = async(req,res) =>{
   const contacto2= req.params.p3;
   const correo = req.params.p4;
   const est  = req.params.p5;
-  
+  const archivo  = req.params.p6;
   
   
    try {
-         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5)",[nombre,contacto1,contacto2,correo,est]);
+         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5,$6)",[nombre,contacto1,contacto2,correo,est,archivo]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
