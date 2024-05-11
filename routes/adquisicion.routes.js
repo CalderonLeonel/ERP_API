@@ -8,8 +8,9 @@ router.get('/listarcotizaciondeadquisicionactiva',adquisicion.listarCotizacionAd
 router.get('/listarcotizaciondeadquisicionpendiente',adquisicion.listarCotizacionAdquisicionPendiente);
 router.get('/listarcotizaciondeadquisicioninactiva',adquisicion.listarCotizacionAdquisicionAnulada);
 
-router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionadquisicion);
+router.post('/agregarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5,:p6',adquisicion.agregarcotizacionadquisicion);
 router.post('/actualizarcotizacionadquisicion/:p1,:p2,:p3,:p4,:p5,:p6',adquisicion.actualizarcotizacionadquisicion);
+router.post('/actualizarcotizacionadquisicionarchivo/:p1,:p2,:p3,:p4,:p5,:p6,:p7',adquisicion.actualizarcotizacionadquisicionarchivo);
 router.post('/eliminarcotizacionadquisicion/:p1',adquisicion.eliminarcotizacionadquisicion);
 
 
