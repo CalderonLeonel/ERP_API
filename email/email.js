@@ -12,6 +12,7 @@ const transporter = nodemailer.createTransport({
   });
   
 //Revisa si el usuario y contraseña del correo funcionan
+//NOTA IMPORTANTE: Si por alguna razon esta verificacion falla, la compilacion de ERP_API fallará, para solucionarlo, comenta este metodo
 transporter.verify().then(() => {
     console.log('LOG: Correo Electrónico listo para enviar.');
 })
