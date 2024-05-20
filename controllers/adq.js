@@ -81,8 +81,37 @@ adquisicion.listarCotizacionAdquisicionAnulada = async (req, res) => {
   }
 };
 
-
 adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
+  const id_usuario = req.params.p1;
+  const id_proveedor = req.params.p2;
+  const nombreCotizacion= req.params.p3;
+  const fechaVencimiento= req.params.p4;
+  const [year, month, day] = fechaVencimiento.split('-');
+  const fechaVen = `${year}/${month}/${day}`;
+  const est  = req.params.p5;
+  
+  
+   try {
+         await pool.query("select proyectoerp.erp_insertar_cotizacion_adquisicion($1,$2,$3,$4,$5)",[id_usuario,id_proveedor,nombreCotizacion,fechaVen,est]);
+                           
+             res.status(200).json({
+                 message:'CAMPO GUARDADO CORRECTAMENTE :)'
+           
+             })
+         
+                    
+     } catch (error) {
+         res.status(500).json({
+             message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+             error
+         })
+     }
+ 
+ };
+
+
+
+adquisicion.agregarcotizacionadquisicionarchivo  = async(req,res) =>{
   const id_usuario = req.params.p1;
   const id_proveedor = req.params.p2;
   const nombreCotizacion= req.params.p3;
@@ -155,7 +184,7 @@ adquisicion.agregarcotizacionadquisicion  = async(req,res) =>{
   
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion($1,$2,$3,$4,$5,$6,$7)",[id,id_usuario,id_proveedor,nombreCotizacion,fechaVen,est,archivo]);
+         await pool.query("select proyectoerp.erp_actualizar_cotizacion_adquisicion_archivo($1,$2,$3,$4,$5,$6,$7)",[id,id_usuario,id_proveedor,nombreCotizacion,fechaVen,est,archivo]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
