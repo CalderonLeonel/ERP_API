@@ -309,7 +309,7 @@ documento.listardocumentoscontrato = async (req, res) => {
   }
 };
 
-documento.listardocumentosalertas = async (req, res) => {
+documento.listardocumentosalerta = async (req, res) => {
   try {
     const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_alerta_archivo()")).rows;
     if (resultado.length > 0) {
