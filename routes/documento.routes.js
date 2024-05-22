@@ -13,5 +13,10 @@ router.get('/listararchivos/',documento.getListFiles);
 router.get('/listararchivosadq/',documento.getListFilesAdq);
 router.get('/listararchivosinv/',documento.getListFilesInv);
 router.get('/obtenerUltimo/',documento.getLastDoc);
+router.get('/listarempleadosdespedidos/',documento.getFiredEmployees);
+router.get('/listardocumentosadquisicion',documento.listardocumentosadquisicion);
+router.get('/listardocumentosproveedor',documento.listardocumentosproveedor);
+router.get('/listardocumentosalerta',documento.listardocumentosalerta);
+router.get('/listardocumentoscontrato',documento.listardocumentoscontrato);
 
 module.exports = router;

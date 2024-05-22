@@ -101,6 +101,26 @@ inventario.listarStock = async (req, res) => {
   }
 };
 
+inventario.listarProductos = async (req, res) => {
+  const id_almacen = req.params.p1;
+  try {
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacenamiento_productos($1)",[id_almacen])).rows;
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS:(",
+        NotFount: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
 inventario.agregarTransaccion = async (req, res) => {
 
   const idItem = req.params.p1;
@@ -544,6 +564,47 @@ inventario.listarTipoItem = async (req, res) => {
   inventario.listarExistencias = async (req, res) => {
     try {
       const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_obtener_existencias()")).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+  //saldos
+
+  inventario.listarSaldoAlmacenItem = async (req, res) => {
+    try {
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_almacenes_saldo()")).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+  
+  inventario.listarSaldoItem = async (req, res) => {
+    const id_almacen = req.params.p1;
+    try {
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_saldo_item($1)",[id_almacen])).rows;
       if (resultado.length > 0) {
         res.status(200).json({ resultado });
       } else {
