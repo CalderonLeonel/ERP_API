@@ -1,6 +1,26 @@
 import pool from '../database/Keys'
 const asistencias ={};
 
+asistencias.listarasistencias = async(req,res) =>{
+    try {
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listar_asistencias()")).rows;
+        if (resultado.length>0){
+            res.status(200).json({resultado});
+        }
+        else {
+            res.status(200).json({
+                message:"No existe ningun registro.",
+                NotFount:true,
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error
+        })
+        console.log("ERROR: "+error.message);
+    }
+};
 asistencias.listarasistenciasdeldia = async(req,res) =>{
     try {
         const resultado = await(await pool.query("select * from proyectoerp.erp_listar_asistencias_del_dia()")).rows;
