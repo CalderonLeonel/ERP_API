@@ -45,7 +45,7 @@ empleados.listarempleadossinc = async(req,res) =>{
 
 empleados.listarempleadosactivos = async(req,res) =>{
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_listarempleadossinc()")).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listar_empleados_activos()")).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
@@ -198,11 +198,10 @@ empleados.editarempleado = async(req,res) =>{
    };
 */
 
-
 empleados.getempleado = async(req,res) =>{
     const idempl = req.params.p1;
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_getempleado($1)",[idempl])).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_get_empleado($1)",[idempl])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
@@ -220,7 +219,6 @@ empleados.getempleado = async(req,res) =>{
         console.log("ERROR: "+error.message);
     }
 };
-
 
 empleados.offempleado = async (req, res) => {
     const idempl = req.params.p1;
