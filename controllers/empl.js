@@ -43,6 +43,27 @@ empleados.listarempleadossinc = async(req,res) =>{
   }
 };
 
+empleados.listarempleadosactivos = async(req,res) =>{
+    try {
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listar_empleados_activos()")).rows;
+        if (resultado.length>0){
+            res.status(200).json({resultado});
+        }
+        else {
+            res.status(200).json({
+                message:"No hay empleados registrados",
+                NotFount:true,
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error
+        })
+        console.log("ERROR: "+error.message);
+    }
+  };
+
 empleados.addempleado = async(req,res) =>{
     const nom = req.params.p1;
     const pat = req.params.p2;
@@ -57,6 +78,33 @@ empleados.addempleado = async(req,res) =>{
     const iddep = req.params.p11;
     try {
         await pool.query("select proyectoerp.erp_addempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[nom,pat,mat,ism,est,emal,nacDte,ci,tel,idcarg,iddep]);
+
+                res.status(200).json({
+                    message:'Se ha registrado el empleado con éxito.'
+               })
+           
+    } catch (error) {
+           res.status(500).json({
+               message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+               error
+           })
+           console.log("ERROR: "+error.message);
+       }
+   
+   };
+   empleados.addempleadosinmaterno = async(req,res) =>{
+    const nom = req.params.p1;
+    const pat = req.params.p2;
+    const ism = req.params.p3;
+    const est = req.params.p4;
+    const emal = req.params.p5;
+    const nacDte = req.params.p6;
+    const ci = req.params.p7;
+    const tel = req.params.p8;
+    const idcarg = req.params.p9;
+    const iddep = req.params.p10;
+    try {
+        await pool.query("select proyectoerp.erp_addempleadosinmaterno($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[nom,pat,ism,est,emal,nacDte,ci,tel,idcarg,iddep]);
 
                 res.status(200).json({
                     message:'Se ha registrado el empleado con éxito.'
@@ -100,6 +148,23 @@ empleados.addempleado = async(req,res) =>{
         console.log("ERROR: " + error.message);
     }
 };
+empleados.subirfoto = async (req, res) => {
+    const idempl = req.body.p1;
+    const url = req.body.p2;
+    try {
+        await pool.query("select proyectoerp.erp_subirfoto($1,$2)", [idempl, url]);
+
+        res.status(200).json({
+            message: 'Se ha subido la foto con éxito.'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error: error.message
+        });
+        console.log("ERROR: " + error.message);
+    }
+};
 /*
 empleados.editarempleado = async(req,res) =>{
     const idempl = req.params.p1;
@@ -133,11 +198,10 @@ empleados.editarempleado = async(req,res) =>{
    };
 */
 
-
 empleados.getempleado = async(req,res) =>{
     const idempl = req.params.p1;
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_getempleado($1)",[idempl])).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_get_empleado($1)",[idempl])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
@@ -155,7 +219,6 @@ empleados.getempleado = async(req,res) =>{
         console.log("ERROR: "+error.message);
     }
 };
-
 
 empleados.offempleado = async (req, res) => {
     const idempl = req.params.p1;

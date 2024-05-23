@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.get('/listarsectores', sectores.listarsectores);
+router.get('/listarsectoresdedepartamento/:p1', sectores.listarSectoresDeDepartamento);
 router.post('/addsector/:p1,:p2', sectores.addsector);
 router.post('/asignarturnoasector/:p1,:p2', sectores.asignarturnoasector);
 router.post('/editarsector/:p1,:p2,:p3', sectores.editarsector);
