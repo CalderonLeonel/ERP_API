@@ -21,6 +21,27 @@ sectores.listarsectores = async(req,res) =>{
         console.log("ERROR: "+error.message);
     }
 };
+sectores.listarSectoresDeDepartamento = async(req,res) =>{
+  const iddepsec = req.params.p1;
+  try {
+      const resultado = await(await pool.query("select * from proyectoerp.erp_listar_sectores_de_departamento($1)",[iddepsec])).rows;
+      if (resultado.length>0){
+          res.status(200).json({resultado});
+      }
+      else {
+          res.status(200).json({
+              message:"No existe ningun sector.",
+              NotFount:true,
+          });
+      }
+  } catch (error) {
+      res.status(500).json({
+          message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+          error
+      })
+      console.log("ERROR: "+error.message);
+  }
+};
 
 sectores.addsector = async(req,res) =>{
     const nom = req.params.p1;

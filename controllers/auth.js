@@ -13,7 +13,8 @@ authentication.signin = async(req,res) =>{
              tipo:usuario[0].tipo,
              nombres:usuario[0].nombres,
              paterno:usuario[0].paterno,
-             materno:usuario[0].materno
+             materno:usuario[0].materno,
+             id_fabrica:usuario[0].id_fabrica
             });
         }
         else {

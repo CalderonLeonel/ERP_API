@@ -15,6 +15,7 @@ router.post('/eliminarinventario/:p1', inventario.anularTransaccion);
 
 router.get('/listarstockalmacen', inventario.listarStockAlmacen);
 router.get('/listarstock/:p1', inventario.listarStock);
+router.get('/listarProductos/:p1', inventario.listarProductos);
 
 
 router.get('/listaritem', inventario.listarItem);
@@ -42,5 +43,8 @@ router.get('/listarstanditem/:p1', inventario.listardetallestand);
 
 
 router.get('/listarexistencias/', inventario.listarExistencias);
+
+router.get('/listarsaldoalmacenitem/', inventario.listarSaldoAlmacenItem);
+router.get('/listarsaldoitem/:p1', inventario.listarSaldoItem);
 
 module.exports = router;

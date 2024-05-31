@@ -91,7 +91,7 @@ app.use('/materia', require('./routes/materiaprima.routes'));
 app.use('/movimiento', require('./routes/movimiento.routes'));
 app.use('/contabilidad', require('./routes/contabilidad.routes'));
 app.use('/transporte', require('./routes/transporte.routes'));
-
+app.use('/asistencia', require('./routes/asistencia.routes'));
 
 //app.use('/', require('./routes/auth.routes'));
 app.use('/proveedor', require('./routes/proveedor.routes'));
@@ -113,6 +113,7 @@ app.use('/contrato', require('./routes/contrato.routes'));
 app.use('/observacion', require('./routes/observacion.routes'));
 app.use('/vacacion', require('./routes/vacacion.routes'));
 app.use('/horario', require('./routes/horario.routes'));
+
 
 
 
