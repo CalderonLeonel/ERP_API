@@ -162,7 +162,7 @@ contabilidad.reducirsaldo = async (req, res) => {
   const mont = req.params.p2;
 
   try {
-    await pool.query("select proyectoerp.erp_reducirsaldo($1,$2)", [
+    await pool.query("select proyectoerp.erp_reducirsaldocuentacontable($1,$2)", [
       idcue,
       mont,
     ]);

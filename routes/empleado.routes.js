@@ -21,4 +21,13 @@ router.post('/offalerta/:p1', empleados.offalerta);
 
 router.post('/subirfoto', empleados.subirfoto);
 
+router.get('/generarplanilla',empleados.generarPlanilla);
+
+// Rutas para gestionar pagos
+router.get('/pagos', empleados.listarPagos);
+router.post('/pagos', empleados.addPago);
+router.put('/pagos', empleados.editarPago);
+router.delete('/pagos/:id_pago', empleados.eliminarPago);
+
+
 module.exports = router;
