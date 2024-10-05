@@ -436,7 +436,7 @@ empleados.addPago = async (req, res) => {
   const descr = req.params.p4
   try {
     await pool.query(
-      "INSERT INTO proyectoerp.pagos ($1,$2,$3,$4) VALUES ($1, $2, $3, $4)",
+      "SELECT * FROM proyectoerp.erp_addpago($1,$2,$3,$4) VALUES ($1, $2, $3, $4)",
       [idempl, idcar, mon, descr]
     );
 
