@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.get('/listardepartamentos', departamentos.listardepartamentos);
+router.get('/listardepartamentosactivos', departamentos.listardepartamentosactivos);
 router.post('/adddepartamento/:p1,:p2,:p3', departamentos.adddepartamento);
 router.post('/editardepartamento/:p1,:p2,:p3,:p4', departamentos.editardepartamento);
 router.post('/offdepartamento/:p1', departamentos.offdepartamento);

@@ -22,6 +22,27 @@ cargos.listarcargos = async(req,res) =>{
     }
 };
 
+cargos.listarcargosactivos = async(req,res) =>{
+    try {
+        const resultado = await(await pool.query("select * from proyectoerp.erp_listar_cargos_activos()")).rows;
+        if (resultado.length>0){
+            res.status(200).json({resultado});
+        }
+        else {
+            res.status(200).json({
+                message:"No existe ningun cargo.",
+                NotFount:true,
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error
+        })
+        console.log("ERROR: "+error.message);
+    }
+};
+
 cargos.addcargo = async(req,res) =>{
     const carg = req.params.p1;
     const descrip = req.params.p2;
