@@ -23,11 +23,17 @@ router.post('/subirfoto', empleados.subirfoto);
 
 router.get('/generarplanilla',empleados.generarPlanilla);
 
-// Rutas para gestionar pagos
-router.get('/pagos', empleados.listarPagos);
-router.post('/pagos', empleados.addPago);
-router.put('/pagos', empleados.editarPago);
-router.delete('/pagos/:id_pago', empleados.eliminarPago);
+// Rutas para la gestión de pagos y planilla de empleados
+router.post('/pagarplanilla/:p1/:p2', empleados.pagarplanilla);  // Pagar toda la planilla y reducir saldo en cuenta contable
+
+// Rutas para pago individual de empleados
+router.post('/addpago/:p1/:p2/:p3/:p4', empleados.addPago);  // Añadir un pago individual
+
+// Otras rutas CRUD de pagos individuales
+router.get('/pagos', empleados.listarPagos);  // Listar todos los pagos
+router.post('/editpago/:p1', empleados.editarPago);  // Editar un pago específico
+router.post('/deletepago/:p1', empleados.eliminarPago);  // Eliminar un pago específico
+
 
 
 module.exports = router;

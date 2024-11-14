@@ -384,18 +384,26 @@ empleados.pagarplanilla = async (req, res) => {
   const montoTotal = req.params.p2;
 
   try {
+    // Iniciar la transacción
+    await pool.query("BEGIN");
+
     // Reducir el saldo de la cuenta contable
-    await pool.query("SELECT proyectoerp.erp_reducirsaldo($1, $2)", [
+    await pool.query("SELECT proyectoerp.erp_reducirsaldocuentacontable($1, $2)", [
       idCuentaContable,
       montoTotal,
     ]);
 
-    // Aquí podrías agregar la lógica para actualizar otros estados relacionados si es necesario
+    // Aquí podrías agregar cualquier otra lógica de actualización
+
+    // Confirmar la transacción
+    await pool.query("COMMIT");
 
     res.status(200).json({
       message: "Planilla pagada y saldo reducido correctamente",
     });
   } catch (error) {
+    // Revertir la transacción en caso de error
+    await pool.query("ROLLBACK");
     res.status(500).json({
       message:
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
@@ -433,17 +441,26 @@ empleados.addPago = async (req, res) => {
   const idempl = req.params.p1;
   const idcar = req.params.p2;
   const mon = req.params.p3;
-  const descr = req.params.p4
+  const descr = req.params.p4;
+
   try {
+    // Iniciar la transacción
+    await pool.query("BEGIN");
+
     await pool.query(
-      "SELECT * FROM proyectoerp.erp_addpago($1,$2,$3,$4) VALUES ($1, $2, $3, $4)",
+      "SELECT proyectoerp.erp_addpago($1, $2, $3, $4)",
       [idempl, idcar, mon, descr]
     );
+
+    // Confirmar la transacción
+    await pool.query("COMMIT");
 
     res.status(200).json({
       message: "Pago registrado con éxito.",
     });
   } catch (error) {
+    // Revertir la transacción en caso de error
+    await pool.query("ROLLBACK");
     res.status(500).json({
       message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
       error,
@@ -451,20 +468,29 @@ empleados.addPago = async (req, res) => {
     console.log("ERROR: " + error.message);
   }
 };
+
 
 // Editar un pago
 empleados.editarPago = async (req, res) => {
   const { id_pago, id_empleado, id_cargo, monto, descripcion } = req.body;
   try {
+    // Iniciar la transacción
+    await pool.query("BEGIN");
+
     await pool.query(
       "UPDATE proyectoerp.pagos SET id_empleado = $1, id_cargo = $2, monto = $3, descripcion = $4, last_update = CURRENT_TIMESTAMP WHERE id_pago = $5",
       [id_empleado, id_cargo, monto, descripcion, id_pago]
     );
 
+    // Confirmar la transacción
+    await pool.query("COMMIT");
+
     res.status(200).json({
       message: "Pago editado con éxito.",
     });
   } catch (error) {
+    // Revertir la transacción en caso de error
+    await pool.query("ROLLBACK");
     res.status(500).json({
       message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
       error,
@@ -472,6 +498,7 @@ empleados.editarPago = async (req, res) => {
     console.log("ERROR: " + error.message);
   }
 };
+
 
 // Eliminar un pago
 empleados.eliminarPago = async (req, res) => {
