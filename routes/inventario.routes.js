@@ -37,6 +37,7 @@ router.get('/listartipodeiteminactivo', inventario.listarTipoItemInactivo);
 router.post('/agregartipodeitem/:p1,:p2', inventario.agregarTipoItem);
 router.post('/actualizartipodeitem/:p1,:p2,:p3', inventario.actualizarTipoItem);
 router.post('/eliminartipodeitem/:p1', inventario.eliminarTipoItem);
+router.post('/activartipodeitem/:p1', inventario.activarTipoItem);
 
 
 router.get('/listarstanditem/:p1', inventario.listardetallestand);
