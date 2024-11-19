@@ -27,8 +27,7 @@ ventas.listarventas = async (req, res) => {
 ventas.listardetalleventa = async (req, res) => {
   try {
     const id_venta = req.params.p1;
-    const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listardetalleventa($1)",[id_venta]).rows);
+    const resultado = await(await pool.query("select * from proyectoerp.erp_listardetalleventa($1)",[id_venta])).rows;
 
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
