@@ -24,7 +24,7 @@ ventas.listarventas = async (req, res) => {
   }
 };
 
-ventas.listardetalleventas = async (req, res) => {
+ventas.listardetalleventa = async (req, res) => {
   try {
     const id_venta = req.params.p1;
     const resultado = await (
