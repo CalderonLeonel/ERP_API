@@ -24,10 +24,14 @@ ventas.listarventas = async (req, res) => {
   }
 };
 
-ventas.listardetalleventa = async (req, res) => {
+ventas.listardetalle = async (req, res) => {
+  const idven = req.params.p1;
   try {
-    const id_venta = req.params.p1;
-    const resultado = await(await pool.query("select * from proyectoerp.erp_listardetalleventa($1)",[id_venta])).rows;
+    const resultado = await (
+      await pool.query("select * from proyectoerp.erp_listardetalleventa($1)", [
+        idven,
+      ])
+    ).rows;
 
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
@@ -69,48 +73,88 @@ ventas.listarventasinh = async (req, res) => {
   }
 };
 
-ventas.registrarventa = async (req, res) => {
-  const ventas = Array.isArray(req.body) ? req.body : [];  // Esperas recibir un array de ventas
-
+ventas.ultimaventa = async (req, res) => {
   try {
-    // Itera sobre cada venta y ejecuta la consulta para registrarla en la base de datos
-    for (const venta of ventas) {
-      const {
-        idProducto,
-        cantidad,
-        precioUnitario,
-        total,
-        codigoControl,
-        nit,
-        razonSocial,
-        idCliente,
-        idEmpleado,
-      } = venta;
+    const resultado = await (
+      await pool.query("select * from proyectoerp.erp_ultima_venta()")
+    ).rows;
 
-      await pool.query(
-        "select proyectoerp.erp_registrarventas($1,$2,$3,$4,$5,$6,$7,$8,$9)",
-        [
-          idProducto,
-          cantidad,
-          precioUnitario,
-          total,
-          codigoControl,
-          nit,
-          razonSocial,
-          idCliente,
-          idEmpleado,
-        ]
-      );
+    if (resultado.length > 0) {
+      res.status(200).json({ resultado });
+    } else {
+      res.status(200).json({
+        message: "NO EXISTEN DATOS",
+        NotFount: true,
+      });
     }
-
-    res.status(200).json({
-      message: "VENTAS REALIZADAS CORRECTAMENTE",
-    });
   } catch (error) {
     res.status(500).json({
       message:
-        "ERROR INESPERADO. REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
-      error: error.message,
+        "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+ventas.addventa = async (req, res) => {
+  const totven = req.params.p1;
+  const codctrl = req.params.p2; 
+  const nitcli = req.params.p3;
+  const razsoc = req.params.p4 
+  const idcli = req.params.p5 
+  const idempl = req.params.p6 
+
+  console.log("Valores de req.params:", totven, codctrl, nitcli, razsoc, idcli, idempl);
+
+  try {
+
+    await pool.query("BEGIN");
+
+    await pool.query(
+      "select proyectoerp.erp_registrarventa($1,$2,$3,$4,$5,$6)",
+      [totven, codctrl, nitcli, razsoc, idcli, idempl]
+    );
+
+    await pool.query("COMMIT");
+    res.status(200).json({
+      message: "REGISTRO INSERTADO CORRECTAMENTE",
+    });
+  } catch (error) {
+    await pool.query("ROLLBACK");
+    res.status(500).json({
+      message:
+        "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
+      error,
+    });
+  }
+};
+
+ventas.addventacarrito = async (req, res) => {
+  const { idProducto, cantidad, precioUnitario } = req.body;
+  console.log(req.body)
+
+  try {
+    await pool.query("BEGIN");
+
+    // Llamar al procedimiento almacenado para insertar en la tabla venta_producto
+    await pool.query("SELECT proyectoerp.erp_registrar_venta_producto($1, $2, $3)", [
+      idProducto,
+      cantidad,
+      precioUnitario
+    ]);
+
+    await pool.query("COMMIT");
+
+    res.status(200).json({
+      message:
+        "VENTA REALIZADA CON EXITO",
+    });
+  } catch (error) {
+    await pool.query("ROLLBACK");
+    res.status(500).json({
+      message:
+        "ERROR AL REALIZAR LA VENTA, PONGASE EN CONTACTO CON SISTEMAS",
+      error,
     });
   }
 };
