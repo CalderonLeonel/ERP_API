@@ -96,13 +96,16 @@ productos.addproducto = async (req, res) => {
   const idtipo = req.params.p3;
   const idforma = req.params.p4;
   const idfab = req.params.p5;
+  const precuni = req.params.p6;
+
   try {
-    await pool.query("select proyectoerp.erp_addproducto($1,$2,$3,$4,$5)", [
+    await pool.query("select proyectoerp.erp_addproducto($1,$2,$3,$4,$5,$6)", [
       nomprod,
       codprod,
       idtipo,
       idforma,
       idfab,
+      precuni
     ]);
 
     res.status(200).json({
@@ -113,7 +116,8 @@ productos.addproducto = async (req, res) => {
       message: "ERROR INESPERADO COMUNIQUESE CON SISTEMAS, GRACIAS !!!",
       error,
     });
-  }
+    console.log("ERROR: "+error.message);
+  } 
 };
 
 productos.addproductolabo = async (req, res) => {
