@@ -380,18 +380,18 @@ empleados.generarPlanilla = async (req, res) => {
 };
 
 empleados.pagarplanilla = async (req, res) => {
-  const idCuentaContable = req.params.p1;
-  const montoTotal = req.params.p2;
+  // Dividimos el parámetro recibido por la coma
+  const [idCuentaContable, montoTotal] = req.params.params.split(",");
 
   try {
     // Iniciar la transacción
     await pool.query("BEGIN");
 
     // Reducir el saldo de la cuenta contable
-    await pool.query("SELECT proyectoerp.erp_reducirsaldocuentacontable($1, $2)", [
-      idCuentaContable,
-      montoTotal,
-    ]);
+    await pool.query(
+      "SELECT proyectoerp.erp_reducirsaldocuentacontable($1, $2)",
+      [idCuentaContable, montoTotal]
+    );
 
     // Aquí podrías agregar cualquier otra lógica de actualización
 
@@ -438,19 +438,19 @@ empleados.listarPagos = async (req, res) => {
 
 // Añadir un nuevo pago
 empleados.addPago = async (req, res) => {
-  const idempl = req.params.p1;
-  const idcar = req.params.p2;
-  const mon = req.params.p3;
-  const descr = req.params.p4;
+  // Dividir los parámetros recibidos
+  const [idempl, idcar, mon, descr] = req.params.params.split(",");
 
   try {
     // Iniciar la transacción
     await pool.query("BEGIN");
 
-    await pool.query(
-      "SELECT proyectoerp.erp_addpago($1, $2, $3, $4)",
-      [idempl, idcar, mon, descr]
-    );
+    await pool.query("SELECT proyectoerp.erp_addpago($1, $2, $3, $4)", [
+      idempl,
+      idcar,
+      mon,
+      descr,
+    ]);
 
     // Confirmar la transacción
     await pool.query("COMMIT");
@@ -468,7 +468,6 @@ empleados.addPago = async (req, res) => {
     console.log("ERROR: " + error.message);
   }
 };
-
 
 // Editar un pago
 empleados.editarPago = async (req, res) => {
@@ -498,7 +497,6 @@ empleados.editarPago = async (req, res) => {
     console.log("ERROR: " + error.message);
   }
 };
-
 
 // Eliminar un pago
 empleados.eliminarPago = async (req, res) => {

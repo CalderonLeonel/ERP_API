@@ -19,7 +19,7 @@ router.get('/listarasientos', contabilidad.listarasientoscontables);
 router.get('/listarasientosxfechas/:p1,:p2', contabilidad.listarasientoscontablesxfechas);
 router.get('/listarasientosxcuenta/:p1', contabilidad.listarasientoscontablesxcuenta);
 router.get('/listarasientosinh', contabilidad.listarasientoscontablesinh);
-router.post('/addasiento/:p1,:p2,:p3,:p4,:p5', contabilidad.addasiento);
+router.post("/addasiento/:params", contabilidad.addasiento);
 router.post('/updasiento/:id', contabilidad.updasiento);
 router.post('/offasiento/:p1', contabilidad.offasiento);
 router.post('/onasiento/:p1', contabilidad.onasiento);

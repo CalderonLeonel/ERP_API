@@ -290,11 +290,9 @@ contabilidad.listarasientoscontablesinh = async (req, res) => {
 };
 
 contabilidad.addasiento = async (req, res) => {
-  const numref = req.params.p1;
-  const des = req.params.p2;
-  const idcuen = req.params.p3;
-  const mondeb = req.params.p4;
-  const moncre = req.params.p5;
+  // Dividir los parámetros recibidos
+  const [numref, des, idcuen, mondeb, moncre] = req.params.params.split(",");
+
 
   try {
     await pool.query("select proyectoerp.erp_addasientocontable($1,$2,$3,$4,$5)", [
