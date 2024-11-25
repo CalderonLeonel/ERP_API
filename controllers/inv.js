@@ -538,6 +538,29 @@ inventario.listarTipoItem = async (req, res) => {
    
    };
 
+   
+  inventario.activarTipoItem = async(req,res) =>{
+    const id = req.params.p1;
+  
+  
+     try {
+           await pool.query("select proyectoerp.erp_activar_tipodeitem($1)",[id]);
+                             
+               res.status(200).json({
+                   message:'ESTADO CAMBIADO CORRECTAMENTE'
+             
+               })
+           
+                      
+       } catch (error) {
+           res.status(500).json({
+               message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+               error
+           })
+       }
+   
+   };
+
 
    inventario.listardetallestand = async (req, res) => {
     const id_stand = req.params.p1;
