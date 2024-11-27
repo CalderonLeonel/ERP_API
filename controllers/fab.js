@@ -21,6 +21,7 @@ fabricas.listarfabricas = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
@@ -44,6 +45,7 @@ fabricas.listarfabricasinh = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
@@ -51,8 +53,8 @@ fabricas.addfabrica = async (req, res) => {
   const nomfab = req.params.p1;
   const codfab = req.params.p2;
   const dirfab = req.params.p3;
-  const idciu = req.params.p4;
-  const iddep = req.params.p5;
+  const idpai = req.params.p4;
+  const idciu = req.params.p5;
 
   try {
     await pool.query("select proyectoerp.erp_addfabrica($1,$2,$3,$4,$5)", [
@@ -60,7 +62,7 @@ fabricas.addfabrica = async (req, res) => {
       codfab,
       dirfab,
       idciu,
-      iddep
+      idpai
     ]);
 
     res.status(200).json({
@@ -72,6 +74,7 @@ fabricas.addfabrica = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
@@ -80,8 +83,9 @@ fabricas.updfabrica = async (req, res) => {
   const nomfab = req.params.p2;
   const codfab = req.params.p3;
   const dirfab = req.params.p4;
-  const iddep = req.params.p5;
-  const idciu = req.params.p6;
+  const idciu = req.params.p5;
+  const idpai = req.params.p6;
+  
 
 
   try {
@@ -90,8 +94,8 @@ fabricas.updfabrica = async (req, res) => {
       nomfab,
       codfab,
       dirfab,
-      iddep,
-      idciu
+      idciu,
+      idpai
     ]);
 
     res.status(200).json({
