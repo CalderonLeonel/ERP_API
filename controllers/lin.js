@@ -52,7 +52,7 @@ lineas.addlinea = async (req, res) => {
     const nomprod = req.params.p1;
     const codprod = req.params.p2;
   try {
-    await pool.query("select proyectoerp.erp_addlinea($1,$2)", [
+    await pool.query("SELECT proyectoerp.erp_addlinea($1,$2)", [
       nomprod,
       codprod,
     ]);

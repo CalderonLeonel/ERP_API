@@ -106,6 +106,7 @@ app.use('/turno', require('./routes/turno.routes'));
 app.use('/unidad', require('./routes/unidad.routes'));
 app.use('/area', require('./routes/area.routes'));
 app.use('/departamento', require('./routes/departamento.routes'));
+app.use('/departamentos', require('./routes/departamentos.routes'));
 app.use('/sector', require('./routes/sector.routes'));
 app.use('/solicitud', require('./routes/solicitud.routes'));
 app.use('/contrato', require('./routes/contrato.routes'));
