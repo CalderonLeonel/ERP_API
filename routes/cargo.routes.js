@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.get('/listarcargos', cargos.listarcargos);
+router.get('/listarcargosactivos', cargos.listarcargosactivos);
 router.post('/addcargo/:p1,:p2,:p3', cargos.addcargo);
 router.post('/editarcargo/:p1,:p2,:p3,:p4', cargos.editarcargo);
 router.post('/deletecargo/:p1', cargos.deletecargo);

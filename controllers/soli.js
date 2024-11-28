@@ -95,4 +95,20 @@ solicitudes.denysolicitud = async (req, res) => {
     }
   };
 
+  solicitudes.deletesolicitud = async(req,res) =>{
+    const idsoli = req.params.p1;
+    try {
+        await pool.query("select proyectoerp.erp_delete_solicitud_personal($1)",[idsoli]);
+        res.status(200).json({
+            message:'Se ha eliminado la solicitud con éxito'
+        })
+    } catch (error) {
+        res.status(500).json({
+            message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+            error
+        })
+        console.log("ERROR: "+error.message);
+    }
+};
+
 module.exports = solicitudes;
