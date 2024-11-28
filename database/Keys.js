@@ -14,7 +14,7 @@ const pool = new Pool({
     port : '5432',
     user : 'postgres',
     password : "univalle",
-    database :'erp_produccion_last'
+    database :'proyectoerp'
 });
 */
 
