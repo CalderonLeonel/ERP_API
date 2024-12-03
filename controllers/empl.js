@@ -187,23 +187,27 @@ empleados.editarempleado = async (req, res) => {
       console.log("ERROR: " + error.message);
     }
   };
-  empleados.subirfoto = async (req, res) => {
-    const idempl = req.body.p1;
-    const url = req.body.p2;
-    try {
-      await pool.query("select proyectoerp.erp_subirfoto($1,$2)", [idempl, url]);
 
-      res.status(200).json({
-        message: "Se ha subido la foto con éxito.",
-      });
+  
+  empleados.subirfoto = async (req, res) => {
+    const idempl = req.params.p1;  
+    const url = req.params.p2;  
+
+    try {
+        await pool.query("select proyectoerp.erp_subirfoto($1,$2)", [idempl, url]);
+
+        res.status(200).json({
+            message: "Se guardo la foto con éxito.",
+        });
     } catch (error) {
-      res.status(500).json({
-        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
-        error: error.message,
-      });
-      console.log("ERROR: " + error.message);
+        res.status(500).json({
+            message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+            error: error.message,
+        });
+        console.log("ERROR: " + error.message);
     }
-  };
+};
+
 
   empleados.getempleado = async (req, res) => {
     const idempl = req.params.p1;
