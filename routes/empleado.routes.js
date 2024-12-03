@@ -19,7 +19,7 @@ router.post('/addalerta/', empleados.crearalertas);
 router.post('/editaralerta/:p1,:p2,:p3', empleados.editaralertas)
 router.post('/offalerta/:p1', empleados.offalerta);
 
-router.post('/subirfoto', empleados.subirfoto);
+router.post('/subirfoto/:p1,:p2', empleados.subirfoto);
 
 router.get('/generarplanilla',empleados.generarPlanilla);
 
