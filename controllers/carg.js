@@ -86,7 +86,7 @@ cargos.editarcargo = async(req,res) =>{
 cargos.deletecargo = async(req,res) =>{
     const idcargo = req.params.p1;
     try {
-        await pool.query("select proyectoerp.erp_deletecargo($p1)",[idcargo]);
+        await pool.query("select proyectoerp.erp_deletecargo($1)",[idcargo]);
         res.status(200).json({
             message:'SE GUARDARON LOS CAMBIOS!!!'
         })
@@ -102,7 +102,7 @@ cargos.deletecargo = async(req,res) =>{
 cargos.getcargo = async(req,res) =>{
     const idcargo = req.params.p1;
     try {
-        const resultado = await(await pool.query("select * from proyectoerp.erp_getcargo($p1)",[idcargo])).rows;
+        const resultado = await(await pool.query("select * from proyectoerp.erp_getcargo($1)",[idcargo])).rows;
         if (resultado.length>0){
             res.status(200).json({resultado});
         }
