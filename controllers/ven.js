@@ -183,9 +183,10 @@ ventas.editarventa = async (req, res) => {
 };
 
 ventas.offventa = async (req, res) => {
-  const idlin = req.params.p1;
+  const idven = req.params.p1;
+  const moti = req.params.p2;
   try {
-    await pool.query("select proyectoerp.erp_offventa($1)", [idlin]);
+    await pool.query("select proyectoerp.erp_offventa($1, $2)", [idven, moti]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
