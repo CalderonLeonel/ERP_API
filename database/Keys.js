@@ -1,6 +1,6 @@
 import {Pool} from 'pg';
 
-
+/*
 const pool = new Pool({
     host : '34.30.71.80',
     port : '5432',
@@ -8,7 +8,7 @@ const pool = new Pool({
     password : "u-DM'%v-92TYq&m.",
     database :'proyectoerp'
 });
-/*
+*/
 const pool = new Pool({
     host : '127.0.0.1',
     port : '5432',
@@ -16,6 +16,6 @@ const pool = new Pool({
     password : "univalle",
     database :'proyectoerp'
 });
-*/
+
 
 module.exports = pool;

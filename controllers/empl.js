@@ -116,7 +116,7 @@ empleados.editarempleado = async (req, res) => {
   const tel = req.body.p10;
   const idcarg = req.body.p11;
   const iddep = req.body.p12;
-  const idsect = req.body.p13
+  const idsect = req.body.p13;
 
   try {
     await pool.query("select proyectoerp.erp_editarempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)", [idempl, nom, pat, mat, ism, est, emal, nacDte, ci, tel, idcarg, iddep, idsect]);
@@ -156,39 +156,6 @@ empleados.editarempleado = async (req, res) => {
     }
   };
 
-  empleados.editarempleado = async (req, res) => {
-    const idempl = req.body.p1;
-    const nom = req.body.p2;
-    const pat = req.body.p3;
-    const mat = req.body.p4;
-    const ism = req.body.p5;
-    const est = req.body.p6;
-    const emal = req.body.p7;
-    const nacDte = req.body.p8;
-    const ci = req.body.p9;
-    const tel = req.body.p10;
-    const idcarg = req.body.p11;
-    const iddep = req.body.p12;
-
-    try {
-      await pool.query(
-        "select proyectoerp.erp_editarempleado($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)",
-        [idempl, nom, pat, mat, ism, est, emal, nacDte, ci, tel, idcarg, iddep]
-      );
-
-      res.status(200).json({
-        message: "Se ha editado el empleado con éxito.",
-      });
-    } catch (error) {
-      res.status(500).json({
-        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
-        error: error.message,
-      });
-      console.log("ERROR: " + error.message);
-    }
-  };
-
-  
   empleados.subirfoto = async (req, res) => {
     const idempl = req.params.p1;  
     const url = req.params.p2;  
