@@ -62,7 +62,8 @@ fabricas.addfabrica = async (req, res) => {
       codfab,
       dirfab,
       idciu,
-      idpai
+      idpai,
+      iduni
     ]);
 
     res.status(200).json({
