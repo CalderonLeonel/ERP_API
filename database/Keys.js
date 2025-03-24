@@ -6,7 +6,7 @@ import {Pool} from 'pg';
     port : '5432',
     user : 'postgres',
     password : "u-DM'%v-92TYq&m.",
-    database :'erp_produccion'
+    database :'proyectoerp'
 });*/
 
 const pool = new Pool({
