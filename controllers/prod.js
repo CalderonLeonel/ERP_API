@@ -161,7 +161,7 @@ productos.addproductolabo = async (req, res) => {
     ]);
 
     res.status(200).json({
-      message: "SE GUARDARON LOS CAMBIOS!!!",
+      message: "REGISTRO INSERTADO CORRECTAMENTE!!!",
     });
   } catch (error) {
     res.status(500).json({
