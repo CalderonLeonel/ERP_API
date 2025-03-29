@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/listarcuentas', contabilidad.listarcuentas);
 router.get('/listarcuentasinh', contabilidad.listarcuentasinh);
 router.post('/addcuenta/:p1,:p2,:p3,:p4,:p5', contabilidad.addcuenta);
-router.post('/updcuenta/:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8', contabilidad.updcuenta);
+router.post('/updcuenta/:p1,:p2,:p3,:p4,:p5', contabilidad.updcuenta);
 router.post('/offcuenta/:p1', contabilidad.offcuenta);
 router.post('/oncuenta/:p1', contabilidad.oncuenta);
 router.post('/aumentarsaldo/:p1,:p2', contabilidad.aumentarsaldo);

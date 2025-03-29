@@ -124,6 +124,7 @@ productos.addproducto = async (req, res) => {
   const idforma = req.params.p4;
   const idfab = req.params.p5;
   const precuni = req.params.p6;
+  
   try {
     await pool.query("select proyectoerp.erp_addproducto($1,$2,$3,$4,$5,$6)", [
       nomprod,
@@ -142,7 +143,8 @@ productos.addproducto = async (req, res) => {
       message: "ERROR INESPERADO COMUNIQUESE CON SISTEMAS, GRACIAS !!!",
       error,
     });
-  }
+    console.log("ERROR: "+error.message);
+  } 
 };
 
 productos.addproductolabo = async (req, res) => {

@@ -118,6 +118,7 @@ almacen.agregarAlmacen = async(req,res) =>{
              message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
              error
          })
+         console.log("ERROR: "+error);
      }
  
  };

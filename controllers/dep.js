@@ -22,6 +22,27 @@ departamentos.listardepartamentos = async(req,res) =>{
     }
 };
 
+departamentos.listardepartamentosactivos = async(req,res) =>{
+  try {
+      const resultado = await(await pool.query("select * from proyectoerp.erp_listar_departamentos_activos()")).rows;
+      if (resultado.length>0){
+          res.status(200).json({resultado});
+      }
+      else {
+          res.status(200).json({
+              message:"No existe ningun departamento.",
+              NotFount:true,
+          });
+      }
+  } catch (error) {
+      res.status(500).json({
+          message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
+          error
+      })
+      console.log("ERROR: "+error.message);
+  }
+};
+
 departamentos.adddepartamento = async(req,res) =>{
     const nom = req.params.p1;
     const idunid= req.params.p2;

@@ -2,12 +2,12 @@ import pool from "../database/Keys";
 const ciudades = {};
 
 ciudades.listarciudades = async (req, res) => {
-  const iddep = req.params.p1;
+  const idpai = req.params.p1;
 
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarciudades($1)", [
-        iddep
+      await pool.query("select * from proyectoerp.erp_listarciudades($1::smallint)", [
+        idpai
       ])
     ).rows;
 

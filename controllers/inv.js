@@ -335,7 +335,8 @@ inventario.agregarItem = async (req, res) => {
       res.status(500).json({
           message:'INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!',
           error
-      })
+      });
+      console.log("ERROR: "+error);
   }
 
 
