@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const formatos = {};
+const movimientos = {};
 
-formatos.listarformatos = async (req, res) => {
+movimientos.listarmovimientos = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatos()")
+      await pool.query("select * from proyectoerp.erp_listarmovimientos()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ formatos.listarformatos = async (req, res) => {
   }
 };
 
-formatos.listarformatosinh = async (req, res) => {
+movimientos.listarmovimientosinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatosinh()")
+      await pool.query("select * from proyectoerp.erp_listarmovimientosinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,16 +47,19 @@ formatos.listarformatosinh = async (req, res) => {
   }
 };
 
-formatos.addformato = async (req, res) => {
+movimientos.addmovimiento = async (req, res) => {
+  const codmov = req.params.p1;
+  const idprod = req.params.p2;
+  const idfab = req.params.p3;
+  const idalm = req.params.p4;
+  const cant = req.params.p5;
 
-    const nomforma = req.params.p1;
-    const codforma = req.params.p2;
-    
+
   try {
-    await pool.query("select proyectoerp.erp_addformato($1,$2)", [
-      nomforma,
-      codforma,
-    ]);
+    await pool.query(
+      "select proyectoerp.erp_addmovimiento($1,$2,$3,$4,$5)",
+      [codmov, idprod, idfab, idalm, cant]
+    );
 
     res.status(200).json({
       message: "REGISTRO INSERTADO CORRECTAMENTE",
@@ -70,15 +73,22 @@ formatos.addformato = async (req, res) => {
   }
 };
 
-formatos.updformato = async (req, res) => {
-  const idforma = req.params.p1;
-  const nomforma = req.params.p2;
-  const codforma = req.params.p3;
+movimientos.updmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
+  const codmov = req.params.p2;
+  const idprod = req.params.p3;
+  const idfab = req.params.p4;
+  const idalm = req.params.p5;
+  const cant = req.params.p6;
+
   try {
-    await pool.query("select proyectoerp.erp_editarformato($1,$2,$3)", [
-      idforma,
-      nomforma,
-      codforma
+    await pool.query("select proyectoerp.erp_editarmovimiento($1,$2,$3,$4,$5,$6,$7,$8)", [
+      idmov,
+      codmov,
+      idprod,
+      idfab,
+      idalm,
+      cant
     ]);
 
     res.status(200).json({
@@ -93,12 +103,10 @@ formatos.updformato = async (req, res) => {
   }
 };
 
-formatos.offformato = async (req, res) => {
-  const idforma = req.params.p1;
+movimientos.offmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_offmovimiento($1)", [idmov]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -112,12 +120,10 @@ formatos.offformato = async (req, res) => {
   }
 };
 
-formatos.onformato = async (req, res) => {
-  const idforma = req.params.p1;
+movimientos.onmovimiento = async (req, res) => {
+  const idmov = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_onmovimiento($1)", [idmov]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -131,5 +137,4 @@ formatos.onformato = async (req, res) => {
   }
 };
 
-
-module.exports = formatos;
+module.exports = movimientos;

@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const formatos = {};
+const clientes = {};
 
-formatos.listarformatos = async (req, res) => {
+clientes.listarclientes = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatos()")
+      await pool.query("select * from proyectoerp.erp_listarclientes()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ formatos.listarformatos = async (req, res) => {
   }
 };
 
-formatos.listarformatosinh = async (req, res) => {
+clientes.listarclientesinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatosinh()")
+      await pool.query("select * from proyectoerp.erp_listarclientesinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,16 +47,21 @@ formatos.listarformatosinh = async (req, res) => {
   }
 };
 
-formatos.addformato = async (req, res) => {
+clientes.addcliente = async (req, res) => {
+  const nomcli = req.params.p1;
+  const pat = req.params.p2;
+  const mat = req.params.p3;
+  const nit = req.params.p4;
+  const fech = req.params.p5;
+  const corr = req.params.p6;
+  const cel = req.params.p7;
+  const tel = req.params.p8;
 
-    const nomforma = req.params.p1;
-    const codforma = req.params.p2;
-    
   try {
-    await pool.query("select proyectoerp.erp_addformato($1,$2)", [
-      nomforma,
-      codforma,
-    ]);
+    await pool.query(
+      "select proyectoerp.erp_addcliente($1,$2,$3,$4,$5,$6,$7,$8)",
+      [nomcli, pat, mat, nit, fech, corr, cel, tel]
+    );
 
     res.status(200).json({
       message: "REGISTRO INSERTADO CORRECTAMENTE",
@@ -70,15 +75,25 @@ formatos.addformato = async (req, res) => {
   }
 };
 
-formatos.updformato = async (req, res) => {
-  const idforma = req.params.p1;
-  const nomforma = req.params.p2;
-  const codforma = req.params.p3;
+clientes.updcliente = async (req, res) => {
+  const idcli = req.params.p1;
+  const nomcli = req.params.p2;
+  const pat = req.params.p3;
+  const mat = req.params.p4;
+  const nit = req.params.p5;
+  const corr = req.params.p6;
+  const cel = req.params.p7;
+  const tel = req.params.p8;
   try {
-    await pool.query("select proyectoerp.erp_editarformato($1,$2,$3)", [
-      idforma,
-      nomforma,
-      codforma
+    await pool.query("select proyectoerp.erp_editarcliente($1,$2,$3,$4,$5,$6,$7,$8)", [
+      idcli,
+      nomcli,
+      pat,
+      mat,
+      nit,
+      corr,
+      cel,
+      tel
     ]);
 
     res.status(200).json({
@@ -93,12 +108,10 @@ formatos.updformato = async (req, res) => {
   }
 };
 
-formatos.offformato = async (req, res) => {
-  const idforma = req.params.p1;
+clientes.offcliente = async (req, res) => {
+  const idcli = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_offcliente($1)", [idcli]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -112,12 +125,10 @@ formatos.offformato = async (req, res) => {
   }
 };
 
-formatos.onformato = async (req, res) => {
-  const idforma = req.params.p1;
+clientes.oncliente = async (req, res) => {
+  const idcli = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_oncliente($1)", [idcli]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -131,5 +142,4 @@ formatos.onformato = async (req, res) => {
   }
 };
 
-
-module.exports = formatos;
+module.exports = clientes;

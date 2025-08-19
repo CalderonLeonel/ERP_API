@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const tipos = {};
+const transportes = {};
 
-tipos.listartipos = async (req, res) => {
+transportes.listartransportes = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listartipos()")
+      await pool.query("select * from proyectoerp.erp_listartransportes()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -24,10 +24,10 @@ tipos.listartipos = async (req, res) => {
   }
 };
 
-tipos.listartiposinh = async (req, res) => {
+transportes.listartransportesinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listartiposinh()")
+      await pool.query("select * from proyectoerp.erp_listartransportesinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -47,15 +47,32 @@ tipos.listartiposinh = async (req, res) => {
   }
 };
 
-tipos.addtipo = async (req, res) => {
-  const nomtipo = req.params.p1;
-  const codtipo = req.params.p2;
-  const idlin = req.params.p3;
+transportes.addchofer = async (req, res) => {
+  const nomchof = req.params.p1;
+  const pat = req.params.p2;
+  const mat = req.params.p3;
+  const numdoc = req.params.p4;
+  const dir = req.params.p5;
+  const nac = req.params.p6;
+  const tel = req.params.p7;
+  const fech = req.params.p8
+  const gen = req.params.p9;
+  const idpai = req.params.p10;
+  const idciu = req.params.p11;
+
   try {
-    await pool.query("select proyectoerp.erp_addtipoproducto($1,$2,$3)", [
-      nomtipo,
-      codtipo,
-      idlin
+    await pool.query("select proyectoerp.erp_addchofer($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)", [
+      nomchof,
+      pat,
+      mat,
+      numdoc,
+      dir,
+      nac,
+      tel,
+      fech,
+      gen,
+      idpai,
+      idciu
     ]);
     res.status(200).json({
       message: "REGISTRO INSERTADO CORRECTAMENTE",
@@ -69,7 +86,7 @@ tipos.addtipo = async (req, res) => {
   }
 };
 
-tipos.updtipo = async (req, res) => {
+transportes.updchofer = async (req, res) => {
   const idtipo = req.params.p1;
   const nomtipo = req.params.p2;
   const codtipo = req.params.p3;
@@ -79,7 +96,7 @@ tipos.updtipo = async (req, res) => {
       idtipo,
       nomtipo,
       codtipo,
-      idlin
+      idlin,
     ]);
 
     res.status(200).json({
@@ -94,7 +111,7 @@ tipos.updtipo = async (req, res) => {
   }
 };
 
-tipos.offtipo = async (req, res) => {
+transportes.offchofer = async (req, res) => {
   const idtipo = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_offtipo($1)", [idtipo]);
@@ -111,7 +128,7 @@ tipos.offtipo = async (req, res) => {
   }
 };
 
-tipos.ontipo = async (req, res) => {
+transportes.onchofer = async (req, res) => {
   const idtipo = req.params.p1;
   try {
     await pool.query("select proyectoerp.erp_ontipo($1)", [idtipo]);
@@ -128,4 +145,43 @@ tipos.ontipo = async (req, res) => {
   }
 };
 
-module.exports = tipos;
+transportes.actChoferImg = async (req, res) => {
+  const unicod = req.params.p1;
+
+  try {
+    await pool.query("select unicen.seiko_upddocenteimg($1)", [unicod]);
+    const result = await pool.query(
+      "SELECT foto FROM unicen.personal WHERE unicodigo = $1",
+      [unicod]
+    );
+    const imgUrl = result.rows[0].img_url;
+
+    res.status(200).json({
+      message: "SE GUARDARON LOS CAMBIOS ACT IMG!!!",
+      imgUrl: imgUrl,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+    });
+  }
+};
+
+transportes.updFotoUrl = async (req, res) => {
+  const unicod = req.params.p1;
+
+  try {
+    const resultado = await pool.query("select unicen.seiko_updfotourl($1)", [
+      unicod,
+    ]);
+    res.status(200).json({
+      resultado,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+    });
+  }
+};
+
+module.exports = transportes;

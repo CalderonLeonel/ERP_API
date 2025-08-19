@@ -1,10 +1,10 @@
 import pool from "../database/Keys";
-const formatos = {};
+const fabricas = {};
 
-formatos.listarformatos = async (req, res) => {
+fabricas.listarfabricas = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatos()")
+      await pool.query("select * from proyectoerp.erp_listarfabricas()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -21,13 +21,14 @@ formatos.listarformatos = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
-formatos.listarformatosinh = async (req, res) => {
+fabricas.listarfabricasinh = async (req, res) => {
   try {
     const resultado = await (
-      await pool.query("select * from proyectoerp.erp_listarformatosinh()")
+      await pool.query("select * from proyectoerp.erp_listarfabricasinh()")
     ).rows;
 
     if (resultado.length > 0) {
@@ -44,18 +45,25 @@ formatos.listarformatosinh = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
-formatos.addformato = async (req, res) => {
+fabricas.addfabrica = async (req, res) => {
+  const nomfab = req.params.p1;
+  const codfab = req.params.p2;
+  const dirfab = req.params.p3;
+  const idpai = req.params.p4;
+  const idciu = req.params.p5;
 
-    const nomforma = req.params.p1;
-    const codforma = req.params.p2;
-    
   try {
-    await pool.query("select proyectoerp.erp_addformato($1,$2)", [
-      nomforma,
-      codforma,
+    await pool.query("select proyectoerp.erp_addfabrica($1,$2,$3,$4,$5)", [
+      nomfab,
+      codfab,
+      dirfab,
+      idciu,
+      idpai,
+      iduni
     ]);
 
     res.status(200).json({
@@ -67,18 +75,28 @@ formatos.addformato = async (req, res) => {
         "ERROR INESPERADO REPORTELO AL DEPARTAMENTO DE SISTEMAS, GRACIAS !!!",
       error,
     });
+    console.log("ERROR: "+error.message);
   }
 };
 
-formatos.updformato = async (req, res) => {
-  const idforma = req.params.p1;
-  const nomforma = req.params.p2;
-  const codforma = req.params.p3;
+fabricas.updfabrica = async (req, res) => {
+  const idfab = req.params.p1;
+  const nomfab = req.params.p2;
+  const codfab = req.params.p3;
+  const dirfab = req.params.p4;
+  const idciu = req.params.p5;
+  const idpai = req.params.p6;
+  const iduni = req.params.p7;
+
   try {
-    await pool.query("select proyectoerp.erp_editarformato($1,$2,$3)", [
-      idforma,
-      nomforma,
-      codforma
+    await pool.query("select proyectoerp.erp_editarfabrica($1,$2,$3,$4,$5,$6,$7)", [
+      idfab,
+      nomfab,
+      codfab,
+      dirfab,
+      idciu,
+      idpai,
+      iduni
     ]);
 
     res.status(200).json({
@@ -93,12 +111,10 @@ formatos.updformato = async (req, res) => {
   }
 };
 
-formatos.offformato = async (req, res) => {
-  const idforma = req.params.p1;
+fabricas.offfabrica = async (req, res) => {
+  const idfab = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_offformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_offfabrica($1)", [idfab]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -112,12 +128,10 @@ formatos.offformato = async (req, res) => {
   }
 };
 
-formatos.onformato = async (req, res) => {
-  const idforma = req.params.p1;
+fabricas.onfabrica = async (req, res) => {
+  const idfab = req.params.p1;
   try {
-    await pool.query("select proyectoerp.erp_onformato($1)", [
-      idforma
-    ]);
+    await pool.query("select proyectoerp.erp_onfabrica($1)", [idfab]);
 
     res.status(200).json({
       message: "REGISTRO MODIFICADO CORRECTAMENTE",
@@ -131,5 +145,4 @@ formatos.onformato = async (req, res) => {
   }
 };
 
-
-module.exports = formatos;
+module.exports = fabricas;
