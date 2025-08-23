@@ -44,8 +44,8 @@ router.get('/listarsubcateriasde/:p1', inventario.listarSubcategoriaDe);
 router.get('/listarsubcategoriaactivo', inventario.listarSubcategoriaActivo);
 router.get('/listarsubcategoriainactivo', inventario.listarSubcategoriaInactivo);
 
-router.post('/agregarsubcategoria/:p1,:p2', inventario.agregarSubcategoria);
-router.post('/actualizarsubcategoria/:p1,:p2,:p3', inventario.actualizarSubcategoria);
+router.post('/agregarsubcategoria/:p1,:p2,:p3', inventario.agregarSubcategoria);
+router.post('/actualizarsubcategoria/:p1,:p2,:p3,:p4', inventario.actualizarSubcategoria);
 router.post('/eliminarsubcategoria/:p1', inventario.eliminarSubcategoria);
 
 
