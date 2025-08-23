@@ -594,6 +594,27 @@ inventario.listarCategoria = async (req, res) => {
     }
   };
 
+   inventario.listarSubcategoriaDe = async (req, res) => {
+    try {
+      const idCategoria = req.params.p1;
+      const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_subcategoria_de($1)",[idCategoria])).rows;
+      if (resultado.length > 0) {
+        res.status(200).json({ resultado });
+      } else {
+        res.status(200).json({
+          message: "NO EXISTEN DATOS:(",
+          NotFount: true,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "INESPERADO ERROR REPORTELO A ASI INMEDIATAMENTE, GRACIAS !!!",
+        error,
+      });
+    }
+  };
+
+
   inventario.listarSubcategoriaActivo = async (req, res) => {
     try {
       const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_subcategoria_activo()")).rows;

@@ -59,15 +59,9 @@ proveedor.listarProveedoresInactivos = async (req, res) => {
 };
 
 proveedor.agregarProveedor = async(req,res) =>{
-  const nombre = req.params.p1;
-  const contacto1 = req.params.p2;
-  const contacto2= req.params.p3;
-  const correo = req.params.p4;
-  const est  = req.params.p5;
-  
-  
+   const { p1, p2, p3, p4, p5, p6, p7, p8, p9 } = req.params;
    try {
-         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5)",[nombre,contacto1,contacto2,correo,est]);
+         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5,$6,$7,$8,$9)",[p1, p2, p3, p4, p5, p6, p7, p8, p9]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'
@@ -85,16 +79,9 @@ proveedor.agregarProveedor = async(req,res) =>{
  };
 
 proveedor.agregarProveedorArchivo = async(req,res) =>{
-  const nombre = req.params.p1;
-  const contacto1 = req.params.p2;
-  const contacto2= req.params.p3;
-  const correo = req.params.p4;
-  const est  = req.params.p5;
-  const archivo  = req.params.p6;
-  
-  
+  const { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10 } = req.params;
    try {
-         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5,$6)",[nombre,contacto1,contacto2,correo,est,archivo]);
+         await pool.query("select proyectoerp.erp_insertar_proveedor($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[ p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]);
                            
              res.status(200).json({
                  message:'CAMPO GUARDADO CORRECTAMENTE :)'

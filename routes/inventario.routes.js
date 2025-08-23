@@ -40,6 +40,7 @@ router.post('/eliminarcategoria/:p1', inventario.eliminarCategoria);
 router.post('/activarcategoria/:p1', inventario.activarCategoria);
 
 router.get('/listarsubcategoria', inventario.listarSubcategoria);
+router.get('/listarsubcateriasde/:p1', inventario.listarSubcategoriaDe);
 router.get('/listarsubcategoriaactivo', inventario.listarSubcategoriaActivo);
 router.get('/listarsubcategoriainactivo', inventario.listarSubcategoriaInactivo);
 
