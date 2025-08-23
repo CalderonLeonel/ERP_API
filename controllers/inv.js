@@ -661,7 +661,7 @@ inventario.listarCategoria = async (req, res) => {
     const categoria = req.params.p2;
     const est  = req.params.p3;
     try {
-      await pool.query("select proyectoerp.erp_insertar_subcategoria($1,$2,$3,$4)",[nombre,categoria,est]);
+      await pool.query("select proyectoerp.erp_insertar_subcategoria($1,$2,$3)",[nombre,categoria,est]);
                         
           res.status(200).json({
               message:'CAMPO GUARDADO CORRECTAMENTE :)'
