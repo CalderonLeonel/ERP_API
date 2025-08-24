@@ -383,7 +383,7 @@ inventario.actualizarItem = async (req, res) => {
   const fecha  = req.params.p11;
   const costo  = req.params.p12;
   try {
-    await pool.query("select proyectoerp.erp_actualizar_item($1,$2,$3,$4,$5,$6)",[id,nombre,descripcion,medida,est,categoria,limite,metodovaluacion,sku,proveedor,fecha,costo]);
+    await pool.query("select proyectoerp.erp_actualizar_item($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)",[id,nombre,descripcion,medida,est,categoria,limite,metodovaluacion,sku,proveedor,fecha,costo]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
