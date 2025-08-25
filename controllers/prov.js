@@ -100,16 +100,10 @@ proveedor.agregarProveedorArchivo = async(req,res) =>{
 
 
  proveedor.actualizarProveedor = async(req,res) =>{
-  const id = req.params.p1;
-  const nombre = req.params.p2;
-  const contacto1 = req.params.p3;
-  const contacto2= req.params.p4;
-  const correo = req.params.p5;
-  const est  = req.params.p6;
-  
+  const { p1, p2, p3, p4, p5, p6, p7, p8, p9,p10} = req.params;
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_proveedor($1,$2,$3,$4,$5,$6)",[id,nombre,contacto1,contacto2,correo,est]);
+         await pool.query("select proyectoerp.erp_actualizar_proveedor($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[p1, p2, p3, p4, p5, p6, p7, p8, p9,p10]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
@@ -127,17 +121,11 @@ proveedor.agregarProveedorArchivo = async(req,res) =>{
  };
 
  proveedor.actualizarProveedorarchivo = async(req,res) =>{
-  const id = req.params.p1;
-  const nombre = req.params.p2;
-  const contacto1 = req.params.p3;
-  const contacto2= req.params.p4;
-  const correo = req.params.p5;
-  const est  = req.params.p6;
-  const archivo  = req.params.p7;
+  const { p1, p2, p3, p4, p5, p6, p7, p8, p9,p10,p11 } = req.params;
   
   
    try {
-         await pool.query("select proyectoerp.erp_actualizar_proveedor_archivo($1,$2,$3,$4,$5,$6,$7)",[id,nombre,contacto1,contacto2,correo,est,archivo]);
+         await pool.query("select proyectoerp.erp_actualizar_proveedor_archivo($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[p1, p2, p3, p4, p5, p6, p7, p8, p9,p10,p11 ]);
                            
              res.status(200).json({
                  message:'SE GUARDARON LOS CAMBIOS :)'
