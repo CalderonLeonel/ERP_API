@@ -20,6 +20,7 @@ router.get('/listarProductos/:p1', inventario.listarProductos);
 
 router.get('/listaritem', inventario.listarItem);
 router.get('/listaritemdisponibles', inventario.listarItemActivoInventario);
+router.get('/listaritemdisponiblesInventario', inventario.listarItemActivoInventarioTransaccion);
 router.get('/listaritemactivo', inventario.listarItemActivo);
 router.get('/listariteminactivo', inventario.listarItemInactivo);
 router.get('/listaritemalmacenados',inventario.listarItemAlmacenado);
