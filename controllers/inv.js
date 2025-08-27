@@ -132,7 +132,7 @@ inventario.agregarTransaccion = async (req, res) => {
   const motivo = req.params.p7;
   const lote = req.params.p8;
   try {
-    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7,$8)",[idItem,idAlmacen,movimiento,cantidad,est,referencia,motivo,lote]);
+    await pool.query("select proyectoerp.erp_insertar_transaccion_inventario($1,$2,$3,$4,$5,$6,$7,$8)",[idItem,idAlmacen,movimiento,cantidad,referencia,motivo,lote,est]);
                       
         res.status(200).json({
             message:'CAMPO GUARDADO CORRECTAMENTE :)'
