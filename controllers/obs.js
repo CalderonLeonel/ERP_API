@@ -32,7 +32,7 @@ observaciones.addobservacion = async(req,res) =>{
         await pool.query("select proyectoerp.erp_addobservacion($1,$2,$3,$4)",[obs,com,fec,idempl]);
                              
                res.status(200).json({
-                   message:'Se ha registrado el observacion con éxito.'
+                   message:'SE REGISTRO LA OBSERVACION CON EXITO'
              
                })
            

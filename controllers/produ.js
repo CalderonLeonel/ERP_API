@@ -75,13 +75,15 @@ produccion.addproduccion = async (req, res) => {
   const idfab = req.params.p2;
   const idprod = req.params.p3;
   const cant = req.params.p4;
+  const ven = req.params.p5;
 
   try {
-    await pool.query("select proyectoerp.erp_addproduccion($1,$2,$3,$4)", [
+    await pool.query("select proyectoerp.erp_addproduccion($1,$2,$3,$4,$5)", [
       codprod,
       idfab,
       idprod,
       cant,
+      ven
     ]);
 
     res.status(200).json({

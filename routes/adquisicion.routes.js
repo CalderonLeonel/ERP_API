@@ -22,6 +22,8 @@ router.get('/listarcotizacioniteminactiva',adquisicion.listarCotizacionItemAnula
 
 router.get('/listardetallecotizacion/:p1',adquisicion.listarDetalleCotizacion);
 
+router.get('/listaritemcotizacion/:p1,:p2',adquisicion.listarItemDeCotizacion);
+
 router.get('/obtenerprecioanterior/:p1,:p2',adquisicion.getLastPrice);
 
 router.post('/agregarcotizacionitem/:p1,:p2,:p3,:p4,:p5',adquisicion.agregarcotizacionitem);
