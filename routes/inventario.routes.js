@@ -7,6 +7,8 @@ router.get('/listarinventario', inventario.listarTransacciones);
 router.get('/listarinventarioactivo', inventario.listarTransaccionesActivas);
 router.get('/listarinventarioinactivo', inventario.listarTransaccionesInactivas);
 
+router.get('/listarinventarioreporte', inventario.listarTransaccionesReportes);
+
 router.post('/agregarinventario/:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8', inventario.agregarTransaccion);
 router.post('/agregarinventariosalida/:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8', inventario.agregarTransaccionSalida);
 router.post('/actualizarinventario/:p1,:p2,:p3,:p4,:p5,:p6', inventario.actualizarTransaccion);
