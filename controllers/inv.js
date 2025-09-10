@@ -64,7 +64,7 @@ inventario.listarTransaccionesInactivas = async (req, res) => {
 
 inventario.listarTransaccionesReportes = async (req, res) => {
   try {
-    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_transaccion_inventario_reporte()")).rows;
+    const resultado = await(await pool.query("SELECT * FROM proyectoerp.erp_listar_transaccion_inventario()")).rows;
     if (resultado.length > 0) {
       res.status(200).json({ resultado });
     } else {
