@@ -58,7 +58,7 @@ fabricas.addfabrica = async (req, res) => {
   const iduni = req.params.p6;
 
   try {
-    await pool.query("select proyectoerp.erp_addfabrica($1,$2,$3,$4,$5)", [
+    await pool.query("select proyectoerp.erp_addfabrica($1,$2,$3,$4,$5,$6)", [
       nomfab,
       codfab,
       dirfab,
