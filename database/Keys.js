@@ -10,7 +10,7 @@ const pool = new Pool({
   ssl: {
     rejectUnauthorized: process.env.PG_SSL_REJECT_UNAUTHORIZED === 'true' ? true : false
   }
-});
+});  
 
 /*onst pool = new Pool({
     host : '35.226.29.241',
