@@ -135,3 +135,6 @@ archivos/documentos/*
 archivos/adquisition/*
 archivos/employee/*
 archivos/inventory/*
+
+certs
+.certs/*
