@@ -7,6 +7,12 @@ import multer from 'multer';
 import sharp from 'sharp';
 
 
+//adding https
+import https from 'https';
+import fs from 'fs';
+
+
+
 
 //const express require('express');
 //const morgan require('morgan');
@@ -127,10 +133,17 @@ app.use(history());
 //app.use(e.single('archivo'));
 
 // SETTINGS
-app.set('port', process.env.PORT || 3000);
 
-app.listen(app.get('port'), () => {
-  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
-})
 
+//HTTPS SERVER OPTIONS
+const httpsOptions = {
+  key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
+};
+
+const PORT = process.env.PORT || 3000;
+
+https.createServer(httpsOptions, app).listen(PORT, 'localhost', () => {
+  console.log(`SERVIDOR HTTPS en https://localhost.8:${PORT}`);
+});
 
