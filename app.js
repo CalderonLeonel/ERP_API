@@ -135,15 +135,10 @@ app.use(history());
 // SETTINGS
 
 
-//HTTPS SERVER OPTIONS
-const httpsOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
-};
+app.set('port', process.env.PORT || 3000);
 
-const PORT = process.env.PORT || 3000;
+app.listen(app.get('port'), () => {
+  console.log('EL PUERTO DEL SERVIDOR ES ' + app.get('port'));
+})
 
-https.createServer(httpsOptions, app).listen(PORT, 'localhost', () => {
-  console.log(`SERVIDOR HTTPS en https://localhost.8:${PORT}`);
-});
 
